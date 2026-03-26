@@ -4,22 +4,26 @@
 
 @layer base {
   body {
-    @apply bg-white text-gov-gray-dark font-body leading-relaxed;
+    @apply bg-warm-bg text-text font-body leading-relaxed;
   }
 
-  /* Focus ring styles - high contrast, visible on all elements */
+  ::selection {
+    @apply bg-teal/20 text-navy;
+  }
+
+  /* Focus ring styles - visible, high-contrast */
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-gov-blue ring-0;
+    @apply outline-2 outline-offset-2 outline-teal ring-0;
     outline-style: solid;
   }
 
-  /* Ensure focus is visible on dark backgrounds too */
-  .bg-gov-navy *:focus-visible,
-  .bg-gov-navy-dark *:focus-visible {
+  /* Focus on dark backgrounds */
+  .bg-navy *:focus-visible,
+  .bg-navy-dark *:focus-visible {
     @apply outline-white;
   }
 
-  /* Smooth scrolling for reduced-motion-ok users */
+  /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
@@ -39,29 +43,27 @@
 }
 
 @layer components {
-  /* Skip to content link */
   .skip-to-content {
     @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100]
-      focus:bg-white focus:text-gov-navy focus:px-4 focus:py-2 focus:rounded
+      focus:bg-white focus:text-navy focus:px-4 focus:py-2 focus:rounded
       focus:shadow-lg focus:underline focus:font-semibold;
   }
 
-  /* Consistent button focus styles */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-gov-navy text-white font-semibold
-      rounded transition-colors duration-200 hover:bg-gov-navy-dark
-      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-blue;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-navy text-white font-semibold
+      rounded-lg transition-colors duration-200 hover:bg-navy-dark
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-gov-navy text-gov-navy font-semibold
-      rounded transition-colors duration-200 hover:bg-gov-navy hover:text-white
-      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gov-blue;
+  .btn-teal {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-teal text-teal font-semibold
+      rounded-lg transition-colors duration-200 hover:bg-teal hover:text-white
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal;
   }
 
   .btn-white {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-gov-navy font-semibold
-      rounded transition-colors duration-200 hover:bg-gov-gray
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-navy font-semibold
+      rounded-lg transition-colors duration-200 hover:bg-warm-cream
       focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
   }
 }

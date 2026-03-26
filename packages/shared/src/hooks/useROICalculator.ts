@@ -1,39 +1,46 @@
 import { useState, useMemo } from 'react';
-import type { ROIInputs, ROIResults } from '../types';
 
-const AVERAGE_HOURLY_RATE = 45;
-const AUTOMATION_TIME_REDUCTION = 0.42;
-const COST_REDUCTION_FACTOR = 0.35;
-const WORKING_DAYS_PER_YEAR = 250;
+export interface ROIInputs {
+  documents: number;
+  repositories: number;
+  manualHoursPerWeek: number;
+  hourlyRate: number;
+}
+
+export interface ROIResults {
+  annualManualCost: number;
+  asmSavings: number;
+  ibigSavings: number;
+  captureSavings: number;
+  totalSavings: number;
+  roiPercent: number;
+}
 
 export function useROICalculator() {
   const [inputs, setInputs] = useState<ROIInputs>({
-    documentVolume: 5000,
-    numberOfUsers: 10,
-    processingTimeMinutes: 5,
+    documents: 500000,
+    repositories: 3,
+    manualHoursPerWeek: 40,
+    hourlyRate: 85,
   });
 
   const results = useMemo<ROIResults>(() => {
-    const { documentVolume, numberOfUsers, processingTimeMinutes } = inputs;
+    const { documents, manualHoursPerWeek, hourlyRate } = inputs;
 
-    const currentDailyHours =
-      (documentVolume * processingTimeMinutes) / 60;
-    const timeSavedHoursDaily = currentDailyHours * AUTOMATION_TIME_REDUCTION;
-    const timeSavedHoursAnnual = timeSavedHoursDaily * WORKING_DAYS_PER_YEAR;
-
-    const currentAnnualCost =
-      currentDailyHours * AVERAGE_HOURLY_RATE * WORKING_DAYS_PER_YEAR;
-    const annualSavings = currentAnnualCost * COST_REDUCTION_FACTOR;
-
-    const efficiencyGain =
-      ((AUTOMATION_TIME_REDUCTION * 100) +
-        (numberOfUsers > 20 ? 8 : numberOfUsers > 10 ? 5 : 0));
+    const annualManualCost = manualHoursPerWeek * 52 * hourlyRate;
+    const asmSavings = Math.round(annualManualCost * 0.65);
+    const ibigSavings = Math.round(documents * 0.02);
+    const captureSavings = Math.round(annualManualCost * 0.45);
+    const totalSavings = asmSavings + ibigSavings + captureSavings;
+    const roiPercent = Math.round((totalSavings / annualManualCost) * 100);
 
     return {
-      timeSavedHours: Math.round(timeSavedHoursAnnual),
-      costReduction: Math.round(COST_REDUCTION_FACTOR * 100),
-      efficiencyGain: Math.round(Math.min(efficiencyGain, 65)),
-      annualSavings: Math.round(annualSavings),
+      annualManualCost,
+      asmSavings,
+      ibigSavings,
+      captureSavings,
+      totalSavings,
+      roiPercent,
     };
   }, [inputs]);
 

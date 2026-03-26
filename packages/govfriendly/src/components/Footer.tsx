@@ -1,44 +1,38 @@
 import { Link } from 'react-router-dom';
-import { Shield, Phone, Mail, MapPin } from 'lucide-react';
-import { company } from '@shared/data/company';
+import { company, services, products } from '@shared/data/company';
 
 export default function Footer() {
   return (
-    <footer className="bg-gov-navy text-white" role="contentinfo">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-navy text-white" role="contentinfo">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Shield className="w-6 h-6" aria-hidden="true" />
-              <span className="font-heading font-bold text-lg">SYSCOM</span>
-            </div>
-            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+            <Link to="/" className="font-heading text-xl font-bold tracking-tight hover:text-gold transition-colors">
+              SYSCOM
+            </Link>
+            <p className="mt-3 text-sm text-white/70 leading-relaxed">
               {company.tagline}
             </p>
-            <p className="text-gray-400 text-sm">
-              Serving government and enterprise clients since {company.founded}.
+            <p className="mt-4 text-sm text-white/50">
+              {company.address.street}<br />
+              {company.address.city}, {company.address.state} {company.address.zip}
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="font-heading font-semibold text-base mb-4">Services</h3>
+            <h3 className="font-heading text-sm font-bold uppercase tracking-wider text-gold mb-4">
+              Services
+            </h3>
             <ul className="space-y-2">
-              {[
-                'Enterprise Content Management',
-                'Business Process Automation',
-                'Enterprise Capture',
-                'Content Migration',
-                'Platform Integration',
-                'AI & Intelligent Automation',
-              ].map((service) => (
-                <li key={service}>
+              {services.map((s) => (
+                <li key={s.id}>
                   <Link
-                    to="/services"
-                    className="text-gray-300 text-sm hover:text-white underline-offset-2 hover:underline transition-colors focus-visible:underline"
+                    to={`/services#${s.id}`}
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
-                    {service}
+                    {s.shortName}
                   </Link>
                 </li>
               ))}
@@ -47,71 +41,62 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="font-heading font-semibold text-base mb-4">Products</h3>
+            <h3 className="font-heading text-sm font-bold uppercase tracking-wider text-gold mb-4">
+              Products
+            </h3>
             <ul className="space-y-2">
-              {['AnySource Migrator', 'AIS Bridge', 'IBIG'].map((product) => (
-                <li key={product}>
+              {products.map((p) => (
+                <li key={p.id}>
                   <Link
-                    to="/products"
-                    className="text-gray-300 text-sm hover:text-white underline-offset-2 hover:underline transition-colors focus-visible:underline"
+                    to={`/products#${p.id}`}
+                    className="text-sm text-white/70 hover:text-white transition-colors"
                   >
-                    {product}
+                    {p.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h3 className="font-heading font-semibold text-base mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2 text-sm text-gray-300">
-                <MapPin className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
-                <span>
-                  {company.address.street}
-                  <br />
-                  {company.address.city}, {company.address.state} {company.address.zip}
-                </span>
-              </li>
+            <h3 className="font-heading text-sm font-bold uppercase tracking-wider text-gold mb-4">
+              Contact
+            </h3>
+            <ul className="space-y-2 text-sm text-white/70">
               <li>
-                <a
-                  href={`tel:${company.phone.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-white underline-offset-2 hover:underline transition-colors focus-visible:underline"
-                >
-                  <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <a href={`tel:${company.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
                   {company.phone}
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${company.email}`}
-                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-white underline-offset-2 hover:underline transition-colors focus-visible:underline"
-                >
-                  <Mail className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <a href={`tel:${company.phoneTollfree}`} className="hover:text-white transition-colors">
+                  {company.phoneTollfree}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${company.email}`} className="hover:text-white transition-colors">
                   {company.email}
                 </a>
               </li>
             </ul>
+            <Link
+              to="/contact"
+              className="inline-block mt-4 px-4 py-2 text-sm font-medium border border-white/30 rounded-lg text-white hover:bg-white/10 transition-colors"
+            >
+              Schedule Consultation
+            </Link>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} {company.name} All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link
-              to="/about"
-              className="hover:text-white underline-offset-2 hover:underline transition-colors focus-visible:underline"
-            >
-              Accessibility Statement
-            </Link>
-            <Link
-              to="/contact"
-              className="hover:text-white underline-offset-2 hover:underline transition-colors focus-visible:underline"
-            >
-              Privacy Policy
-            </Link>
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-white/40">
+            &copy; {new Date().getFullYear()} SYSCOM, Inc. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-xs text-white/40">
+            <Link to="/about" className="hover:text-white/70 transition-colors">About</Link>
+            <Link to="/careers" className="hover:text-white/70 transition-colors">Careers</Link>
+            <Link to="/contact" className="hover:text-white/70 transition-colors">Contact</Link>
           </div>
         </div>
       </div>

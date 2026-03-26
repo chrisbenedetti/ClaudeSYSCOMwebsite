@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { useROICalculator } from '@shared/hooks/useROICalculator';
 
 function formatCurrency(value: number): string {
@@ -15,121 +17,167 @@ function formatNumber(value: number): string {
 export default function ROICalculator() {
   const { inputs, results, updateInput } = useROICalculator();
 
+  const maxSaving = Math.max(
+    results.asmSavings,
+    results.ibigSavings,
+    results.captureSavings,
+    1
+  );
+
   return (
-    <div className="bg-dark-800 border border-dark-700/40 p-8 md:p-12">
-      <div className="text-center mb-12">
+    <div className="glass-card rounded-lg p-8 md:p-12">
+      <div className="text-center mb-14">
+        <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4">
+          Calculate Your Impact
+        </p>
         <h3 className="font-heading text-3xl md:text-4xl text-cream-100 mb-3">
           Return on Investment
         </h3>
-        <p className="text-cream-400 text-sm max-w-md mx-auto">
+        <p className="text-cream-400 text-sm max-w-md mx-auto font-light">
           Estimate the impact of automating your document processes with SYSCOM
           solutions.
         </p>
       </div>
 
       {/* Inputs */}
-      <div className="grid md:grid-cols-3 gap-8 md:gap-12 mb-12">
+      <div className="grid md:grid-cols-4 gap-8 md:gap-10 mb-14">
         <div>
           <label className="block text-[10px] uppercase tracking-[0.2em] text-cream-300 mb-3">
-            Daily Document Volume
+            Document Volume
           </label>
           <input
             type="range"
-            min={500}
-            max={50000}
-            step={500}
-            value={inputs.documentVolume}
-            onChange={(e) =>
-              updateInput('documentVolume', Number(e.target.value))
-            }
-            className="w-full accent-copper-500 h-[2px] bg-dark-600 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-copper-500"
+            min={10000}
+            max={5000000}
+            step={10000}
+            value={inputs.documents}
+            onChange={(e) => updateInput('documents', Number(e.target.value))}
           />
           <p className="font-heading text-2xl text-cream-100 mt-3">
-            {formatNumber(inputs.documentVolume)}
+            {formatNumber(inputs.documents)}
           </p>
         </div>
 
         <div>
           <label className="block text-[10px] uppercase tracking-[0.2em] text-cream-300 mb-3">
-            Number of Users
+            Repositories
           </label>
           <input
             type="range"
             min={1}
-            max={100}
+            max={20}
             step={1}
-            value={inputs.numberOfUsers}
-            onChange={(e) =>
-              updateInput('numberOfUsers', Number(e.target.value))
-            }
-            className="w-full accent-copper-500 h-[2px] bg-dark-600 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-copper-500"
+            value={inputs.repositories}
+            onChange={(e) => updateInput('repositories', Number(e.target.value))}
           />
           <p className="font-heading text-2xl text-cream-100 mt-3">
-            {inputs.numberOfUsers}
+            {inputs.repositories}
           </p>
         </div>
 
         <div>
           <label className="block text-[10px] uppercase tracking-[0.2em] text-cream-300 mb-3">
-            Avg. Processing Time (min)
+            Manual Hours / Week
           </label>
           <input
             type="range"
-            min={1}
-            max={30}
-            step={1}
-            value={inputs.processingTimeMinutes}
+            min={5}
+            max={200}
+            step={5}
+            value={inputs.manualHoursPerWeek}
             onChange={(e) =>
-              updateInput('processingTimeMinutes', Number(e.target.value))
+              updateInput('manualHoursPerWeek', Number(e.target.value))
             }
-            className="w-full accent-copper-500 h-[2px] bg-dark-600 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-copper-500"
           />
           <p className="font-heading text-2xl text-cream-100 mt-3">
-            {inputs.processingTimeMinutes} min
+            {inputs.manualHoursPerWeek}h
+          </p>
+        </div>
+
+        <div>
+          <label className="block text-[10px] uppercase tracking-[0.2em] text-cream-300 mb-3">
+            Hourly Rate
+          </label>
+          <input
+            type="range"
+            min={25}
+            max={250}
+            step={5}
+            value={inputs.hourlyRate}
+            onChange={(e) => updateInput('hourlyRate', Number(e.target.value))}
+          />
+          <p className="font-heading text-2xl text-cream-100 mt-3">
+            ${inputs.hourlyRate}
           </p>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="border-t border-copper-500/20 mb-12" />
+      <div className="border-t border-copper-500/15 mb-14" />
 
-      {/* Results */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div className="text-center">
-          <p className="font-heading text-4xl md:text-5xl text-copper-500 transition-all duration-500">
-            {formatNumber(results.timeSavedHours)}
-          </p>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 mt-3">
-            Hours Saved Annually
-          </p>
-        </div>
+      {/* Savings Breakdown */}
+      <div className="space-y-6 mb-14">
+        {[
+          {
+            label: 'Migration Savings (ASM)',
+            value: results.asmSavings,
+            color: 'bg-copper-500',
+          },
+          {
+            label: 'Discovery Savings (IBIG)',
+            value: results.ibigSavings,
+            color: 'bg-gold-400',
+          },
+          {
+            label: 'Capture Savings',
+            value: results.captureSavings,
+            color: 'bg-cream-300',
+          },
+        ].map((item) => (
+          <div key={item.label}>
+            <div className="flex justify-between text-sm mb-2">
+              <span className="text-cream-400 font-light">{item.label}</span>
+              <span className="text-cream-100 font-heading text-lg">
+                {formatCurrency(item.value)}
+              </span>
+            </div>
+            <div className="w-full h-1.5 bg-dark-700 rounded-full overflow-hidden">
+              <div
+                className={`h-full ${item.color} rounded-full transition-all duration-700`}
+                style={{
+                  width: `${Math.max((item.value / maxSaving) * 100, 2)}%`,
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
 
-        <div className="text-center">
-          <p className="font-heading text-4xl md:text-5xl text-copper-500 transition-all duration-500">
-            {results.costReduction}%
-          </p>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 mt-3">
-            Cost Reduction
-          </p>
-        </div>
+      {/* Total */}
+      <div className="text-center mb-10">
+        <p className="text-[10px] uppercase tracking-[0.3em] text-cream-400 mb-3">
+          Estimated Annual Savings
+        </p>
+        <p className="font-heading text-5xl md:text-6xl text-gradient-copper">
+          {formatCurrency(results.totalSavings)}
+        </p>
+        <p className="text-cream-400 text-sm mt-3 font-light">
+          {results.roiPercent}% projected return on current manual costs
+        </p>
+      </div>
 
-        <div className="text-center">
-          <p className="font-heading text-4xl md:text-5xl text-copper-500 transition-all duration-500">
-            {results.efficiencyGain}%
-          </p>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 mt-3">
-            Efficiency Gain
-          </p>
-        </div>
-
-        <div className="text-center">
-          <p className="font-heading text-4xl md:text-5xl text-copper-500 transition-all duration-500">
-            {formatCurrency(results.annualSavings)}
-          </p>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 mt-3">
-            Annual Savings
-          </p>
-        </div>
+      {/* CTA */}
+      <div className="text-center">
+        <Link
+          to="/contact"
+          className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-copper-500 border border-copper-500/30 px-8 py-3.5 hover:bg-copper-500/10 hover:border-copper-500/60 transition-all duration-500 group"
+        >
+          Schedule a Consultation
+          <ArrowRight
+            size={14}
+            className="group-hover:translate-x-1 transition-transform duration-300"
+          />
+        </Link>
       </div>
     </div>
   );

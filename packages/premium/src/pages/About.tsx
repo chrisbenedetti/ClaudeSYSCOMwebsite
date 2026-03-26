@@ -5,12 +5,12 @@ export default function About() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+      <section className="pt-36 pb-20 md:pt-44 md:pb-28 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4 animate-fade-in">
             Since 1982
           </p>
-          <h1 className="font-heading text-5xl md:text-7xl text-cream-100 animate-slide-up">
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl text-cream-100 animate-slide-up font-light">
             Our Story
           </h1>
         </div>
@@ -19,7 +19,7 @@ export default function About() {
       {/* History */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-3xl mx-auto">
-          <div className="space-y-6 text-cream-300 text-base md:text-lg leading-relaxed">
+          <div className="space-y-8 text-cream-300 text-base md:text-lg leading-relaxed font-light">
             <p>
               SYSCOM was founded in 1982 in Baltimore, Maryland, with a clear
               conviction: that enterprise content management is too critical to
@@ -30,9 +30,9 @@ export default function About() {
             </p>
             <p>
               We are not a body shop. We build and own our intellectual property.
-              Our proprietary products -- AnySource Migrator, AIS Bridge, and
-              IBIG -- exist because we saw problems that nobody else was solving
-              and built the solutions ourselves.
+              Our proprietary products -- AnySource Migrator, AIS Bridge, IBIG,
+              and Content Services -- exist because we saw problems that nobody
+              else was solving and built the solutions ourselves.
             </p>
             <p>
               Our clients are government agencies processing millions of citizen
@@ -46,13 +46,13 @@ export default function About() {
       </section>
 
       {/* Philosophy Pull Quote */}
-      <section className="py-16 md:py-24 px-6">
+      <section className="py-20 md:py-28 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="border-t border-b border-copper-500/20 py-12 md:py-16">
-            <blockquote className="font-heading text-2xl md:text-4xl text-cream-100 italic leading-snug">
+          <div className="border-t border-b border-copper-500/15 py-14 md:py-20">
+            <blockquote className="font-heading text-3xl md:text-5xl text-cream-100 italic leading-tight font-light">
               &ldquo;{company.tagline}&rdquo;
             </blockquote>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mt-6">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mt-8">
               Our Guiding Principle
             </p>
           </div>
@@ -62,7 +62,7 @@ export default function About() {
       {/* Philosophy Detail */}
       <section className="py-16 md:py-20 px-6">
         <div className="max-w-3xl mx-auto">
-          <p className="text-cream-300 text-base md:text-lg leading-relaxed">
+          <p className="text-cream-300 text-base md:text-lg leading-relaxed font-light">
             We know that the newest, latest technology is not always the best
             solution, but it&rsquo;s sometimes the only solution, and we know the
             difference. That discernment -- earned over four decades of hands-on
@@ -73,13 +73,13 @@ export default function About() {
       </section>
 
       {/* Leadership */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-28 md:py-36 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4">
               Leadership
             </p>
-            <h2 className="font-heading text-3xl md:text-5xl text-cream-100">
+            <h2 className="font-heading text-3xl md:text-5xl text-cream-100 font-light">
               The People Behind SYSCOM
             </h2>
           </div>
@@ -88,18 +88,18 @@ export default function About() {
             {leadership.map((person) => (
               <div
                 key={person.name}
-                className="bg-dark-800/50 border border-dark-700/30 p-8 text-center"
+                className="glass-card rounded-lg p-8 text-center"
               >
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-dark-700/50 border border-dark-600/30 flex items-center justify-center">
-                  <User size={28} className="text-copper-500/60" />
+                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-dark-700/50 border border-white/[0.06] flex items-center justify-center">
+                  <User size={28} className="text-copper-500/50" />
                 </div>
-                <h3 className="font-heading text-xl text-cream-100">
+                <h3 className="font-heading text-xl text-cream-100 font-normal">
                   {person.name}
                 </h3>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-copper-500 mt-1 mb-4">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-copper-500 mt-1 mb-5">
                   {person.title}
                 </p>
-                <p className="text-cream-400 text-sm leading-relaxed">
+                <p className="text-cream-400 text-sm leading-relaxed font-light">
                   {person.bio}
                 </p>
               </div>
@@ -109,18 +109,18 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-28 md:py-36 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4">
               What We Stand For
             </p>
-            <h2 className="font-heading text-3xl md:text-4xl text-cream-100">
+            <h2 className="font-heading text-3xl md:text-4xl text-cream-100 font-light">
               Our Values
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5">
             {[
               {
                 title: 'Ownership',
@@ -141,12 +141,12 @@ export default function About() {
             ].map((value) => (
               <div
                 key={value.title}
-                className="border border-dark-700/30 p-8"
+                className="glass-card rounded-lg p-8"
               >
-                <h3 className="font-heading text-xl text-cream-100 mb-3">
+                <h3 className="font-heading text-xl text-cream-100 mb-3 font-normal">
                   {value.title}
                 </h3>
-                <p className="text-cream-400 text-sm leading-relaxed">
+                <p className="text-cream-400 text-sm leading-relaxed font-light">
                   {value.text}
                 </p>
               </div>

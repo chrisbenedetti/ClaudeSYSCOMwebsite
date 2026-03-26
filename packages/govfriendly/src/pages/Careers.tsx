@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle, ArrowRight, User, Shield, MapPin } from 'lucide-react';
 import { company } from '@shared/data/company';
 
 export default function Careers() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gov-gray py-16 sm:py-20" aria-label="Careers hero">
+      <section className="bg-gradient-to-b from-warm-cream to-warm-bg py-16 sm:py-20" aria-label="Careers hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-gov-navy">
+          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-navy">
             Careers at SYSCOM
           </h1>
-          <p className="mt-4 text-lg text-gov-gray-dark max-w-3xl leading-relaxed">
+          <p className="mt-4 text-lg text-slate max-w-3xl leading-relaxed">
             Build enterprise software that matters. Join a team where senior engineers stay
             for decades, your work ships to production, and you solve real problems for
             government and enterprise clients.
@@ -20,23 +19,23 @@ export default function Careers() {
       </section>
 
       {/* Culture */}
-      <section className="py-16 sm:py-20 bg-white" aria-labelledby="culture-heading">
+      <section className="py-20 bg-white" aria-labelledby="culture-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <h2
                 id="culture-heading"
-                className="font-heading text-3xl font-bold text-gov-navy"
+                className="font-heading text-3xl font-bold text-navy"
               >
                 Why SYSCOM
               </h2>
-              <p className="mt-4 text-gov-gray-dark leading-relaxed">
-                SYSCOM is not a revolving door. Our 70%+ employee retention rate over five
-                years means the people you work with are experienced, invested, and here for
+              <p className="mt-4 text-slate leading-relaxed">
+                SYSCOM is not a revolving door. Our 90% client retention rate
+                means the people you work with are experienced, invested, and here for
                 the long haul. We've been doing this for {company.yearsInBusiness} years
                 because we hire well and treat people right.
               </p>
-              <p className="mt-4 text-gov-gray-dark leading-relaxed">
+              <p className="mt-4 text-slate leading-relaxed">
                 Based in Baltimore's Inner Harbor, we work on enterprise content management
                 and automation for government agencies, financial institutions, and healthcare
                 organizations. The problems are real, the scale is significant, and the
@@ -44,21 +43,21 @@ export default function Careers() {
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-4">
-                <div className="bg-gov-gray rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold text-gov-navy font-heading">
+                <div className="bg-warm-cream rounded-warm p-4 text-center border border-warm-border">
+                  <p className="font-heading text-2xl font-bold text-navy">
                     {company.yearsInBusiness}+
                   </p>
-                  <p className="text-xs text-gov-gray-dark mt-1">Years in Business</p>
+                  <p className="text-xs text-muted mt-1">Years in Business</p>
                 </div>
-                <div className="bg-gov-gray rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold text-gov-navy font-heading">70%+</p>
-                  <p className="text-xs text-gov-gray-dark mt-1">5-Year Retention</p>
+                <div className="bg-warm-cream rounded-warm p-4 text-center border border-warm-border">
+                  <p className="font-heading text-2xl font-bold text-navy">90%</p>
+                  <p className="text-xs text-muted mt-1">Client Retention</p>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="font-heading font-semibold text-xl text-gov-navy mb-4">
+              <h3 className="font-heading font-semibold text-xl text-navy mb-5">
                 What We Value
               </h3>
               <ul className="space-y-4">
@@ -81,13 +80,14 @@ export default function Careers() {
                   },
                 ].map((value) => (
                   <li key={value.title} className="flex items-start gap-3">
-                    <CheckCircle
-                      className="w-5 h-5 text-green-700 mt-0.5 shrink-0"
-                      aria-hidden="true"
-                    />
+                    <span className="text-teal mt-0.5 shrink-0" aria-hidden="true">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
                     <div>
-                      <p className="font-medium text-gov-navy text-sm">{value.title}</p>
-                      <p className="text-sm text-gov-gray-dark mt-0.5">{value.desc}</p>
+                      <p className="font-medium text-navy text-sm">{value.title}</p>
+                      <p className="text-sm text-slate mt-0.5">{value.desc}</p>
                     </div>
                   </li>
                 ))}
@@ -98,56 +98,56 @@ export default function Careers() {
       </section>
 
       {/* What We Offer */}
-      <section className="py-16 sm:py-20 bg-gov-gray" aria-labelledby="offer-heading">
+      <section className="py-20 bg-warm-cream" aria-labelledby="offer-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             id="offer-heading"
-            className="font-heading text-3xl font-bold text-gov-navy text-center mb-12"
+            className="font-heading text-3xl font-bold text-navy text-center mb-12"
           >
             What We Offer
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: <Shield className="w-6 h-6" aria-hidden="true" />,
+                emoji: '\u{1F3E2}',
                 title: 'Stability',
                 desc: '40+ years in business. We are not a startup that might not be here next year.',
               },
               {
-                icon: <User className="w-6 h-6" aria-hidden="true" />,
+                emoji: '\u{1F4C4}',
                 title: 'Meaningful Work',
                 desc: 'Build systems that process millions of documents for government agencies and financial institutions.',
               },
               {
-                icon: <MapPin className="w-6 h-6" aria-hidden="true" />,
+                emoji: '\u{1F4CD}',
                 title: 'Baltimore Location',
                 desc: 'Downtown Inner Harbor office with easy access to transit. Flexible work arrangements available.',
               },
               {
-                icon: <CheckCircle className="w-6 h-6" aria-hidden="true" />,
+                emoji: '\u{2705}',
                 title: 'Benefits',
                 desc: 'Competitive salary, health insurance, retirement plan, and professional development support.',
               },
               {
-                icon: <Shield className="w-6 h-6" aria-hidden="true" />,
+                emoji: '\u{1F680}',
                 title: 'Growth',
                 desc: 'Work with AI, cloud platforms, and enterprise technologies. Learn from people who have been doing this for decades.',
               },
               {
-                icon: <User className="w-6 h-6" aria-hidden="true" />,
+                emoji: '\u{1F465}',
                 title: 'Team',
                 desc: 'Small, focused teams where your contributions are visible and valued. No bureaucracy.',
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white rounded-lg p-6 border border-gray-200"
+                className="bg-white rounded-warm p-6 border border-warm-border"
               >
-                <div className="text-gov-blue mb-3">{item.icon}</div>
-                <h3 className="font-heading font-semibold text-base text-gov-navy">
+                <span className="text-2xl" aria-hidden="true">{item.emoji}</span>
+                <h3 className="mt-3 font-heading font-semibold text-base text-navy">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm text-gov-gray-dark leading-relaxed">
+                <p className="mt-2 text-sm text-slate leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -157,12 +157,12 @@ export default function Careers() {
       </section>
 
       {/* Apply CTA */}
-      <section className="py-16 bg-gov-navy" aria-label="Apply call to action">
+      <section className="py-16 bg-navy" aria-label="Apply call to action">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading text-3xl font-bold text-white">
             Interested in Joining Us?
           </h2>
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
             We are always looking for talented people with enterprise content management,
             automation, or AI experience. Send us your resume and let's talk.
           </p>
@@ -172,11 +172,10 @@ export default function Careers() {
               className="btn-white"
             >
               Send Your Resume
-              <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
             </a>
             <Link
               to="/contact"
-              className="inline-flex items-center px-6 py-3 border-2 border-white text-white font-semibold rounded hover:bg-white hover:text-gov-navy transition-colors"
+              className="inline-flex items-center px-6 py-3 border-2 border-white/40 text-white font-semibold rounded-lg hover:bg-white hover:text-navy transition-colors"
             >
               Contact Us
             </Link>

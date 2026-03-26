@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle } from 'lucide-react';
 import { company, services } from '@shared/data/company';
 
 export default function Contact() {
@@ -7,19 +6,18 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder: form data would be sent to backend
     setSubmitted(true);
   };
 
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gov-gray py-16 sm:py-20" aria-label="Contact hero">
+      <section className="bg-gradient-to-b from-warm-cream to-warm-bg py-16 sm:py-20" aria-label="Contact hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-gov-navy">
+          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-navy">
             Contact SYSCOM
           </h1>
-          <p className="mt-4 text-lg text-gov-gray-dark max-w-3xl leading-relaxed">
+          <p className="mt-4 text-lg text-slate max-w-3xl leading-relaxed">
             Tell us about your enterprise content challenges. We'll respond within one
             business day with an honest assessment and a clear path forward.
           </p>
@@ -27,33 +25,29 @@ export default function Contact() {
       </section>
 
       {/* Form + Info */}
-      <section className="py-16 sm:py-20 bg-white" aria-labelledby="contact-form-heading">
+      <section className="py-20 bg-white" aria-labelledby="contact-form-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Form */}
             <div className="lg:col-span-2">
               <h2
                 id="contact-form-heading"
-                className="font-heading text-2xl font-bold text-gov-navy mb-6"
+                className="font-heading text-2xl font-bold text-navy mb-6"
               >
                 Send Us a Message
               </h2>
 
               {submitted ? (
                 <div
-                  className="bg-green-50 border border-green-200 rounded-lg p-8 text-center"
+                  className="bg-warm-light border border-teal/30 rounded-warm p-8 text-center"
                   role="alert"
                 >
-                  <CheckCircle
-                    className="w-12 h-12 text-green-700 mx-auto mb-4"
-                    aria-hidden="true"
-                  />
-                  <h3 className="font-heading font-semibold text-xl text-gov-navy">
+                  <span className="text-4xl" aria-hidden="true">{'\u{2705}'}</span>
+                  <h3 className="mt-3 font-heading font-semibold text-xl text-navy">
                     Message Sent
                   </h3>
-                  <p className="mt-2 text-gov-gray-dark">
-                    Thank you for reaching out. Our team will respond within one business
-                    day.
+                  <p className="mt-2 text-slate">
+                    Thank you for reaching out. Our team will respond within one business day.
                   </p>
                 </div>
               ) : (
@@ -63,9 +57,9 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="contact-name"
-                        className="block text-sm font-medium text-gov-gray-dark mb-1"
+                        className="block text-sm font-medium text-text mb-1.5"
                       >
-                        Full Name <span className="text-gov-red" aria-label="required">*</span>
+                        Full Name <span className="text-terracotta" aria-label="required">*</span>
                       </label>
                       <input
                         id="contact-name"
@@ -73,7 +67,7 @@ export default function Contact() {
                         type="text"
                         required
                         autoComplete="name"
-                        className="w-full px-3 py-2 border border-gray-300 rounded text-gov-gray-dark placeholder-gray-400 focus-visible:outline-2 focus-visible:outline-gov-blue"
+                        className="w-full px-3 py-2.5 border border-warm-border rounded-lg text-text placeholder-muted/50 bg-warm-bg focus-visible:outline-2 focus-visible:outline-teal"
                         placeholder="Jane Smith"
                       />
                     </div>
@@ -82,9 +76,9 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="contact-email"
-                        className="block text-sm font-medium text-gov-gray-dark mb-1"
+                        className="block text-sm font-medium text-text mb-1.5"
                       >
-                        Email Address <span className="text-gov-red" aria-label="required">*</span>
+                        Email Address <span className="text-terracotta" aria-label="required">*</span>
                       </label>
                       <input
                         id="contact-email"
@@ -92,16 +86,16 @@ export default function Contact() {
                         type="email"
                         required
                         autoComplete="email"
-                        className="w-full px-3 py-2 border border-gray-300 rounded text-gov-gray-dark placeholder-gray-400 focus-visible:outline-2 focus-visible:outline-gov-blue"
+                        className="w-full px-3 py-2.5 border border-warm-border rounded-lg text-text placeholder-muted/50 bg-warm-bg focus-visible:outline-2 focus-visible:outline-teal"
                         placeholder="jane@agency.gov"
                       />
                     </div>
 
-                    {/* Company */}
+                    {/* Organization */}
                     <div>
                       <label
                         htmlFor="contact-company"
-                        className="block text-sm font-medium text-gov-gray-dark mb-1"
+                        className="block text-sm font-medium text-text mb-1.5"
                       >
                         Organization
                       </label>
@@ -110,7 +104,7 @@ export default function Contact() {
                         name="company"
                         type="text"
                         autoComplete="organization"
-                        className="w-full px-3 py-2 border border-gray-300 rounded text-gov-gray-dark placeholder-gray-400 focus-visible:outline-2 focus-visible:outline-gov-blue"
+                        className="w-full px-3 py-2.5 border border-warm-border rounded-lg text-text placeholder-muted/50 bg-warm-bg focus-visible:outline-2 focus-visible:outline-teal"
                         placeholder="Your organization"
                       />
                     </div>
@@ -119,7 +113,7 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="contact-phone"
-                        className="block text-sm font-medium text-gov-gray-dark mb-1"
+                        className="block text-sm font-medium text-text mb-1.5"
                       >
                         Phone Number
                       </label>
@@ -128,7 +122,7 @@ export default function Contact() {
                         name="phone"
                         type="tel"
                         autoComplete="tel"
-                        className="w-full px-3 py-2 border border-gray-300 rounded text-gov-gray-dark placeholder-gray-400 focus-visible:outline-2 focus-visible:outline-gov-blue"
+                        className="w-full px-3 py-2.5 border border-warm-border rounded-lg text-text placeholder-muted/50 bg-warm-bg focus-visible:outline-2 focus-visible:outline-teal"
                         placeholder="(555) 123-4567"
                       />
                     </div>
@@ -138,14 +132,14 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-service"
-                      className="block text-sm font-medium text-gov-gray-dark mb-1"
+                      className="block text-sm font-medium text-text mb-1.5"
                     >
                       Service Interest
                     </label>
                     <select
                       id="contact-service"
                       name="service"
-                      className="w-full px-3 py-2 border border-gray-300 rounded text-gov-gray-dark bg-white focus-visible:outline-2 focus-visible:outline-gov-blue"
+                      className="w-full px-3 py-2.5 border border-warm-border rounded-lg text-text bg-warm-bg focus-visible:outline-2 focus-visible:outline-teal"
                     >
                       <option value="">Select a service area (optional)</option>
                       {services.map((service) => (
@@ -153,7 +147,7 @@ export default function Contact() {
                           {service.name}
                         </option>
                       ))}
-                      <option value="products">Products (ASM, AIS Bridge, IBIG)</option>
+                      <option value="products">Products (ASM, AIS Bridge, IBIG, CS)</option>
                       <option value="general">General Inquiry</option>
                     </select>
                   </div>
@@ -162,29 +156,28 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="contact-message"
-                      className="block text-sm font-medium text-gov-gray-dark mb-1"
+                      className="block text-sm font-medium text-text mb-1.5"
                     >
-                      Message <span className="text-gov-red" aria-label="required">*</span>
+                      Message <span className="text-terracotta" aria-label="required">*</span>
                     </label>
                     <textarea
                       id="contact-message"
                       name="message"
                       required
                       rows={5}
-                      className="w-full px-3 py-2 border border-gray-300 rounded text-gov-gray-dark placeholder-gray-400 focus-visible:outline-2 focus-visible:outline-gov-blue resize-y"
+                      className="w-full px-3 py-2.5 border border-warm-border rounded-lg text-text placeholder-muted/50 bg-warm-bg focus-visible:outline-2 focus-visible:outline-teal resize-y"
                       placeholder="Describe your project or questions..."
                     />
                   </div>
 
                   <div>
                     <button type="submit" className="btn-primary">
-                      <Send className="w-4 h-4 mr-2" aria-hidden="true" />
                       Send Message
                     </button>
                   </div>
 
-                  <p className="text-xs text-gray-500">
-                    Fields marked with <span className="text-gov-red">*</span> are
+                  <p className="text-xs text-muted">
+                    Fields marked with <span className="text-terracotta">*</span> are
                     required. We will not share your information with third parties.
                   </p>
                 </form>
@@ -193,70 +186,56 @@ export default function Contact() {
 
             {/* Contact Info */}
             <div>
-              <h2 className="font-heading text-2xl font-bold text-gov-navy mb-6">
+              <h2 className="font-heading text-2xl font-bold text-navy mb-6">
                 Contact Information
               </h2>
 
               <div className="space-y-6">
-                <div className="flex items-start gap-3">
-                  <MapPin
-                    className="w-5 h-5 text-gov-blue mt-0.5 shrink-0"
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <p className="font-medium text-gov-navy text-sm">Office Address</p>
-                    <p className="text-sm text-gov-gray-dark mt-1">
-                      {company.address.street}
-                      <br />
-                      {company.address.city}, {company.address.state}{' '}
-                      {company.address.zip}
-                    </p>
-                  </div>
+                <div>
+                  <p className="font-medium text-navy text-sm">Office Address</p>
+                  <p className="text-sm text-slate mt-1">
+                    {company.address.street}
+                    <br />
+                    {company.address.city}, {company.address.state}{' '}
+                    {company.address.zip}
+                  </p>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <Phone
-                    className="w-5 h-5 text-gov-blue mt-0.5 shrink-0"
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <p className="font-medium text-gov-navy text-sm">Phone</p>
-                    <a
-                      href={`tel:${company.phone.replace(/[^0-9+]/g, '')}`}
-                      className="text-sm text-gov-blue hover:underline"
-                    >
-                      {company.phone}
-                    </a>
-                  </div>
+                <div>
+                  <p className="font-medium text-navy text-sm">Phone</p>
+                  <a
+                    href={`tel:${company.phone.replace(/[^0-9+]/g, '')}`}
+                    className="text-sm text-teal hover:underline"
+                  >
+                    {company.phone}
+                  </a>
+                  <br />
+                  <a
+                    href={`tel:${company.phoneTollfree}`}
+                    className="text-sm text-teal hover:underline"
+                  >
+                    {company.phoneTollfree}
+                  </a>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <Mail
-                    className="w-5 h-5 text-gov-blue mt-0.5 shrink-0"
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <p className="font-medium text-gov-navy text-sm">Email</p>
-                    <a
-                      href={`mailto:${company.email}`}
-                      className="text-sm text-gov-blue hover:underline"
-                    >
-                      {company.email}
-                    </a>
-                  </div>
+                <div>
+                  <p className="font-medium text-navy text-sm">Email</p>
+                  <a
+                    href={`mailto:${company.email}`}
+                    className="text-sm text-teal hover:underline"
+                  >
+                    {company.email}
+                  </a>
                 </div>
               </div>
 
               {/* Map placeholder */}
-              <div className="mt-8 bg-gov-gray rounded-lg border border-gray-200 p-6 text-center">
-                <MapPin
-                  className="w-10 h-10 text-gov-navy/30 mx-auto mb-3"
-                  aria-hidden="true"
-                />
-                <p className="font-heading font-semibold text-gov-navy text-sm">
+              <div className="mt-8 bg-warm-cream rounded-warm border border-warm-border p-6 text-center">
+                <span className="text-3xl" aria-hidden="true">{'\u{1F4CD}'}</span>
+                <p className="font-heading font-semibold text-navy text-sm mt-2">
                   Baltimore Inner Harbor
                 </p>
-                <p className="text-xs text-gov-gray-dark mt-1">
+                <p className="text-xs text-slate mt-1">
                   400 East Pratt Street, Suite 600
                   <br />
                   Baltimore, Maryland 21202
@@ -264,9 +243,9 @@ export default function Contact() {
               </div>
 
               {/* Hours */}
-              <div className="mt-6 bg-gov-gray rounded-lg p-4">
-                <p className="font-medium text-gov-navy text-sm">Business Hours</p>
-                <p className="text-sm text-gov-gray-dark mt-1">
+              <div className="mt-6 bg-warm-light rounded-warm p-4 border border-warm-border">
+                <p className="font-medium text-navy text-sm">Business Hours</p>
+                <p className="text-sm text-slate mt-1">
                   Monday - Friday: 8:30 AM - 5:30 PM ET
                 </p>
               </div>

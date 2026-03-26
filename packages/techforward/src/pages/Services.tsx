@@ -1,74 +1,6 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { services } from '@shared/data/company';
-import {
-  Database,
-  Workflow,
-  ScanLine,
-  ArrowLeftRight,
-  Plug,
-  Brain,
-} from 'lucide-react';
-import ROICalculator from '../components/ROICalculator';
-
-const serviceIcons: Record<string, React.ElementType> = {
-  ecm: Database,
-  bpa: Workflow,
-  capture: ScanLine,
-  migration: ArrowLeftRight,
-  integration: Plug,
-  ai: Brain,
-};
-
-const serviceCapabilities: Record<string, string[]> = {
-  ecm: [
-    'Enterprise repository design and implementation across IBM CM8, FileNet, and cloud platforms',
-    'Records management with automated retention policies and legal hold capabilities',
-    'Document version control, audit trails, and chain-of-custody tracking',
-    'Regulatory compliance frameworks for HIPAA, SOX, and state/federal mandates',
-    'Content federation enabling unified search across disparate repositories',
-    'High-volume document ingestion pipelines handling millions of records',
-  ],
-  bpa: [
-    'Workflow design and implementation using IBM BAW, Microsoft Power Automate, and custom engines',
-    'Business rules engines with visual configuration for non-technical stakeholders',
-    'Case management solutions for complex, multi-step approval processes',
-    'Human-in-the-loop automation with intelligent task routing and escalation',
-    'Process mining and optimization using real operational data',
-    'Integration with existing ERP, CRM, and line-of-business applications',
-  ],
-  capture: [
-    'Intelligent document classification using machine learning models trained on client data',
-    'High-speed OCR with 99%+ accuracy for structured and semi-structured documents',
-    'Automated data extraction from forms, invoices, claims, and correspondence',
-    'Barcode and QR code recognition for document sorting and indexing',
-    'Multi-channel capture: paper, email, fax, web portal, and mobile',
-    'Quality assurance workflows with exception handling and human review queues',
-  ],
-  migration: [
-    'Cross-platform migration between IBM CM8, FileNet, Documentum, SharePoint, and 20+ systems',
-    'Full metadata preservation including custom properties, security ACLs, and audit history',
-    'Taxonomy analysis and mapping between source and target classification schemes',
-    'Format conversion during migration (TIFF to PDF, proprietary to open formats)',
-    'Phased migration strategies minimizing operational disruption',
-    'Validation and reconciliation reporting with document-level audit trails',
-  ],
-  integration: [
-    'IBM ecosystem expertise: Content Navigator, BAW, FileNet, CM8, DataCap, and Datacap',
-    'Microsoft 365 and SharePoint Online integration for hybrid content strategies',
-    'REST and SOAP API development connecting ECM platforms to enterprise applications',
-    'Cloud migration and hybrid deployment architectures (AWS, Azure, IBM Cloud)',
-    'Single sign-on, LDAP, and Active Directory integration for unified security',
-    'Custom connector development for legacy and proprietary systems',
-  ],
-  ai: [
-    'Computer vision models for document classification, extraction, and quality assessment',
-    'Natural language processing for contract analysis, entity recognition, and summarization',
-    'Intelligent classification engines that learn from operational feedback loops',
-    'Robotic Process Automation (RPA) for high-volume, rules-based document workflows',
-    'Predictive analytics for processing bottleneck identification and capacity planning',
-    'AI model training and fine-tuning using client-specific document corpora',
-  ],
-};
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -78,11 +10,12 @@ function useFadeIn() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add('visible');
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -92,26 +25,104 @@ function useFadeIn() {
 
 function FadeSection({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const ref = useFadeIn();
-  return <div ref={ref} className={`section-fade ${className}`}>{children}</div>;
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{ opacity: 0, transform: 'translateY(24px)', transition: 'opacity 0.7s ease-out, transform 0.7s ease-out' }}
+    >
+      {children}
+    </div>
+  );
 }
+
+const serviceEmoji: Record<string, string> = {
+  ecm: '\u{1F5C4}\uFE0F',
+  bpa: '\u{26A1}',
+  capture: '\u{1F4C4}',
+  migration: '\u{1F504}',
+  ai: '\u{1F9E0}',
+  staffing: '\u{1F465}',
+};
+
+const serviceCapabilities: Record<string, string[]> = {
+  ecm: [
+    'IBM FileNet P8, Content Manager Enterprise Edition, Content Manager for iSeries',
+    'ImagePlus support and migration to modern platforms',
+    'Content Manager OnDemand deployment and optimization',
+    'Federation, application integration between platforms',
+    'Records management with automated retention policies',
+    'High-volume document ingestion pipelines handling millions of records',
+  ],
+  bpa: [
+    'Workflow design using IBM BAW and Tungsten platforms',
+    'Process analysis, redesign, and end-to-end optimization',
+    'Business rules engines with visual configuration',
+    'Case management for complex multi-step approvals',
+    'Human-in-the-loop automation with intelligent task routing',
+    'Integration with ERP, CRM, and line-of-business applications',
+  ],
+  capture: [
+    '30+ year Tungsten Automation (Kofax) partnership',
+    'Remote and central capture with scanner and VRS configuration',
+    'High-availability and disaster recovery architectures',
+    'Advanced recognition, classification, and AI zero-shot classification',
+    'Custom validation and release scripts',
+    'IBM Datacap deployment and integration',
+  ],
+  migration: [
+    'Cross-platform migration between 25+ ECM systems',
+    'Full metadata, security ACL, and folder structure preservation',
+    'Taxonomy analysis and automated mapping between systems',
+    'Format conversion: TIFF to PDF, MODCA to TIFF, Full-Text PDF',
+    'Phased migration strategies minimizing operational disruption',
+    'Validation and reconciliation with document-level audit trails',
+  ],
+  ai: [
+    'Zero-shot document classification without templates',
+    'AI-powered auto-mapping in ASM 2.0',
+    'Semantic search and knowledge graphs in IBIG 2.0',
+    'Compliance-as-Code for automated security documentation',
+    'Cloud and on-premises model deployment for air-gapped environments',
+    'Computer vision, NLP, and intelligent classification',
+  ],
+  staffing: [
+    'Project Managers, Architects, Business Analysts',
+    'Programmers, Technical Writers, and Testers',
+    'Individual resources, teams, or entire departments',
+    'Rapid deployment backed by deep ECM technical knowledge',
+    'Government-cleared personnel available',
+    'Long-term and project-based engagement models',
+  ],
+};
+
+const serviceAccent: Record<string, string> = {
+  ecm: '#22d3ee',
+  bpa: '#a78bfa',
+  capture: '#34d399',
+  migration: '#22d3ee',
+  ai: '#fbbf24',
+  staffing: '#fb7185',
+};
 
 export default function Services() {
   return (
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
-        <div className="absolute inset-0 gradient-mesh" />
+        <div className="absolute inset-0 dot-grid opacity-30" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-electric-400 uppercase tracking-wider mb-3">
+            <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-3">
               Our Services
             </p>
-            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
-              Centers of <span className="gradient-text">Excellence</span>
+            <h1 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl tracking-[-3px] leading-tight mb-6">
+              Centers of{' '}
+              <span className="gradient-text">Excellence</span>
             </h1>
-            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
+            <p className="text-lg text-muted leading-relaxed max-w-2xl">
               Six specialized disciplines, each staffed by practitioners who have spent
-              their careers mastering enterprise content challenges. We don't generalize
+              their careers mastering enterprise content challenges. We don&apos;t generalize
               &mdash; we go deep.
             </p>
           </div>
@@ -120,15 +131,15 @@ export default function Services() {
 
       {/* Service sections */}
       {services.map((service, i) => {
-        const Icon = serviceIcons[service.id] || Database;
         const capabilities = serviceCapabilities[service.id] || [];
+        const accent = serviceAccent[service.id] || '#22d3ee';
         const isEven = i % 2 === 0;
 
         return (
           <section
             key={service.id}
             id={service.id}
-            className={`py-20 sm:py-24 ${isEven ? '' : 'bg-navy-800/20'}`}
+            className={`py-20 sm:py-24 ${!isEven ? 'border-y border-border' : ''}`}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <FadeSection>
@@ -136,35 +147,44 @@ export default function Services() {
                   {/* Info */}
                   <div className={isEven ? '' : 'lg:order-2'}>
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-electric-500/10 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-electric-400" />
-                      </div>
+                      <span className="text-3xl">{serviceEmoji[service.id] || '\u{1F4E6}'}</span>
                       <div>
-                        <h2 className="font-heading font-bold text-2xl sm:text-3xl">
+                        <h2 className="font-heading font-bold text-2xl sm:text-3xl tracking-[-2px]">
                           {service.name}
                         </h2>
-                        <p className="text-sm text-electric-400 font-medium">
+                        <p className="text-sm font-heading font-bold" style={{ color: accent }}>
                           {service.shortName}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-slate-300 leading-relaxed mb-8">
+                    <p className="text-muted leading-relaxed mb-6">
                       {service.description}
                     </p>
+
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+                      style={{ color: accent }}
+                    >
+                      Discuss this service &rarr;
+                    </Link>
                   </div>
 
                   {/* Capabilities */}
                   <div className={isEven ? '' : 'lg:order-1'}>
-                    <div className="rounded-xl bg-navy-800/60 border border-white/5 p-6">
-                      <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">
+                    <div className="rounded-2xl bg-card border border-border p-6">
+                      <h3 className="text-xs font-heading font-bold uppercase tracking-[3px] text-muted mb-5">
                         Key Capabilities
                       </h3>
                       <ul className="space-y-3">
                         {capabilities.map((cap, j) => (
                           <li key={j} className="flex items-start gap-3">
-                            <span className="w-1.5 h-1.5 rounded-full bg-electric-500 mt-2 shrink-0" />
-                            <span className="text-sm text-slate-400 leading-relaxed">
+                            <span
+                              className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
+                              style={{ backgroundColor: accent }}
+                            />
+                            <span className="text-sm text-muted leading-relaxed">
                               {cap}
                             </span>
                           </li>
@@ -175,32 +195,29 @@ export default function Services() {
                 </div>
               </FadeSection>
             </div>
-
-            {/* Divider between sections */}
-            {i < services.length - 1 && (
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 sm:mt-24">
-                <div className="h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-              </div>
-            )}
           </section>
         );
       })}
 
-      {/* ROI Calculator */}
-      <section className="py-20 sm:py-28 bg-navy-800/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeSection className="text-center mb-10">
-            <p className="text-sm font-semibold text-teal-400 uppercase tracking-wider mb-3">
-              Quantify the Impact
-            </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl mb-4">
-              What could automation save you?
-            </h2>
-          </FadeSection>
-          <FadeSection>
-            <ROICalculator />
-          </FadeSection>
-        </div>
+      {/* ROI CTA */}
+      <section className="py-20 sm:py-28 border-t border-border">
+        <FadeSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-emerald mb-3">
+            Quantify the Impact
+          </p>
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px] mb-4">
+            What could automation save you?
+          </h2>
+          <p className="text-muted max-w-xl mx-auto mb-8">
+            Use our interactive ROI calculator to estimate the impact on your operations.
+          </p>
+          <Link
+            to="/roi"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-emerald border border-emerald/30 hover:bg-emerald/5 transition-colors"
+          >
+            Open ROI Calculator &rarr;
+          </Link>
+        </FadeSection>
       </section>
     </>
   );

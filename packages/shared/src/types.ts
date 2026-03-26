@@ -12,18 +12,38 @@ export interface Service {
   icon: string;
 }
 
+export interface ProductFeature {
+  title: string;
+  description: string;
+}
+
+export interface WorkflowStep {
+  icon: string;
+  label: string;
+}
+
 export interface Product {
   id: string;
   name: string;
   shortName?: string;
   tagline: string;
+  badge: string;
   description: string;
-  features: string[];
+  features: ProductFeature[];
+  connectors: string[];
+  workflow: WorkflowStep[];
   flagship: boolean;
+}
+
+export interface AICapability {
+  title: string;
+  description: string;
+  icon: string;
 }
 
 export interface Vertical {
   name: string;
+  subtitle: string;
   description: string;
   icon: string;
 }
@@ -38,17 +58,4 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-}
-
-export interface ROIInputs {
-  documentVolume: number;
-  numberOfUsers: number;
-  processingTimeMinutes: number;
-}
-
-export interface ROIResults {
-  timeSavedHours: number;
-  costReduction: number;
-  efficiencyGain: number;
-  annualSavings: number;
 }

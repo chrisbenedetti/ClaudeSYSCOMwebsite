@@ -1,252 +1,242 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { company, services, products, verticals, stats } from '@shared/data/company';
-import {
-  Database,
-  Workflow,
-  ScanLine,
-  ArrowLeftRight,
-  Plug,
-  Brain,
-  Landmark,
-  Building2,
-  HeartPulse,
-  ArrowRight,
-  ChevronRight,
-} from 'lucide-react';
+import { company, services, products, aiCapabilities, verticals, stats } from '@shared/data/company';
 
-const serviceIcons: Record<string, React.ElementType> = {
-  ecm: Database,
-  bpa: Workflow,
-  capture: ScanLine,
-  migration: ArrowLeftRight,
-  integration: Plug,
-  ai: Brain,
-};
-
-const verticalIcons: Record<string, React.ElementType> = {
-  landmark: Landmark,
-  building: Building2,
-  'heart-pulse': HeartPulse,
-};
-
+/* ── Scroll fade-in hook ── */
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add('visible');
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
-
   return ref;
 }
 
-function FadeSection({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+function FadeSection({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useFadeIn();
   return (
-    <div ref={ref} className={`section-fade ${className}`}>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: 0,
+        transform: 'translateY(24px)',
+        transition: `opacity 0.7s ease-out ${delay}s, transform 0.7s ease-out ${delay}s`,
+      }}
+    >
       {children}
     </div>
   );
 }
 
+/* ── Service emoji icons ── */
+const serviceEmoji: Record<string, string> = {
+  ecm: '\u{1F5C4}\uFE0F',
+  bpa: '\u{26A1}',
+  capture: '\u{1F4C4}',
+  migration: '\u{1F504}',
+  ai: '\u{1F9E0}',
+  staffing: '\u{1F465}',
+};
+
+/* ── Product accent colors ── */
+const productAccent: Record<string, string> = {
+  asm: '#22d3ee',
+  'ais-bridge': '#fb7185',
+  ibig: '#a78bfa',
+  'content-services': '#34d399',
+};
+
+const productAccentBg: Record<string, string> = {
+  asm: 'bg-cyan/10 text-cyan border-cyan/20',
+  'ais-bridge': 'bg-rose/10 text-rose border-rose/20',
+  ibig: 'bg-purple/10 text-purple border-purple/20',
+  'content-services': 'bg-emerald/10 text-emerald border-emerald/20',
+};
+
 export default function Home() {
   return (
     <>
-      {/* ============ HERO ============ */}
+      {/* ═══════════ HERO ═══════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background gradient mesh */}
-        <div className="absolute inset-0 gradient-mesh-intense" />
+        {/* Dot grid background */}
+        <div className="absolute inset-0 dot-grid animate-grid-pulse" />
 
-        {/* Floating ambient elements */}
-        <div className="absolute top-1/4 left-[15%] w-72 h-72 bg-electric-500/8 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-[10%] w-96 h-96 bg-teal-500/6 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/3 right-[30%] w-48 h-48 bg-electric-500/4 rounded-full blur-2xl animate-float" />
+        {/* Radial gradient orbs */}
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full animate-glow"
+          style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full animate-glow"
+          style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 70%)', animationDelay: '1.5s' }} />
 
-        {/* Node network (decorative dots) */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[
-            { top: '18%', left: '8%', delay: '0s' },
-            { top: '72%', left: '12%', delay: '1.5s' },
-            { top: '28%', left: '85%', delay: '0.8s' },
-            { top: '65%', left: '78%', delay: '2.2s' },
-            { top: '45%', left: '92%', delay: '1s' },
-            { top: '82%', left: '55%', delay: '0.5s' },
-          ].map((dot, i) => (
-            <div
-              key={i}
-              className="absolute w-1.5 h-1.5 bg-electric-400/30 rounded-full animate-pulse-glow"
-              style={{ top: dot.top, left: dot.left, animationDelay: dot.delay }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 w-full">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-electric-500/10 border border-electric-500/20 mb-6 animate-fade-in">
-              <span className="w-2 h-2 rounded-full bg-electric-400 animate-pulse" />
-              <span className="text-xs font-medium text-electric-400 tracking-wide uppercase">
-                {company.yearsInBusiness}+ Years of Innovation
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
+          <div className="max-w-4xl">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-cyan/5 border border-cyan/10 mb-8 opacity-0 animate-fade-up">
+              <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
+              <span className="text-xs font-heading font-bold text-muted uppercase tracking-wider">
+                Enterprise Content Management &middot; AI-Powered
               </span>
             </div>
 
-            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-6 animate-slide-up">
-              Enterprise Content Management.{' '}
-              <span className="gradient-text">Powered by Intelligence.</span>
+            {/* Heading */}
+            <h1 className="font-heading font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[-3px] leading-[0.95] mb-8">
+              <span className="block text-white opacity-0 animate-fade-up-1">Your documents.</span>
+              <span className="block gradient-text opacity-0 animate-fade-up-2">Understood.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl animate-slide-up" style={{ animationDelay: '0.15s' }}>
-              For over four decades, SYSCOM has built the systems that move, manage, and
-              automate enterprise content. Now we're applying AI to make them smarter.
+            {/* Body */}
+            <p className="text-lg sm:text-xl text-muted leading-relaxed max-w-2xl mb-10 opacity-0 animate-fade-up-3">
+              {company.yearsInBusiness}+ years of solving enterprise content challenges.
+              Now with AI that actually understands your documents &mdash; not just the text inside them.
             </p>
 
-            <div className="flex flex-wrap gap-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-electric-500 to-teal-500 hover:from-electric-400 hover:to-teal-400 transition-all shadow-lg shadow-electric-500/25 hover:shadow-electric-500/40"
-              >
-                Explore Solutions
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-4 opacity-0 animate-fade-up-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold text-slate-200 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all"
+                className="px-7 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan to-purple hover:opacity-90 transition-opacity"
               >
-                Get in Touch
+                Schedule a Consultation
+              </Link>
+              <Link
+                to="/roi"
+                className="px-7 py-3.5 rounded-xl text-sm font-semibold text-emerald border border-emerald/30 hover:bg-emerald/5 transition-colors"
+              >
+                Calculate Your ROI
+              </Link>
+              <Link
+                to="/products"
+                className="px-7 py-3.5 rounded-xl text-sm font-semibold text-white/80 border border-border hover:bg-white/5 transition-colors"
+              >
+                Explore Products
               </Link>
             </div>
           </div>
-        </div>
 
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy-900 to-transparent" />
-      </section>
-
-      {/* ============ STATS ============ */}
-      <section className="relative py-16 border-y border-white/5">
-        <div className="absolute inset-0 gradient-mesh opacity-50" />
-        <FadeSection className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+          {/* Stats row */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-20 pt-10 border-t border-border opacity-0 animate-fade-up-5">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="font-heading font-extrabold text-3xl sm:text-4xl gradient-text mb-1">
+                <div className="font-heading font-bold text-3xl sm:text-4xl gradient-text tracking-tight mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-slate-400">{stat.label}</div>
+                <div className="text-xs font-heading uppercase tracking-wider text-muted">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
-        </FadeSection>
+        </div>
+
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg to-transparent" />
       </section>
 
-      {/* ============ SERVICES ============ */}
+      {/* ═══════════ SERVICES ═══════════ */}
       <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeSection className="text-center mb-14">
-            <p className="text-sm font-semibold text-electric-400 uppercase tracking-wider mb-3">
+          <FadeSection className="mb-14">
+            <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-3">
               Centers of Excellence
             </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl mb-4">
-              Six disciplines. One mission.
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px]">
+              What we build
             </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">
-              Every SYSCOM engagement draws from decades of specialized expertise across
-              content management, automation, and AI.
-            </p>
           </FadeSection>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((service, i) => {
-              const Icon = serviceIcons[service.id] || Database;
-              return (
-                <FadeSection key={service.id}>
-                  <Link
-                    to="/services"
-                    className="group block h-full rounded-xl bg-navy-800/60 border border-white/5 hover:border-electric-500/30 p-6 card-hover"
-                    style={{ animationDelay: `${i * 0.08}s` }}
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-electric-500/10 flex items-center justify-center mb-4 group-hover:bg-electric-500/20 transition-colors">
-                      <Icon className="w-5 h-5 text-electric-400" />
-                    </div>
-                    <h3 className="font-heading font-semibold text-lg mb-2 group-hover:text-electric-400 transition-colors">
-                      {service.name}
-                    </h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-electric-400 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      Learn more <ChevronRight className="w-3 h-3" />
-                    </span>
-                  </Link>
-                </FadeSection>
-              );
-            })}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {services.map((service, i) => (
+              <FadeSection key={service.id} delay={i * 0.06}>
+                <Link
+                  to="/services"
+                  className="group block h-full rounded-2xl bg-card border border-border p-6 card-hover"
+                >
+                  <span className="text-2xl mb-4 block">{serviceEmoji[service.id] || '\u{1F4E6}'}</span>
+                  <h3 className="font-heading font-bold text-base tracking-tight mb-2 group-hover:text-cyan transition-colors">
+                    {service.name}
+                  </h3>
+                  <p className="text-sm text-muted leading-relaxed line-clamp-3">
+                    {service.description}
+                  </p>
+                </Link>
+              </FadeSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ============ PRODUCTS ============ */}
-      <section className="py-20 sm:py-28 bg-navy-800/30">
+      {/* ═══════════ PRODUCTS ═══════════ */}
+      <section className="py-20 sm:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeSection className="text-center mb-14">
-            <p className="text-sm font-semibold text-teal-400 uppercase tracking-wider mb-3">
-              Our Products
+          <FadeSection className="mb-14">
+            <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-purple mb-3">
+              Our IP
             </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl mb-4">
-              Built from experience. Not from templates.
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px]">
+              Software suite
             </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">
-              SYSCOM owns the IP behind every product we sell. These tools were born from
-              real engagements, solving problems no off-the-shelf software could handle.
-            </p>
           </FadeSection>
 
-          <div className="grid lg:grid-cols-3 gap-5">
-            {products.map((product) => (
-              <FadeSection key={product.id}>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {products.map((product, i) => (
+              <FadeSection key={product.id} delay={i * 0.08}>
                 <Link
                   to="/products"
-                  className={`group block h-full rounded-xl border p-6 lg:p-8 card-hover ${
-                    product.flagship
-                      ? 'bg-gradient-to-br from-navy-800 to-navy-800/80 border-electric-500/30 lg:col-span-1'
-                      : 'bg-navy-800/60 border-white/5 hover:border-electric-500/20'
-                  }`}
+                  className="group block h-full rounded-2xl bg-card border border-border p-6 lg:p-8 card-hover"
                 >
-                  {product.flagship && (
-                    <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-electric-400 bg-electric-500/10 px-2.5 py-1 rounded-full mb-4">
-                      Flagship
-                    </span>
-                  )}
-                  <h3 className="font-heading font-bold text-xl mb-1.5 group-hover:text-electric-400 transition-colors">
+                  <span
+                    className={`inline-flex px-2.5 py-1 rounded-md text-[10px] font-heading font-bold uppercase tracking-wider border mb-4 ${productAccentBg[product.id]}`}
+                  >
+                    {product.badge}
+                  </span>
+                  <h3 className="font-heading font-bold text-xl tracking-tight mb-1 group-hover:text-cyan transition-colors">
                     {product.name}
                   </h3>
-                  <p className="text-sm text-teal-400 font-medium mb-3">{product.tagline}</p>
-                  <p className="text-sm text-slate-400 leading-relaxed mb-4 line-clamp-3">
+                  <p
+                    className="text-sm font-medium mb-3"
+                    style={{ color: productAccent[product.id] }}
+                  >
+                    {product.tagline}
+                  </p>
+                  <p className="text-sm text-muted leading-relaxed mb-4 line-clamp-2">
                     {product.description}
                   </p>
-                  <ul className="space-y-1.5">
-                    {product.features.slice(0, 3).map((feat, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-slate-500">
-                        <span className="w-1 h-1 rounded-full bg-electric-500/60 mt-1.5 shrink-0" />
-                        {feat}
-                      </li>
+
+                  {/* Connector tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {product.connectors.slice(0, 5).map((conn) => (
+                      <span
+                        key={conn}
+                        className="px-2 py-0.5 rounded text-[10px] font-mono text-muted/70 bg-border/50"
+                      >
+                        {conn}
+                      </span>
                     ))}
-                  </ul>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-electric-400 mt-5 group-hover:gap-2 transition-all">
-                    View details <ArrowRight className="w-3.5 h-3.5" />
+                    {product.connectors.length > 5 && (
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono text-muted/50">
+                        +{product.connectors.length - 5}
+                      </span>
+                    )}
+                  </div>
+
+                  <span
+                    className="text-sm font-medium group-hover:gap-2 transition-all inline-flex items-center gap-1"
+                    style={{ color: productAccent[product.id] }}
+                  >
+                    Explore
+                    <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
                   </span>
                 </Link>
               </FadeSection>
@@ -255,67 +245,151 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ VERTICALS ============ */}
-      <section className="py-20 sm:py-28">
+      {/* ═══════════ AI SECTION ═══════════ */}
+      <section className="py-20 sm:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeSection className="text-center mb-14">
-            <p className="text-sm font-semibold text-electric-400 uppercase tracking-wider mb-3">
-              Industries We Serve
-            </p>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl mb-4">
-              Deep expertise where it matters
-            </h2>
-          </FadeSection>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <FadeSection>
+              <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-amber mb-3">
+                AI &amp; Innovation
+              </p>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px] mb-6">
+                Intelligence, not just automation
+              </h2>
+              <p className="text-muted leading-relaxed mb-6">
+                Steve Jobs called the computer &ldquo;a bicycle for the mind.&rdquo; AI is
+                the electric motor we just bolted onto it. SYSCOM integrates AI across every
+                product &mdash; classification, mapping, search, and compliance.
+              </p>
 
-          <div className="grid sm:grid-cols-3 gap-5">
-            {verticals.map((vertical) => {
-              const Icon = verticalIcons[vertical.icon] || Landmark;
-              return (
-                <FadeSection key={vertical.name}>
-                  <div className="rounded-xl bg-navy-800/60 border border-white/5 p-6 text-center card-hover hover:border-teal-500/20">
-                    <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center mx-auto mb-4">
-                      <Icon className="w-6 h-6 text-teal-400" />
+              <blockquote className="border-l-2 border-cyan pl-4 py-2 mb-8">
+                <p className="text-white/90 italic text-sm leading-relaxed">
+                  &ldquo;A bicycle for the mind. AI is the electric motor we just bolted onto it.&rdquo;
+                </p>
+              </blockquote>
+
+              <div className="space-y-4">
+                {aiCapabilities.map((cap) => (
+                  <div key={cap.title} className="flex items-start gap-3">
+                    <span className="w-8 h-8 rounded-lg bg-amber/10 flex items-center justify-center text-sm shrink-0 mt-0.5">
+                      {cap.icon === 'brain' ? '\u{1F9E0}' : cap.icon === 'shield' ? '\u{1F6E1}\uFE0F' : cap.icon === 'bar-chart' ? '\u{1F4CA}' : '\u{2699}\uFE0F'}
+                    </span>
+                    <div>
+                      <h4 className="font-heading font-bold text-sm text-white">{cap.title}</h4>
+                      <p className="text-xs text-muted leading-relaxed">{cap.description}</p>
                     </div>
-                    <h3 className="font-heading font-semibold text-lg mb-2">
-                      {vertical.name}
-                    </h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">
-                      {vertical.description}
-                    </p>
                   </div>
-                </FadeSection>
-              );
-            })}
+                ))}
+              </div>
+            </FadeSection>
+
+            <FadeSection delay={0.15}>
+              <div className="relative flex items-center justify-center">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full flex items-center justify-center"
+                  style={{ background: 'conic-gradient(from 0deg, #22d3ee, #a78bfa, #fb7185, #fbbf24, #34d399, #22d3ee)', padding: '2px' }}>
+                  <div className="w-full h-full rounded-full bg-bg flex items-center justify-center">
+                    <span className="font-heading font-bold text-6xl sm:text-8xl gradient-text tracking-[-4px]">
+                      AI
+                    </span>
+                  </div>
+                </div>
+                {/* Orbiting dots */}
+                <div className="absolute inset-0 animate-[spin_20s_linear_infinite]">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-cyan" />
+                </div>
+                <div className="absolute inset-0 animate-[spin_25s_linear_infinite_reverse]">
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-purple" />
+                </div>
+              </div>
+            </FadeSection>
           </div>
         </div>
       </section>
 
-      {/* ============ CTA ============ */}
-      <section className="py-20 sm:py-28">
-        <FadeSection>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative rounded-2xl bg-gradient-to-br from-navy-800 to-navy-800/50 border border-white/5 overflow-hidden p-10 sm:p-16 text-center">
-              <div className="absolute inset-0 gradient-mesh-intense opacity-60" />
-              <div className="absolute top-0 right-0 w-80 h-80 bg-electric-500/8 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/6 rounded-full blur-3xl" />
+      {/* ═══════════ ABOUT / VERTICALS ═══════════ */}
+      <section className="py-20 sm:py-28 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            <FadeSection>
+              <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-emerald mb-3">
+                Track Record
+              </p>
+              <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px] mb-6">
+                {company.yearsInBusiness}+ years of solving hard problems
+              </h2>
+              <p className="text-muted leading-relaxed mb-6">
+                Founded in {company.founded} in {company.address.city}, SYSCOM has built a reputation
+                on deep technical expertise and long-term client partnerships. We are not a body shop.
+                We build and own the IP behind every product we sell.
+              </p>
+              <p className="text-muted leading-relaxed mb-8">
+                We know that the newest, latest technology is not always the best solution &mdash;
+                but it&apos;s sometimes the only solution. And we know the difference.
+              </p>
 
-              <div className="relative z-10">
-                <h2 className="font-heading font-bold text-3xl sm:text-4xl mb-4">
-                  Ready to modernize your content operations?
-                </h2>
-                <p className="text-slate-400 max-w-xl mx-auto mb-8">
-                  Talk to our team about how {company.yearsInBusiness}+ years of ECM expertise
-                  and modern AI can solve your toughest challenges.
-                </p>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-electric-500 to-teal-500 hover:from-electric-400 hover:to-teal-400 transition-all shadow-lg shadow-electric-500/25 hover:shadow-electric-500/40"
-                >
-                  Start a Conversation
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+              <div className="grid grid-cols-2 gap-3">
+                {verticals.map((v) => (
+                  <div key={v.name} className="rounded-xl bg-card border border-border p-4">
+                    <h4 className="font-heading font-bold text-xs text-white mb-0.5">{v.name}</h4>
+                    <p className="text-[11px] text-muted">{v.subtitle}</p>
+                  </div>
+                ))}
               </div>
+            </FadeSection>
+
+            <FadeSection delay={0.1}>
+              <div className="rounded-2xl bg-card border border-border p-8 h-full flex flex-col justify-center">
+                <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-6">
+                  Our Mission
+                </p>
+                <blockquote className="text-xl sm:text-2xl text-white/90 font-body leading-relaxed mb-6">
+                  &ldquo;{company.mission}&rdquo;
+                </blockquote>
+                <p className="text-sm text-muted">
+                  &mdash; {company.name}, {company.address.city}, {company.address.state}
+                </p>
+              </div>
+            </FadeSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ CONTACT CTA ═══════════ */}
+      <section className="py-20 sm:py-28 border-t border-border">
+        <FadeSection>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl tracking-[-2px] mb-6">
+              Ready to modernize?
+            </h2>
+            <p className="text-muted text-lg max-w-xl mx-auto mb-10">
+              Talk to our team about how {company.yearsInBusiness}+ years of ECM expertise
+              and modern AI can solve your toughest challenges.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <Link
+                to="/contact"
+                className="px-8 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan to-purple hover:opacity-90 transition-opacity"
+              >
+                Schedule a Consultation
+              </Link>
+              <Link
+                to="/roi"
+                className="px-8 py-4 rounded-xl text-sm font-semibold text-emerald border border-emerald/30 hover:bg-emerald/5 transition-colors"
+              >
+                Calculate Your ROI
+              </Link>
+              <a
+                href={`tel:${company.phoneTollfree}`}
+                className="px-8 py-4 rounded-xl text-sm font-semibold text-white/80 border border-border hover:bg-white/5 transition-colors"
+              >
+                {company.phoneTollfree}
+              </a>
             </div>
+
+            <p className="text-xs text-muted/60">
+              {company.address.street}, {company.address.city}, {company.address.state} {company.address.zip}
+            </p>
           </div>
         </FadeSection>
       </section>

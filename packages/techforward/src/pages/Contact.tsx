@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { company, services } from '@shared/data/company';
-import { Phone, Mail, MapPin, Send } from 'lucide-react';
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -10,11 +9,12 @@ function useFadeIn() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add('visible');
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -24,7 +24,15 @@ function useFadeIn() {
 
 function FadeSection({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const ref = useFadeIn();
-  return <div ref={ref} className={`section-fade ${className}`}>{children}</div>;
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{ opacity: 0, transform: 'translateY(24px)', transition: 'opacity 0.7s ease-out, transform 0.7s ease-out' }}
+    >
+      {children}
+    </div>
+  );
 }
 
 export default function Contact() {
@@ -47,48 +55,50 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder: form submission would be handled here
     setSubmitted(true);
   };
+
+  const inputClass =
+    'w-full px-4 py-3 rounded-xl bg-card border border-border text-white placeholder-muted/50 text-sm focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/20 transition-all';
 
   return (
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
-        <div className="absolute inset-0 gradient-mesh" />
+        <div className="absolute inset-0 dot-grid opacity-30" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-electric-400 uppercase tracking-wider mb-3">
+            <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-3">
               Contact Us
             </p>
-            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
-              Let's build{' '}
-              <span className="gradient-text">something.</span>
+            <h1 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl tracking-[-3px] leading-tight mb-6">
+              Let&apos;s{' '}
+              <span className="gradient-text">Talk</span>
             </h1>
-            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
-              Whether you're planning a migration, modernizing workflows, or exploring
-              what AI can do for your content operations &mdash; we're here to help.
+            <p className="text-lg text-muted leading-relaxed max-w-2xl">
+              Whether you&apos;re planning a migration, modernizing workflows, or exploring
+              what AI can do for your content operations &mdash; we&apos;re here to help.
             </p>
           </div>
         </div>
       </section>
 
       {/* Form + Info */}
-      <section className="py-20 sm:py-28 border-t border-white/5">
+      <section className="py-20 sm:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeSection>
             <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
               {/* Contact Form */}
               <div className="lg:col-span-3">
                 {submitted ? (
-                  <div className="rounded-2xl bg-navy-800/60 border border-electric-500/20 p-10 text-center">
-                    <div className="w-16 h-16 rounded-full bg-electric-500/10 flex items-center justify-center mx-auto mb-6">
-                      <Send className="w-7 h-7 text-electric-400" />
+                  <div className="rounded-2xl bg-card border border-cyan/20 p-10 text-center">
+                    <div className="w-16 h-16 rounded-2xl bg-cyan/10 flex items-center justify-center mx-auto mb-6">
+                      <span className="text-3xl">{'\u{2705}'}</span>
                     </div>
-                    <h2 className="font-heading font-bold text-2xl mb-3">
+                    <h2 className="font-heading font-bold text-2xl tracking-[-1px] mb-3">
                       Message received.
                     </h2>
-                    <p className="text-slate-400 max-w-md mx-auto">
+                    <p className="text-muted max-w-md mx-auto">
                       Thanks for reaching out. A member of our team will be in touch within
                       one business day. In the meantime, feel free to call us at {company.phone}.
                     </p>
@@ -97,11 +107,8 @@ export default function Contact() {
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-medium text-slate-300 mb-1.5"
-                        >
-                          Name <span className="text-electric-400">*</span>
+                        <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Name <span className="text-cyan">*</span>
                         </label>
                         <input
                           type="text"
@@ -110,16 +117,13 @@ export default function Contact() {
                           required
                           value={form.name}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl bg-navy-800/60 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-electric-500/50 focus:ring-1 focus:ring-electric-500/30 transition-all"
+                          className={inputClass}
                           placeholder="Your name"
                         />
                       </div>
                       <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium text-slate-300 mb-1.5"
-                        >
-                          Email <span className="text-electric-400">*</span>
+                        <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Email <span className="text-cyan">*</span>
                         </label>
                         <input
                           type="email"
@@ -128,7 +132,7 @@ export default function Contact() {
                           required
                           value={form.email}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl bg-navy-800/60 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-electric-500/50 focus:ring-1 focus:ring-electric-500/30 transition-all"
+                          className={inputClass}
                           placeholder="you@company.com"
                         />
                       </div>
@@ -136,11 +140,8 @@ export default function Contact() {
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label
-                          htmlFor="company"
-                          className="block text-sm font-medium text-slate-300 mb-1.5"
-                        >
-                          Company <span className="text-electric-400">*</span>
+                        <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Company <span className="text-cyan">*</span>
                         </label>
                         <input
                           type="text"
@@ -149,16 +150,13 @@ export default function Contact() {
                           required
                           value={form.company}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl bg-navy-800/60 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-electric-500/50 focus:ring-1 focus:ring-electric-500/30 transition-all"
+                          className={inputClass}
                           placeholder="Your organization"
                         />
                       </div>
                       <div>
-                        <label
-                          htmlFor="phone"
-                          className="block text-sm font-medium text-slate-300 mb-1.5"
-                        >
-                          Phone <span className="text-slate-500 text-xs">(optional)</span>
+                        <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-1.5">
+                          Phone <span className="text-xs text-muted">(optional)</span>
                         </label>
                         <input
                           type="tel"
@@ -166,17 +164,14 @@ export default function Contact() {
                           name="phone"
                           value={form.phone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl bg-navy-800/60 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-electric-500/50 focus:ring-1 focus:ring-electric-500/30 transition-all"
+                          className={inputClass}
                           placeholder="(555) 123-4567"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label
-                        htmlFor="service"
-                        className="block text-sm font-medium text-slate-300 mb-1.5"
-                      >
+                      <label htmlFor="service" className="block text-sm font-medium text-white/80 mb-1.5">
                         Service Interest
                       </label>
                       <select
@@ -184,31 +179,20 @@ export default function Contact() {
                         name="service"
                         value={form.service}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-navy-800/60 border border-white/10 text-white text-sm focus:outline-none focus:border-electric-500/50 focus:ring-1 focus:ring-electric-500/30 transition-all appearance-none"
+                        className={inputClass + ' appearance-none'}
                       >
-                        <option value="" className="bg-navy-800">
-                          Select a service area...
-                        </option>
+                        <option value="" className="bg-card">Select a service area...</option>
                         {services.map((s) => (
-                          <option key={s.id} value={s.id} className="bg-navy-800">
-                            {s.name}
-                          </option>
+                          <option key={s.id} value={s.id} className="bg-card">{s.name}</option>
                         ))}
-                        <option value="products" className="bg-navy-800">
-                          Products (ASM, AIS Bridge, IBIG)
-                        </option>
-                        <option value="other" className="bg-navy-800">
-                          Other / General Inquiry
-                        </option>
+                        <option value="products" className="bg-card">Products (ASM, AIS Bridge, IBIG)</option>
+                        <option value="other" className="bg-card">Other / General Inquiry</option>
                       </select>
                     </div>
 
                     <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-medium text-slate-300 mb-1.5"
-                      >
-                        Message <span className="text-electric-400">*</span>
+                      <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-1.5">
+                        Message <span className="text-cyan">*</span>
                       </label>
                       <textarea
                         id="message"
@@ -217,79 +201,76 @@ export default function Contact() {
                         rows={5}
                         value={form.message}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl bg-navy-800/60 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-electric-500/50 focus:ring-1 focus:ring-electric-500/30 transition-all resize-none"
+                        className={inputClass + ' resize-none'}
                         placeholder="Tell us about your project or challenge..."
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-electric-500 to-teal-500 hover:from-electric-400 hover:to-teal-400 transition-all shadow-lg shadow-electric-500/25 hover:shadow-electric-500/40"
+                      className="px-7 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan to-purple hover:opacity-90 transition-opacity"
                     >
-                      Send Message
-                      <Send className="w-4 h-4" />
+                      Send Message &rarr;
                     </button>
                   </form>
                 )}
               </div>
 
               {/* Contact Info */}
-              <div className="lg:col-span-2 space-y-8">
-                <div className="rounded-2xl bg-navy-800/60 border border-white/5 p-6 space-y-6">
-                  <h3 className="font-heading font-semibold text-lg">Get in touch</h3>
+              <div className="lg:col-span-2 space-y-6">
+                <div className="rounded-2xl bg-card border border-border p-6 space-y-6">
+                  <h3 className="font-heading font-bold text-base tracking-tight">Get in touch</h3>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-electric-500/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-electric-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-200 mb-0.5">Office</p>
-                      <p className="text-sm text-slate-400">
-                        {company.address.street}<br />
-                        {company.address.city}, {company.address.state} {company.address.zip}
-                      </p>
-                    </div>
+                  <div>
+                    <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-1.5">
+                      Office
+                    </p>
+                    <p className="text-sm text-muted">
+                      {company.address.street}<br />
+                      {company.address.city}, {company.address.state} {company.address.zip}
+                    </p>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-electric-500/10 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5 text-electric-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-200 mb-0.5">Phone</p>
-                      <a
-                        href={`tel:${company.phone}`}
-                        className="text-sm text-slate-400 hover:text-electric-400 transition-colors"
-                      >
-                        {company.phone}
-                      </a>
-                    </div>
+                  <div>
+                    <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-1.5">
+                      Phone
+                    </p>
+                    <a
+                      href={`tel:${company.phone}`}
+                      className="text-sm text-muted hover:text-cyan transition-colors"
+                    >
+                      {company.phone}
+                    </a>
+                    <span className="text-muted mx-2">/</span>
+                    <a
+                      href="tel:800-7SYSCOM"
+                      className="text-sm font-heading font-bold text-white hover:text-cyan transition-colors"
+                    >
+                      {company.phoneTollfree}
+                    </a>
                   </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-electric-500/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-electric-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-200 mb-0.5">Email</p>
-                      <a
-                        href={`mailto:${company.email}`}
-                        className="text-sm text-slate-400 hover:text-electric-400 transition-colors"
-                      >
-                        {company.email}
-                      </a>
-                    </div>
+                  <div>
+                    <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-1.5">
+                      Email
+                    </p>
+                    <a
+                      href={`mailto:${company.email}`}
+                      className="text-sm text-muted hover:text-cyan transition-colors"
+                    >
+                      {company.email}
+                    </a>
                   </div>
                 </div>
 
                 {/* Map placeholder */}
-                <div className="rounded-2xl bg-navy-800/60 border border-white/5 p-6 overflow-hidden">
-                  <div className="rounded-xl bg-navy-900/80 border border-white/5 h-48 flex items-center justify-center relative">
-                    <div className="absolute inset-0 gradient-mesh opacity-30" />
+                <div className="rounded-2xl bg-card border border-border p-6 overflow-hidden">
+                  <div className="rounded-xl bg-bg border border-border h-48 flex items-center justify-center relative">
+                    <div className="absolute inset-0 dot-grid opacity-20" />
                     <div className="relative z-10 text-center">
-                      <MapPin className="w-8 h-8 text-electric-400 mx-auto mb-2" />
-                      <p className="text-sm font-heading font-semibold">Baltimore, MD</p>
-                      <p className="text-xs text-slate-500 mt-1">Inner Harbor / Pratt Street</p>
+                      <span className="text-3xl block mb-2">{'\u{1F4CD}'}</span>
+                      <p className="text-sm font-heading font-bold text-white">Baltimore, MD</p>
+                      <p className="text-xs text-muted mt-1">Inner Harbor / Pratt Street</p>
                     </div>
                   </div>
                 </div>

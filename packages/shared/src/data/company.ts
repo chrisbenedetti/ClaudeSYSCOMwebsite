@@ -10,8 +10,11 @@ export const company = {
     zip: "21202",
   },
   phone: "(410) 539-3737",
+  phoneTollfree: "800-7SYSCOM",
   email: "sales@syscom.com",
   website: "https://syscom.com",
+  mission:
+    "To create and deliver the right technology solutions by teaming with our customers to understand their business needs.",
 };
 
 export const leadership = [
@@ -35,45 +38,51 @@ export const leadership = [
 export const services = [
   {
     id: "ecm",
-    name: "Enterprise Content Management",
+    name: "Content Services / ECM",
     shortName: "ECM",
-    description: "Manage, share, integrate, and deliver critical business information on demand. Our ECM solutions improve productivity, enhance responsiveness, and meet the demands of regulatory compliance.",
+    description:
+      "IBM FileNet P8, Content Manager Enterprise Edition, Content Manager for iSeries, ImagePlus support and migration, Content Manager OnDemand. Federation, application integration, and migration between platforms.",
     icon: "database",
   },
   {
     id: "bpa",
     name: "Business Process Automation",
     shortName: "BPA",
-    description: "Streamline operations with intelligent workflow automation, business rules engines, and case management solutions that reduce manual effort and accelerate decision-making.",
+    description:
+      "End-to-end workflow definition and optimization. Process analysis and redesign. Workflow orchestration using IBM and Tungsten platforms.",
     icon: "workflow",
   },
   {
     id: "capture",
     name: "Enterprise Capture",
     shortName: "Capture",
-    description: "Custom-tailored capture solutions incorporating intelligent document recognition, OCR, classification, and automated data extraction at enterprise scale.",
+    description:
+      "30+ year Tungsten Automation (Kofax) partnership. Remote and central capture, scanner and VRS configuration, high-availability and disaster recovery, advanced recognition and classification, custom validation and release scripts, IBM Datacap deployment.",
     icon: "scan",
   },
   {
     id: "migration",
     name: "Content Migration",
     shortName: "Migration",
-    description: "Move content between any ECM platform with full metadata, security, and folder structure preservation. Powered by our proprietary AnySource Migrator technology.",
+    description:
+      "Move content between any ECM platform with full metadata, security, and folder structure preservation. Powered by our proprietary AnySource Migrator — 25+ pre-built repository connectors.",
     icon: "move",
-  },
-  {
-    id: "integration",
-    name: "Platform Integration",
-    shortName: "Integration",
-    description: "Deep expertise across IBM, Microsoft, and cloud platforms. We connect your systems so your content flows where it needs to go.",
-    icon: "plug",
   },
   {
     id: "ai",
     name: "AI & Intelligent Automation",
     shortName: "AI",
-    description: "Computer vision, natural language processing, and intelligent classification that transforms how organizations process and understand their content.",
+    description:
+      "Zero-shot document classification without templates. AI-powered auto-mapping in ASM 2.0. Semantic search and knowledge graphs in IBIG 2.0. Compliance-as-Code for automated security documentation. Cloud and on-premises model deployment for air-gapped environments.",
     icon: "brain",
+  },
+  {
+    id: "staffing",
+    name: "Contract Staffing",
+    shortName: "Staffing",
+    description:
+      "Project Managers, Architects, Business Analysts, Programmers, Technical Writers, and Testers. Individual resources, teams, or entire departments. Rapid deployment backed by deep ECM technical knowledge.",
+    icon: "users",
   },
 ];
 
@@ -82,69 +91,278 @@ export const products = [
     id: "asm",
     name: "AnySource Migrator",
     shortName: "ASM",
-    tagline: "Migrate anything. Preserve everything.",
-    description: "Our proprietary content migration platform moves documents, metadata, security settings, and folder structures between any ECM system. No other tool on the market matches ASM's breadth of platform support.",
+    tagline: "Any source. Any destination. Zero compromises.",
+    badge: "Flagship",
+    description:
+      "Enterprise content migration platform with 25+ pre-built repository connectors. AI-powered auto-mapping, real-time monitoring, and the most flexible migration engine on the market.",
     features: [
-      "Supports IBM CM8, FileNet, Documentum, SharePoint, and 20+ other platforms",
-      "Full metadata and security preservation",
-      "Taxonomy analysis and mapping",
-      "Format conversion during migration",
-      "Audit trail and validation reporting",
-      "Handles millions of documents with proven scalability",
+      {
+        title: "25+ Connectors",
+        description:
+          "FileNet P8, Content Manager, ImagePlus, SharePoint, CMIS, EMC Documentum, OLEDB, File Systems, and a custom connector framework.",
+      },
+      {
+        title: "AI Auto-Mapping (2.0)",
+        description:
+          "Analyze source taxonomy and auto-suggest target mappings using AI. Weeks of planning reduced to hours.",
+      },
+      {
+        title: "Smart Transformations",
+        description:
+          "TIFF to PDF, MODCA to TIFF, Full-Text PDF, metadata manipulation. All configurable without code.",
+      },
+      {
+        title: "Live Monitoring",
+        description:
+          "Track every document migrated with status reporting, anomaly detection, and predictive issue identification.",
+      },
+      {
+        title: "Scalable Architecture",
+        description:
+          "Scale vertically or horizontally. Repository Providers, Transformations engine, and Rendition functions work independently.",
+      },
+      {
+        title: "Self-Service Portal (2.0)",
+        description:
+          "Web-based migration configuration for mid-market clients. Extends ASM's reach beyond enterprise engagements.",
+      },
+    ],
+    connectors: [
+      "FileNet P8",
+      "Content Manager",
+      "ImagePlus",
+      "SharePoint",
+      "CMIS",
+      "EMC Documentum",
+      "OLEDB",
+      "File System",
+      "Custom",
+    ],
+    workflow: [
+      { icon: "search", label: "Analyze" },
+      { icon: "ruler", label: "Design" },
+      { icon: "link", label: "Connect" },
+      { icon: "settings", label: "Transform" },
+      { icon: "rocket", label: "Migrate" },
+      { icon: "check", label: "Validate" },
     ],
     flagship: true,
   },
   {
     id: "ais-bridge",
     name: "AIS Bridge",
-    tagline: "Your ImagePlus investment, modernized.",
-    description: "A complete, fully supported replacement for IBM ImagePlus. AIS Bridge lets organizations maintain their existing ImagePlus workflows and integrations while running on modern, supported infrastructure.",
+    shortName: "Bridge",
+    tagline: "ImagePlus to Modern. Zero disruption.",
+    badge: "Modernization",
+    description:
+      "A complete, fully-supported drop-in replacement for IBM ImagePlus. Preserves every integration, workflow, and user process. Backed by decades of ImagePlus expertise.",
     features: [
-      "Drop-in replacement for ImagePlus",
-      "No application code changes required",
-      "Modern supported platform",
-      "Full API compatibility",
-      "Reduced infrastructure costs",
+      {
+        title: "Drop-In Replacement",
+        description:
+          "Full API compatibility. Existing CICS, IMS, MQ Workflow, and Windows client integrations work without modification.",
+      },
+      {
+        title: "Modern Architecture",
+        description:
+          "Current technology stack underneath, complete backward compatibility on the surface.",
+      },
+      {
+        title: "Zero-Downtime Migration",
+        description:
+          "Phased migration approach keeps all systems operational throughout the transition.",
+      },
+      {
+        title: "Expert Support",
+        description:
+          "SYSCOM is THE go-to for ImagePlus — the team that built and maintained these systems now supports your Bridge.",
+      },
+    ],
+    connectors: [
+      "ImagePlus API",
+      "CICS",
+      "IMS",
+      "MQ Workflow",
+      "Windows Clients",
+      "OnDemand",
+    ],
+    workflow: [
+      { icon: "clipboard", label: "Assess" },
+      { icon: "refresh", label: "Config" },
+      { icon: "plug", label: "Integrate" },
+      { icon: "flask", label: "Test" },
+      { icon: "rocket", label: "Deploy" },
+      { icon: "shield", label: "Support" },
     ],
     flagship: false,
   },
   {
     id: "ibig",
-    name: "IBIG",
-    tagline: "Content services, configured not coded.",
-    description: "Intelligent Business Information Gateway provides a service-oriented approach to deploying ECM capabilities. Stand up new content services with configuration instead of custom development.",
+    name: "IBIG 2.0",
+    shortName: "IBIG",
+    tagline: "Don't just search your documents. Understand them.",
+    badge: "Next Gen",
+    description:
+      "The Imagetext Business Intelligence Gateway, reborn with AI. Crawls existing repositories, uses LLMs to understand documents — not just OCR text — and builds a semantic knowledge layer with natural language search.",
     features: [
-      "SOA-based content services",
-      "Configuration-driven deployment",
-      "Rapid service creation",
-      "Enterprise-grade scalability",
-      "Platform-agnostic architecture",
+      {
+        title: "AI Document Understanding",
+        description:
+          "LLMs comprehend document meaning — types, entities, dates, relationships. Far beyond text extraction.",
+      },
+      {
+        title: "Semantic Search",
+        description:
+          'Natural language queries: "Find all contracts expiring this quarter" returns intelligent, ranked results.',
+      },
+      {
+        title: "Knowledge Graph",
+        description:
+          "Automatically maps relationships between people, organizations, dates, and topics across your entire archive.",
+      },
+      {
+        title: "Continuous Monitoring",
+        description:
+          "Scheduled recrawls detect new and changed documents, keeping the intelligence layer always current.",
+      },
+      {
+        title: "25+ Repository Connectors",
+        description:
+          "Works with all ASM connectors — FileNet, SharePoint, Content Manager, and more. One platform, any repository.",
+      },
+      {
+        title: "Air-Gap Capable",
+        description:
+          "On-premises model deployment for classified and air-gapped government environments.",
+      },
+    ],
+    connectors: [
+      "All ASM Connectors",
+      "SharePoint",
+      "FileNet P8",
+      "Content Manager",
+      "File Shares",
+      "Custom APIs",
+    ],
+    workflow: [
+      { icon: "spider", label: "Crawl" },
+      { icon: "eye", label: "OCR+AI" },
+      { icon: "brain", label: "Understand" },
+      { icon: "folder", label: "Classify" },
+      { icon: "link", label: "Relate" },
+      { icon: "search", label: "Search" },
+    ],
+    flagship: false,
+  },
+  {
+    id: "content-services",
+    name: "Content Services",
+    shortName: "CS",
+    tagline: "Config-driven content workflows. Ship in days.",
+    badge: "Platform",
+    description:
+      "SOA architecture for rapid ECM service deployment. Build powerful content workflows through configuration, not custom code. Pre-built templates for common patterns.",
+    features: [
+      {
+        title: "No-Code Configuration",
+        description:
+          "Define workflows, rules, and integrations through configuration. Pre-built templates for common patterns.",
+      },
+      {
+        title: "SOA Architecture",
+        description:
+          "Standard REST and SOAP interfaces integrate with any enterprise system.",
+      },
+      {
+        title: "Rapid Deployment",
+        description:
+          "Requirements to production in days. Dramatically reduces project timelines.",
+      },
+      {
+        title: "Full Integration",
+        description:
+          "Microsoft Office, SharePoint, line-of-business systems, and the complete SYSCOM product suite.",
+      },
+    ],
+    connectors: [
+      "REST APIs",
+      "SOAP Services",
+      "SharePoint",
+      "MS Office",
+      "FileNet",
+      "LOB Systems",
+    ],
+    workflow: [
+      { icon: "edit", label: "Define" },
+      { icon: "settings", label: "Config" },
+      { icon: "plug", label: "Connect" },
+      { icon: "flask", label: "Test" },
+      { icon: "rocket", label: "Deploy" },
+      { icon: "bar-chart", label: "Monitor" },
     ],
     flagship: false,
   },
 ];
 
+export const aiCapabilities = [
+  {
+    title: "Zero-Shot Classification",
+    description: "No templates needed. AI recognizes documents on sight.",
+    icon: "brain",
+  },
+  {
+    title: "SecureCapture Gateway",
+    description:
+      "FedRAMP-aligned. NIST 800-53, CJIS, IRS Pub 1075 built-in.",
+    icon: "shield",
+  },
+  {
+    title: "Intelligent Migration",
+    description:
+      "ASM 2.0: AI auto-mapping + predictive anomaly detection.",
+    icon: "bar-chart",
+  },
+  {
+    title: "Compliance-as-Code",
+    description: "Auto-generate security docs from deployment configs.",
+    icon: "settings",
+  },
+];
+
 export const verticals = [
   {
-    name: "State & Federal Government",
-    description: "Document processing, records management, and compliance solutions for government agencies handling millions of citizen documents.",
+    name: "Government",
+    subtitle: "Federal & State",
+    description:
+      "Document processing, records management, and compliance solutions for agencies handling millions of citizen documents. NIST 800-53, CJIS, IRS Pub 1075 compliance.",
     icon: "landmark",
   },
   {
     name: "Financial Services",
-    description: "Content management and automation for banks, credit unions, and financial institutions with strict regulatory requirements.",
+    subtitle: "Banking & Insurance",
+    description:
+      "Content management and automation for banks, credit unions, and financial institutions with strict regulatory requirements.",
     icon: "building",
   },
   {
-    name: "Health Insurance",
-    description: "Claims processing, adjudication workflows, and document management for healthcare payers managing complex member records.",
+    name: "Manufacturing",
+    subtitle: "Industrial & Telecom",
+    description:
+      "Document management and process automation for manufacturing and telecommunications organizations.",
+    icon: "factory",
+  },
+  {
+    name: "Healthcare",
+    subtitle: "Compliance-driven",
+    description:
+      "Claims processing, adjudication workflows, and document management for healthcare payers managing complex member records. HIPAA compliance.",
     icon: "heart-pulse",
   },
 ];
 
 export const stats = [
-  { value: "40+", label: "Years in Business" },
-  { value: "70%", label: "Employee Retention (5+ years)" },
-  { value: "1M+", label: "Documents Migrated Daily" },
-  { value: "50+", label: "Enterprise Deployments" },
+  { value: "40+", label: "Years" },
+  { value: "90%", label: "Retention" },
+  { value: "25+", label: "Connectors" },
+  { value: "30+", label: "Yr Kofax Partner" },
 ];

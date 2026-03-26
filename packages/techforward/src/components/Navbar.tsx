@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
   { to: '/services', label: 'Services' },
   { to: '/products', label: 'Products' },
-  { to: '/careers', label: 'Careers' },
+  { to: '/about', label: 'About' },
 ];
 
 export default function Navbar() {
@@ -29,22 +26,18 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || mobileOpen
-          ? 'bg-navy-900/95 backdrop-blur-md shadow-lg shadow-navy-900/50'
+          ? 'bg-[rgba(9,9,11,0.92)] backdrop-blur-md border-b border-border/50'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-electric-500 to-teal-500 flex items-center justify-center font-heading font-bold text-sm text-white">
-              S
-            </div>
-            <span className="font-heading font-bold text-xl tracking-tight">
+          <Link to="/" className="flex items-center gap-0 group">
+            <span className="font-heading font-bold text-xl tracking-[-2px] text-white">
               SYSCOM
-              <span className="text-electric-500">,</span>
-              <span className="text-sm font-medium text-slate-400 ml-1">Inc.</span>
             </span>
+            <span className="font-heading font-bold text-xl text-cyan">_</span>
           </Link>
 
           {/* Desktop nav */}
@@ -55,36 +48,46 @@ export default function Navbar() {
                 to={link.to}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
                   location.pathname === link.to
-                    ? 'text-electric-400 bg-electric-500/10'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    ? 'text-white'
+                    : 'text-muted hover:text-white'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              to="/contact"
-              className="ml-4 px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-electric-500 to-teal-500 hover:from-electric-400 hover:to-teal-400 transition-all duration-200 shadow-lg shadow-electric-500/25"
+              to="/roi"
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+                location.pathname === '/roi'
+                  ? 'text-emerald'
+                  : 'text-emerald/70 hover:text-emerald'
+              }`}
             >
-              Contact Us
+              ROI Calculator
+            </Link>
+            <Link
+              to="/contact"
+              className="ml-4 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan to-purple hover:opacity-90 transition-opacity"
+            >
+              Get Started
             </Link>
           </div>
 
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-muted hover:text-white transition-colors"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
-            <div className="relative w-6 h-6">
-              <Menu
-                className={`w-6 h-6 absolute inset-0 transition-all duration-300 ${
-                  mobileOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+            <div className="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+              <span
+                className={`block w-5 h-0.5 bg-current transition-all duration-300 ${
+                  mobileOpen ? 'rotate-45 translate-y-1' : ''
                 }`}
               />
-              <X
-                className={`w-6 h-6 absolute inset-0 transition-all duration-300 ${
-                  mobileOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+              <span
+                className={`block w-5 h-0.5 bg-current transition-all duration-300 ${
+                  mobileOpen ? '-rotate-45 -translate-y-1' : ''
                 }`}
               />
             </div>
@@ -98,25 +101,31 @@ export default function Navbar() {
           mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-4 pb-4 space-y-1 border-t border-white/5">
+        <div className="px-4 pb-4 space-y-1 border-t border-border/50">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
               className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                 location.pathname === link.to
-                  ? 'text-electric-400 bg-electric-500/10'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-white bg-white/5'
+                  : 'text-muted hover:text-white hover:bg-white/5'
               }`}
             >
               {link.label}
             </Link>
           ))}
           <Link
-            to="/contact"
-            className="block mt-2 px-4 py-3 rounded-lg text-sm font-semibold text-center text-white bg-gradient-to-r from-electric-500 to-teal-500"
+            to="/roi"
+            className="block px-4 py-3 rounded-lg text-sm font-medium text-emerald hover:bg-white/5 transition-colors"
           >
-            Contact Us
+            ROI Calculator
+          </Link>
+          <Link
+            to="/contact"
+            className="block mt-2 px-4 py-3 rounded-xl text-sm font-semibold text-center text-white bg-gradient-to-r from-cyan to-purple"
+          >
+            Get Started
           </Link>
         </div>
       </div>

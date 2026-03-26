@@ -1,24 +1,14 @@
 import { Link } from 'react-router-dom';
-import {
-  Database,
-  Workflow,
-  ScanLine,
-  ArrowLeftRight,
-  Plug,
-  Brain,
-  CheckCircle,
-  ArrowRight,
-} from 'lucide-react';
 import { services } from '@shared/data/company';
 import ROICalculator from '../components/ROICalculator';
 
-const serviceIcons: Record<string, React.ReactNode> = {
-  ecm: <Database className="w-10 h-10" aria-hidden="true" />,
-  bpa: <Workflow className="w-10 h-10" aria-hidden="true" />,
-  capture: <ScanLine className="w-10 h-10" aria-hidden="true" />,
-  migration: <ArrowLeftRight className="w-10 h-10" aria-hidden="true" />,
-  integration: <Plug className="w-10 h-10" aria-hidden="true" />,
-  ai: <Brain className="w-10 h-10" aria-hidden="true" />,
+const SERVICE_EMOJIS: Record<string, string> = {
+  ecm: '\u{1F4C1}',
+  bpa: '\u{2699}\u{FE0F}',
+  capture: '\u{1F4F7}',
+  migration: '\u{1F500}',
+  ai: '\u{1F9E0}',
+  staffing: '\u{1F465}',
 };
 
 const serviceDetails: Record<string, { capabilities: string[]; detail: string }> = {
@@ -26,72 +16,72 @@ const serviceDetails: Record<string, { capabilities: string[]; detail: string }>
     detail:
       'Our ECM practice helps organizations manage the full lifecycle of enterprise content, from creation through archival. We design and implement repository solutions that ensure compliance, enable rapid retrieval, and integrate with existing business systems.',
     capabilities: [
-      'Document and records management',
-      'Regulatory compliance and retention policies',
-      'Enterprise search and retrieval',
+      'IBM FileNet P8, Content Manager EE, iSeries',
+      'ImagePlus support and migration',
+      'Content Manager OnDemand',
+      'Federation and application integration',
       'Security and access controls',
-      'Integration with line-of-business applications',
-      'Cloud and on-premises deployment options',
+      'Cloud and on-premises deployment',
     ],
   },
   bpa: {
     detail:
       'We design and build automation solutions that replace manual, paper-based processes with streamlined digital workflows. Our BPA implementations reduce processing time, eliminate errors, and provide complete audit trails.',
     capabilities: [
-      'Workflow design and automation',
-      'Business rules engines',
+      'End-to-end workflow definition and optimization',
+      'Process analysis and redesign',
+      'IBM and Tungsten workflow orchestration',
       'Case management solutions',
       'Process analytics and reporting',
       'Exception handling and escalation',
-      'Integration with existing enterprise systems',
     ],
   },
   capture: {
     detail:
-      'Our capture solutions turn paper and unstructured content into actionable data. Using intelligent document recognition, machine learning classification, and high-speed OCR, we process millions of documents with accuracy rates above 99%.',
+      'Our capture solutions turn paper and unstructured content into actionable data. With a 30+ year Tungsten Automation (Kofax) partnership, we deploy remote and central capture, advanced recognition, and AI-powered classification.',
     capabilities: [
-      'Intelligent document recognition (IDR)',
-      'High-speed OCR and data extraction',
-      'Machine learning classification',
-      'Forms processing and validation',
-      'Multi-channel capture (scan, email, fax, web)',
-      'Quality assurance and exception routing',
+      'Remote and central capture deployment',
+      'Scanner and VRS configuration',
+      'High-availability and disaster recovery',
+      'Advanced recognition and classification',
+      'Custom validation and release scripts',
+      'IBM Datacap deployment',
     ],
   },
   migration: {
     detail:
-      'Content migration is one of the hardest problems in enterprise IT. Our proprietary AnySource Migrator (ASM) technology moves content between any ECM platform with full metadata preservation, security mapping, and validation.',
+      'Content migration is one of the hardest problems in enterprise IT. Our proprietary AnySource Migrator (ASM) technology moves content between any ECM platform with full metadata preservation, security mapping, and 25+ pre-built connectors.',
     capabilities: [
       'Platform-to-platform content migration',
       'Full metadata and security preservation',
-      'Taxonomy analysis and mapping',
-      'Format conversion during migration',
-      'Audit trail and validation reporting',
-      'Support for 20+ ECM platforms',
-    ],
-  },
-  integration: {
-    detail:
-      'We connect content management platforms with the rest of your enterprise. Deep expertise in IBM, Microsoft, and cloud ecosystems ensures your content flows seamlessly across systems without custom integration headaches.',
-    capabilities: [
-      'IBM CM8, FileNet, and Content Navigator',
-      'IBM Business Automation Workflow (BAW)',
-      'Microsoft SharePoint and Azure',
-      'Cloud platform integration (AWS, Azure, GCP)',
-      'API development and management',
-      'Legacy system connectivity',
+      '25+ pre-built repository connectors',
+      'Format conversion (TIFF to PDF, MODCA, etc.)',
+      'AI auto-mapping in ASM 2.0',
+      'Predictive anomaly detection',
     ],
   },
   ai: {
     detail:
-      'Our AI practice applies proven machine learning techniques to content challenges. Computer vision, natural language processing, and intelligent classification help organizations extract value from unstructured content at scale.',
+      'Our AI practice applies proven machine learning and large language models to content challenges. Zero-shot classification, semantic search, compliance automation, and on-premises model deployment for air-gapped environments.',
     capabilities: [
-      'Computer vision for document analysis',
-      'Natural language processing (NLP)',
-      'Intelligent document classification',
-      'Automated data extraction and validation',
-      'Robotic process automation (RPA)',
-      'Model training and continuous improvement',
+      'Zero-shot document classification',
+      'AI-powered auto-mapping in ASM 2.0',
+      'Semantic search and knowledge graphs (IBIG 2.0)',
+      'Compliance-as-Code automation',
+      'Cloud and on-prem model deployment',
+      'Air-gapped environment support',
+    ],
+  },
+  staffing: {
+    detail:
+      'Our contract staffing services deploy technical professionals with deep ECM knowledge. Individual resources, teams, or entire departments, all backed by SYSCOM\'s decades of platform expertise.',
+    capabilities: [
+      'Project Managers and Architects',
+      'Business Analysts and Programmers',
+      'Technical Writers and Testers',
+      'Individual, team, or department deployment',
+      'Rapid deployment capability',
+      'Deep ECM technical knowledge',
     ],
   },
 };
@@ -100,12 +90,12 @@ export default function Services() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gov-gray py-16 sm:py-20" aria-label="Services hero">
+      <section className="bg-gradient-to-b from-warm-cream to-warm-bg py-16 sm:py-20" aria-label="Services hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-gov-navy">
+          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-navy">
             Our Services
           </h1>
-          <p className="mt-4 text-lg text-gov-gray-dark max-w-3xl leading-relaxed">
+          <p className="mt-4 text-lg text-slate max-w-3xl leading-relaxed">
             Six specialized Centers of Excellence, each backed by decades of real-world
             deployments. We don't just advise. We build, implement, and support.
           </p>
@@ -120,52 +110,58 @@ export default function Services() {
         return (
           <section
             key={service.id}
-            className={`py-16 sm:py-20 ${isAlt ? 'bg-gov-gray' : 'bg-white'}`}
+            id={service.id}
+            className={`py-16 sm:py-20 ${isAlt ? 'bg-warm-cream' : 'bg-white'}`}
             aria-labelledby={`service-${service.id}-heading`}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                 <div>
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="text-gov-blue shrink-0 mt-1">
-                      {serviceIcons[service.id]}
-                    </div>
+                    <span className="text-3xl mt-1 shrink-0" aria-hidden="true">
+                      {SERVICE_EMOJIS[service.id] || '\u{1F4E6}'}
+                    </span>
                     <div>
                       <h2
                         id={`service-${service.id}-heading`}
-                        className="font-heading text-2xl sm:text-3xl font-bold text-gov-navy"
+                        className="font-heading text-2xl sm:text-3xl font-bold text-navy"
                       >
                         {service.name}
                       </h2>
-                      <p className="mt-1 text-sm font-medium text-gov-blue">
+                      <p className="mt-1 text-sm font-medium text-teal">
                         {service.shortName}
                       </p>
                     </div>
                   </div>
-                  <p className="text-gov-gray-dark leading-relaxed">
+                  <p className="text-slate leading-relaxed">
                     {service.description}
                   </p>
-                  <p className="mt-4 text-gov-gray-dark leading-relaxed">
-                    {details.detail}
-                  </p>
+                  {details && (
+                    <p className="mt-4 text-slate leading-relaxed">
+                      {details.detail}
+                    </p>
+                  )}
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <h3 className="font-heading font-semibold text-lg text-gov-navy mb-4">
-                    Key Capabilities
-                  </h3>
-                  <ul className="space-y-3">
-                    {details.capabilities.map((cap) => (
-                      <li key={cap} className="flex items-start gap-3">
-                        <CheckCircle
-                          className="w-5 h-5 text-green-700 mt-0.5 shrink-0"
-                          aria-hidden="true"
-                        />
-                        <span className="text-sm text-gov-gray-dark">{cap}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {details && (
+                  <div className="bg-white rounded-warm border border-warm-border p-6">
+                    <h3 className="font-heading font-semibold text-lg text-navy mb-4">
+                      Key Capabilities
+                    </h3>
+                    <ul className="space-y-3">
+                      {details.capabilities.map((cap) => (
+                        <li key={cap} className="flex items-start gap-3">
+                          <span className="text-teal mt-0.5 shrink-0" aria-hidden="true">
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </span>
+                          <span className="text-sm text-slate">{cap}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </section>
@@ -174,17 +170,17 @@ export default function Services() {
 
       {/* ROI Calculator */}
       <section
-        className="py-16 sm:py-20 bg-white"
+        className="py-20 bg-white"
         aria-labelledby="roi-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
             id="roi-heading"
-            className="font-heading text-3xl font-bold text-gov-navy text-center mb-4"
+            className="font-heading text-3xl font-bold text-navy text-center mb-4"
           >
             Calculate Your ROI
           </h2>
-          <p className="text-lg text-gov-gray-dark text-center max-w-2xl mx-auto mb-10">
+          <p className="text-lg text-muted text-center max-w-2xl mx-auto mb-10">
             See how automation can reduce costs and improve efficiency in your document
             processing workflows.
           </p>
@@ -193,18 +189,17 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gov-navy" aria-label="Call to action">
+      <section className="py-16 bg-navy" aria-label="Call to action">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-heading text-3xl font-bold text-white">
             Ready to Get Started?
           </h2>
-          <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
             Tell us about your content management challenges. We'll provide an honest
             assessment and a clear path forward.
           </p>
           <Link to="/contact" className="mt-8 btn-white inline-flex">
             Contact Our Team
-            <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
           </Link>
         </div>
       </section>

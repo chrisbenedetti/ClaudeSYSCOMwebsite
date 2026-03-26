@@ -3,7 +3,7 @@ import { company } from '@shared/data/company';
 
 export default function Footer() {
   return (
-    <footer className="bg-dark-950 border-t border-dark-700/30">
+    <footer className="bg-dark-950 border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Brand */}
@@ -13,7 +13,7 @@ export default function Footer() {
                 SYSCOM<span className="text-copper-500">.</span>
               </span>
             </Link>
-            <p className="mt-4 text-cream-400 text-sm leading-relaxed max-w-xs">
+            <p className="mt-4 text-cream-400 text-sm leading-relaxed max-w-xs font-light">
               {company.tagline}
             </p>
           </div>
@@ -34,7 +34,7 @@ export default function Footer() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-cream-400 text-sm hover:text-copper-500 transition-colors duration-300"
+                    className="text-cream-400 text-sm hover:text-copper-500 transition-colors duration-500"
                   >
                     {link.label}
                   </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Expertise */}
           <div>
             <h4 className="text-[10px] uppercase tracking-[0.25em] text-cream-300 mb-6">
               Expertise
@@ -54,13 +54,13 @@ export default function Footer() {
                 'Process Automation',
                 'Enterprise Capture',
                 'Content Migration',
-                'Platform Integration',
                 'AI & Automation',
+                'Contract Staffing',
               ].map((item) => (
                 <li key={item}>
                   <Link
                     to="/services"
-                    className="text-cream-400 text-sm hover:text-copper-500 transition-colors duration-300"
+                    className="text-cream-400 text-sm hover:text-copper-500 transition-colors duration-500"
                   >
                     {item}
                   </Link>
@@ -83,7 +83,7 @@ export default function Footer() {
               <li className="pt-2">
                 <a
                   href={`tel:${company.phone}`}
-                  className="hover:text-copper-500 transition-colors duration-300"
+                  className="hover:text-copper-500 transition-colors duration-500"
                 >
                   {company.phone}
                 </a>
@@ -91,7 +91,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${company.email}`}
-                  className="hover:text-copper-500 transition-colors duration-300"
+                  className="hover:text-copper-500 transition-colors duration-500"
                 >
                   {company.email}
                 </a>
@@ -101,8 +101,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-dark-700/20">
-          <p className="text-cream-400/50 text-xs tracking-wide">
+        <div className="mt-16 pt-8 border-t border-white/[0.04]">
+          <p className="text-cream-400/40 text-xs tracking-wide font-light">
             &copy; {new Date().getFullYear()} {company.name} All rights
             reserved.
           </p>

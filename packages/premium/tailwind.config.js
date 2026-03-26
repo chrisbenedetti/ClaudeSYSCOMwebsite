@@ -5,18 +5,18 @@ export default {
     extend: {
       colors: {
         dark: {
-          950: '#050505',
-          900: '#0a0a0a',
-          800: '#111111',
-          700: '#1a1a1a',
-          600: '#222222',
-          500: '#2a2a2a',
+          950: '#050508',
+          900: '#0a0a12',
+          800: '#12121e',
+          700: '#1a1a2a',
+          600: '#22222e',
+          500: '#2a2a3a',
         },
         cream: {
           100: '#faf8f5',
           200: '#f0ece6',
-          300: '#e0dbd3',
-          400: '#c8c1b7',
+          300: '#d4d0c8',
+          400: '#a8a49c',
         },
         copper: {
           400: '#d4a574',
@@ -34,9 +34,9 @@ export default {
         body: ['Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'fade-in': 'fadeIn 0.8s ease-out',
-        'slide-up': 'slideUp 0.8s ease-out',
-        'reveal': 'reveal 1s ease-out',
+        'fade-in': 'fadeIn 0.8s ease-out forwards',
+        'slide-up': 'slideUp 0.8s ease-out forwards',
+        reveal: 'reveal 1s ease-out forwards',
       },
       keyframes: {
         fadeIn: {

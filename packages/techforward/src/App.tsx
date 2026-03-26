@@ -8,10 +8,11 @@ import Services from './pages/Services';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
+import ROICalculator from './components/ROICalculator';
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-bg">
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/roi" element={<ROICalculator />} />
         </Routes>
       </Layout>
     </HashRouter>

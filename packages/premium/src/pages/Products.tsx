@@ -1,229 +1,205 @@
-import { ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { products } from '@shared/data/company';
-
-const migrationSources = [
-  'IBM CM8',
-  'FileNet',
-  'Documentum',
-  'SharePoint',
-  'OpenText',
-  'Hyland',
-];
-
-const migrationTargets = [
-  'SharePoint',
-  'Box',
-  'AWS S3',
-  'Azure Blob',
-  'IBM FileNet',
-  'Any ECM',
-];
+import WorkflowAnimation from '../components/WorkflowAnimation';
 
 export default function Products() {
-  const asm = products[0];
-  const aisBridge = products[1];
-  const ibig = products[2];
-
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 px-6">
+      <section className="pt-36 pb-20 md:pt-44 md:pb-28 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4 animate-fade-in">
             Proprietary Technology
           </p>
-          <h1 className="font-heading text-5xl md:text-7xl text-cream-100 animate-slide-up">
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl text-cream-100 animate-slide-up font-light">
             Built, Not Bought
           </h1>
-          <p className="mt-6 text-cream-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '150ms' }}>
+          <p
+            className="mt-8 text-cream-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light animate-slide-up"
+            style={{ animationDelay: '150ms' }}
+          >
             We own our intellectual property. Every product exists because we saw
             a problem nobody else was solving -- and built the answer.
           </p>
         </div>
       </section>
 
-      {/* ASM - Flagship */}
-      <section className="py-24 md:py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="border border-dark-700/30 p-8 md:p-16">
-            <div className="text-center mb-12">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-3">
-                Flagship Product
-              </p>
-              <h2 className="font-heading text-4xl md:text-6xl text-cream-100 mb-2">
-                {asm.name}
-              </h2>
-              <p className="font-heading text-lg md:text-xl text-cream-300 italic">
-                {asm.tagline}
-              </p>
-            </div>
-
-            <p className="text-cream-400 text-base leading-relaxed max-w-2xl mx-auto text-center mb-16">
-              {asm.description}
-            </p>
-
-            {/* Migration Diagram */}
-            <div className="mb-16">
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-4 items-center">
-                {/* Sources */}
-                <div className="space-y-3">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 mb-4 text-center md:text-right">
-                    Source Systems
+      {/* Products */}
+      {products.map((product, productIndex) => (
+        <section
+          key={product.id}
+          className={`py-24 md:py-32 px-6 ${
+            productIndex > 0 ? 'border-t border-white/[0.04]' : ''
+          }`}
+        >
+          <div className="max-w-6xl mx-auto">
+            {product.flagship ? (
+              /* ASM - Flagship treatment */
+              <div className="glass-card rounded-lg p-8 md:p-16">
+                <div className="text-center mb-14">
+                  <span className="inline-block text-[9px] uppercase tracking-[0.3em] text-copper-500 border border-copper-500/25 px-4 py-1.5 rounded-full mb-5">
+                    {product.badge}
+                  </span>
+                  <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl text-cream-100 mb-3 font-light">
+                    {product.name}
+                  </h2>
+                  <p className="font-heading text-lg md:text-xl text-cream-300 italic font-light">
+                    {product.tagline}
                   </p>
-                  {migrationSources.map((source) => (
-                    <div
-                      key={source}
-                      className="bg-dark-700/30 border border-dark-600/20 px-5 py-2.5 text-sm text-cream-300 text-center md:text-right"
-                    >
-                      {source}
-                    </div>
-                  ))}
                 </div>
 
-                {/* ASM Engine */}
-                <div className="flex flex-col items-center py-4 md:py-0">
-                  <div className="hidden md:flex flex-col items-center gap-2 mb-4">
-                    {[...Array(3)].map((_, i) => (
-                      <ChevronRight
-                        key={`l${i}`}
-                        size={16}
-                        className="text-copper-500/40 -rotate-90 md:rotate-0"
-                      />
-                    ))}
-                  </div>
-                  <div className="bg-copper-500/10 border border-copper-500/30 px-8 py-6 text-center">
-                    <p className="font-heading text-2xl text-copper-500">ASM</p>
-                    <p className="text-[9px] uppercase tracking-[0.2em] text-cream-400 mt-1">
-                      Engine
-                    </p>
-                  </div>
-                  <div className="hidden md:flex flex-col items-center gap-2 mt-4">
-                    {[...Array(3)].map((_, i) => (
-                      <ChevronRight
-                        key={`r${i}`}
-                        size={16}
-                        className="text-copper-500/40 -rotate-90 md:rotate-0"
-                      />
+                <p className="text-cream-400 text-base leading-relaxed max-w-2xl mx-auto text-center mb-16 font-light">
+                  {product.description}
+                </p>
+
+                {/* Workflow */}
+                <div className="mb-16">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 text-center mb-6">
+                    Migration Workflow
+                  </p>
+                  <WorkflowAnimation steps={product.workflow} />
+                </div>
+
+                {/* Connectors */}
+                <div className="mb-16 text-center">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 mb-5">
+                    Supported Connectors
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {product.connectors.map((c) => (
+                      <span
+                        key={c}
+                        className="text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-full bg-copper-500/8 border border-copper-500/15 text-copper-400"
+                      >
+                        {c}
+                      </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Targets */}
-                <div className="space-y-3">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-cream-400 mb-4 text-center md:text-left">
-                    Target Systems
-                  </p>
-                  {migrationTargets.map((target) => (
+                {/* Features */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+                  {product.features.map((feature, i) => (
                     <div
-                      key={target}
-                      className="bg-dark-700/30 border border-dark-600/20 px-5 py-2.5 text-sm text-cream-300 text-center md:text-left"
+                      key={i}
+                      className="bg-dark-800/40 border border-white/[0.04] rounded-lg p-5"
                     >
-                      {target}
+                      <h4 className="text-cream-100 text-sm font-medium mb-2">
+                        {feature.title}
+                      </h4>
+                      <p className="text-cream-400 text-xs leading-relaxed font-light">
+                        {feature.description}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
+            ) : (
+              /* Non-flagship products */
+              <div
+                className={`md:flex items-start gap-16 ${
+                  productIndex % 2 === 0 ? '' : 'md:flex-row-reverse'
+                }`}
+              >
+                <div className="md:w-2/5 mb-10 md:mb-0">
+                  <span className="inline-block text-[9px] uppercase tracking-[0.3em] text-copper-500/70 mb-4">
+                    {product.badge}
+                  </span>
+                  <h2 className="font-heading text-3xl md:text-4xl text-cream-100 mb-2 font-normal">
+                    {product.name}
+                  </h2>
+                  <p className="font-heading text-base text-cream-300 italic mb-6 font-light">
+                    {product.tagline}
+                  </p>
+                  <p className="text-cream-400 text-sm leading-relaxed mb-8 font-light">
+                    {product.description}
+                  </p>
 
-            {/* Features */}
-            <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-              {asm.features.map((feature, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 text-sm text-cream-300"
-                >
-                  <span className="w-1 h-1 rounded-full bg-copper-500 mt-2 shrink-0" />
-                  <span className="leading-relaxed">{feature}</span>
+                  {/* Connectors */}
+                  <div className="flex flex-wrap gap-2">
+                    {product.connectors.map((c) => (
+                      <span
+                        key={c}
+                        className="text-[9px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-copper-500/5 border border-copper-500/10 text-copper-400/80"
+                      >
+                        {c}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* AIS Bridge */}
-      <section className="py-20 md:py-28 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="md:flex md:gap-16 items-start">
-            <div className="md:w-2/5 mb-8 md:mb-0">
-              <h2 className="font-heading text-3xl md:text-4xl text-cream-100 mb-2">
-                {aisBridge.name}
-              </h2>
-              <p className="font-heading text-base text-cream-300 italic mb-6">
-                {aisBridge.tagline}
-              </p>
-            </div>
-            <div className="md:w-3/5">
-              <p className="text-cream-400 text-sm leading-relaxed mb-8">
-                {aisBridge.description}
-              </p>
-              <div className="space-y-3">
-                {aisBridge.features.map((feature, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3 text-sm text-cream-300"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-copper-500 mt-2 shrink-0" />
-                    <span className="leading-relaxed">{feature}</span>
+                <div className="md:w-3/5">
+                  {/* Workflow */}
+                  <div className="mb-8">
+                    <WorkflowAnimation
+                      steps={product.workflow}
+                      accentColor={productIndex === 2 ? 'gold' : 'copper'}
+                    />
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="border-t border-dark-700/20" />
-      </div>
-
-      {/* IBIG */}
-      <section className="py-20 md:py-28 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="md:flex md:flex-row-reverse md:gap-16 items-start">
-            <div className="md:w-2/5 mb-8 md:mb-0">
-              <h2 className="font-heading text-3xl md:text-4xl text-cream-100 mb-2">
-                {ibig.name}
-              </h2>
-              <p className="font-heading text-base text-cream-300 italic mb-6">
-                {ibig.tagline}
-              </p>
-            </div>
-            <div className="md:w-3/5">
-              <p className="text-cream-400 text-sm leading-relaxed mb-8">
-                {ibig.description}
-              </p>
-              <div className="space-y-3">
-                {ibig.features.map((feature, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3 text-sm text-cream-300"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-copper-500 mt-2 shrink-0" />
-                    <span className="leading-relaxed">{feature}</span>
+                  {/* Features */}
+                  <div className="space-y-4">
+                    {product.features.map((feature, i) => (
+                      <div key={i} className="flex items-start gap-4">
+                        <span className="w-1 h-1 rounded-full bg-copper-500 mt-2.5 shrink-0" />
+                        <div>
+                          <p className="text-cream-100 text-sm font-medium mb-1">
+                            {feature.title}
+                          </p>
+                          <p className="text-cream-400 text-xs leading-relaxed font-light">
+                            {feature.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* Integration Narrative */}
-      <section className="py-24 md:py-32 px-6">
+      <section className="py-28 md:py-36 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="border-t border-b border-copper-500/20 py-12 md:py-16">
-            <h2 className="font-heading text-2xl md:text-4xl text-cream-100 mb-6">
+          <div className="border-t border-b border-copper-500/15 py-14 md:py-20">
+            <h2 className="font-heading text-3xl md:text-5xl text-cream-100 mb-8 font-light">
               Better Together
             </h2>
-            <p className="text-cream-400 text-base leading-relaxed">
+            <p className="text-cream-400 text-base leading-relaxed font-light">
               ASM migrates your content. AIS Bridge preserves your ImagePlus
-              investment. IBIG delivers content services on demand. Together, they
-              form a complete platform for organizations modernizing their content
+              investment. IBIG delivers intelligent content discovery. Content
+              Services deploys workflows in days. Together, they form a complete
+              platform for organizations modernizing their content
               infrastructure -- built by a team that has been doing this longer
               than most companies have existed.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-28 md:py-36 px-6">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-heading text-3xl md:text-4xl text-cream-100 mb-6 font-light">
+            See It in Action
+          </h2>
+          <p className="text-cream-400 text-base mb-12 max-w-md mx-auto font-light">
+            Every engagement starts with understanding your environment.
+            Let us show you what our products can do for yours.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-copper-500 border border-copper-500/25 px-10 py-4 hover:bg-copper-500/8 hover:border-copper-500/50 transition-all duration-700 group"
+          >
+            Request a Demo
+            <ArrowRight
+              size={14}
+              className="group-hover:translate-x-1 transition-transform duration-500"
+            />
+          </Link>
         </div>
       </section>
     </>

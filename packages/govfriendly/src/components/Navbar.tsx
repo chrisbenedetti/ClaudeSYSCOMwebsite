@@ -1,25 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Shield } from 'lucide-react';
 
-const navLinks = [
+const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
   { to: '/services', label: 'Services' },
   { to: '/products', label: 'Products' },
+  { to: '/contact', label: 'Contact' },
   { to: '/careers', label: 'Careers' },
 ];
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => setMobileOpen((prev) => !prev);
-  const closeMenu = () => setMobileOpen(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location]);
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[rgba(250,250,247,0.95)] backdrop-blur-md shadow-sm border-b border-warm-border'
+          : 'bg-transparent'
+      }`}
       role="navigation"
       aria-label="Main navigation"
     >
@@ -28,55 +40,64 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 text-gov-navy font-heading font-bold text-xl hover:text-gov-blue transition-colors"
-            aria-label="SYSCOM, Inc. - Home"
-            onClick={closeMenu}
+            className="font-heading text-2xl font-bold text-navy tracking-tight hover:text-teal transition-colors"
+            aria-label="SYSCOM home"
           >
-            <Shield className="w-7 h-7" aria-hidden="true" />
-            <span>SYSCOM</span>
+            SYSCOM
           </Link>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isActive = location.pathname === link.to;
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`px-3 py-2 text-sm font-medium rounded transition-colors ${
-                    isActive
-                      ? 'text-gov-navy border-b-2 border-gov-navy'
-                      : 'text-gov-gray-dark hover:text-gov-navy hover:bg-gov-gray'
-                  }`}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors relative ${
+                  location.pathname === link.to
+                    ? 'text-navy'
+                    : 'text-muted hover:text-navy'
+                }`}
+                aria-current={location.pathname === link.to ? 'page' : undefined}
+              >
+                {link.label}
+                {location.pathname === link.to && (
+                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-teal rounded-full" />
+                )}
+              </Link>
+            ))}
             <Link
-              to="/contact"
-              className="ml-3 btn-primary text-sm !py-2 !px-4"
+              to="/products#roi"
+              className="ml-2 text-sm font-medium text-teal hover:text-teal-light transition-colors"
             >
-              Contact Us
+              ROI Calculator
+            </Link>
+            <Link to="/contact" className="ml-3 btn-primary text-sm !py-2 !px-4">
+              Get Started
             </Link>
           </div>
 
           {/* Mobile hamburger */}
           <button
             type="button"
-            className="md:hidden p-2 rounded text-gov-navy hover:bg-gov-gray transition-colors"
-            onClick={toggleMenu}
+            className="md:hidden p-2 rounded-lg text-navy hover:bg-warm-cream transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
-            {mobileOpen ? (
-              <X className="w-6 h-6" aria-hidden="true" />
-            ) : (
-              <Menu className="w-6 h-6" aria-hidden="true" />
-            )}
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              {mobileOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
           </button>
         </div>
       </div>
@@ -85,36 +106,31 @@ export default function Navbar() {
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden border-t border-gray-200 bg-white"
-          role="menu"
+          className="md:hidden bg-white border-t border-warm-border shadow-lg animate-fade-in"
         >
           <div className="px-4 py-3 space-y-1">
-            {navLinks.map((link) => {
-              const isActive = location.pathname === link.to;
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`block px-3 py-2 rounded text-base font-medium transition-colors ${
-                    isActive
-                      ? 'text-gov-navy bg-gov-gray font-semibold'
-                      : 'text-gov-gray-dark hover:text-gov-navy hover:bg-gov-gray'
-                  }`}
-                  aria-current={isActive ? 'page' : undefined}
-                  onClick={closeMenu}
-                  role="menuitem"
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  location.pathname === link.to
+                    ? 'bg-warm-cream text-navy'
+                    : 'text-muted hover:text-navy hover:bg-warm-light'
+                }`}
+                aria-current={location.pathname === link.to ? 'page' : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link
-              to="/contact"
-              className="block mt-2 btn-primary text-center text-sm"
-              onClick={closeMenu}
-              role="menuitem"
+              to="/products#roi"
+              className="block px-3 py-2 text-sm font-medium text-teal"
             >
-              Contact Us
+              ROI Calculator
+            </Link>
+            <Link to="/contact" className="block mt-2 btn-primary text-sm text-center">
+              Get Started
             </Link>
           </div>
         </div>

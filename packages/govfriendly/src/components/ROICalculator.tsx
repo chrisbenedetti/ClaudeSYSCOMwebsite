@@ -1,187 +1,173 @@
+import { Link } from 'react-router-dom';
 import { useROICalculator } from '@shared/hooks/useROICalculator';
-import { CheckCircle } from 'lucide-react';
 
 export default function ROICalculator() {
   const { inputs, results, updateInput } = useROICalculator();
 
   const formatCurrency = (value: number) =>
-    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0,
+    }).format(value);
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-      <div className="bg-gov-navy px-6 py-4">
-        <h3 className="font-heading font-bold text-xl text-white">
+    <div id="roi" className="bg-white rounded-warm border border-warm-border shadow-sm overflow-hidden">
+      <div className="px-8 py-6 border-b border-warm-border">
+        <h3 className="font-heading text-2xl font-bold text-navy">
           Automation ROI Calculator
         </h3>
-        <p className="text-gray-300 text-sm mt-1">
-          Estimate the impact of automating your document processes.
+        <p className="text-muted text-sm mt-1">
+          Estimate the impact of automating your document workflows.
         </p>
       </div>
 
-      <div className="p-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Inputs */}
           <div className="space-y-6">
-            <h4 className="font-heading font-semibold text-gov-navy text-lg">
+            <h4 className="font-heading font-semibold text-navy text-lg">
               Your Current Operations
             </h4>
 
-            {/* Document Volume */}
+            {/* Documents */}
             <div>
               <label
-                htmlFor="roi-doc-volume"
-                className="block text-sm font-medium text-gov-gray-dark mb-1"
+                htmlFor="roi-documents"
+                className="block text-sm font-medium text-text mb-1.5"
               >
-                Daily Document Volume
+                Document Volume
               </label>
               <div className="flex items-center gap-3">
                 <input
-                  id="roi-doc-volume"
+                  id="roi-documents"
                   type="range"
-                  min={500}
-                  max={50000}
-                  step={500}
-                  value={inputs.documentVolume}
-                  onChange={(e) => updateInput('documentVolume', Number(e.target.value))}
-                  className="flex-1 h-2 bg-gov-gray rounded-lg appearance-none cursor-pointer accent-gov-navy"
-                  aria-valuemin={500}
-                  aria-valuemax={50000}
-                  aria-valuenow={inputs.documentVolume}
-                  aria-valuetext={`${inputs.documentVolume.toLocaleString()} documents per day`}
+                  min={50000}
+                  max={5000000}
+                  step={50000}
+                  value={inputs.documents}
+                  onChange={(e) => updateInput('documents', Number(e.target.value))}
+                  className="flex-1 h-2 bg-warm-cream rounded-lg appearance-none cursor-pointer accent-navy"
+                  aria-valuemin={50000}
+                  aria-valuemax={5000000}
+                  aria-valuenow={inputs.documents}
+                  aria-valuetext={`${inputs.documents.toLocaleString()} documents`}
                 />
                 <output
-                  htmlFor="roi-doc-volume"
-                  className="w-20 text-right font-semibold text-gov-navy text-sm"
+                  htmlFor="roi-documents"
+                  className="w-24 text-right font-semibold text-navy text-sm"
                 >
-                  {inputs.documentVolume.toLocaleString()}
+                  {inputs.documents.toLocaleString()}
                 </output>
               </div>
-              <p className="text-xs text-gray-500 mt-1">documents per day</p>
+              <p className="text-xs text-muted mt-1">total documents managed</p>
             </div>
 
-            {/* Number of Users */}
+            {/* Weekly Hours */}
             <div>
               <label
-                htmlFor="roi-users"
-                className="block text-sm font-medium text-gov-gray-dark mb-1"
+                htmlFor="roi-hours"
+                className="block text-sm font-medium text-text mb-1.5"
               >
-                Number of Users
+                Weekly Manual Hours
               </label>
               <div className="flex items-center gap-3">
                 <input
-                  id="roi-users"
+                  id="roi-hours"
                   type="range"
-                  min={1}
-                  max={100}
-                  step={1}
-                  value={inputs.numberOfUsers}
-                  onChange={(e) => updateInput('numberOfUsers', Number(e.target.value))}
-                  className="flex-1 h-2 bg-gov-gray rounded-lg appearance-none cursor-pointer accent-gov-navy"
-                  aria-valuemin={1}
-                  aria-valuemax={100}
-                  aria-valuenow={inputs.numberOfUsers}
-                  aria-valuetext={`${inputs.numberOfUsers} users`}
+                  min={5}
+                  max={200}
+                  step={5}
+                  value={inputs.manualHoursPerWeek}
+                  onChange={(e) => updateInput('manualHoursPerWeek', Number(e.target.value))}
+                  className="flex-1 h-2 bg-warm-cream rounded-lg appearance-none cursor-pointer accent-navy"
+                  aria-valuemin={5}
+                  aria-valuemax={200}
+                  aria-valuenow={inputs.manualHoursPerWeek}
+                  aria-valuetext={`${inputs.manualHoursPerWeek} hours per week`}
                 />
                 <output
-                  htmlFor="roi-users"
-                  className="w-20 text-right font-semibold text-gov-navy text-sm"
+                  htmlFor="roi-hours"
+                  className="w-24 text-right font-semibold text-navy text-sm"
                 >
-                  {inputs.numberOfUsers}
+                  {inputs.manualHoursPerWeek} hrs
                 </output>
               </div>
-              <p className="text-xs text-gray-500 mt-1">team members</p>
+              <p className="text-xs text-muted mt-1">hours spent on manual processing</p>
             </div>
 
-            {/* Processing Time */}
+            {/* Hourly Rate */}
             <div>
               <label
-                htmlFor="roi-processing-time"
-                className="block text-sm font-medium text-gov-gray-dark mb-1"
+                htmlFor="roi-rate"
+                className="block text-sm font-medium text-text mb-1.5"
               >
-                Avg. Processing Time per Document
+                Average Hourly Rate
               </label>
               <div className="flex items-center gap-3">
                 <input
-                  id="roi-processing-time"
+                  id="roi-rate"
                   type="range"
-                  min={1}
-                  max={30}
-                  step={1}
-                  value={inputs.processingTimeMinutes}
-                  onChange={(e) => updateInput('processingTimeMinutes', Number(e.target.value))}
-                  className="flex-1 h-2 bg-gov-gray rounded-lg appearance-none cursor-pointer accent-gov-navy"
-                  aria-valuemin={1}
-                  aria-valuemax={30}
-                  aria-valuenow={inputs.processingTimeMinutes}
-                  aria-valuetext={`${inputs.processingTimeMinutes} minutes per document`}
+                  min={30}
+                  max={200}
+                  step={5}
+                  value={inputs.hourlyRate}
+                  onChange={(e) => updateInput('hourlyRate', Number(e.target.value))}
+                  className="flex-1 h-2 bg-warm-cream rounded-lg appearance-none cursor-pointer accent-navy"
+                  aria-valuemin={30}
+                  aria-valuemax={200}
+                  aria-valuenow={inputs.hourlyRate}
+                  aria-valuetext={`$${inputs.hourlyRate} per hour`}
                 />
                 <output
-                  htmlFor="roi-processing-time"
-                  className="w-20 text-right font-semibold text-gov-navy text-sm"
+                  htmlFor="roi-rate"
+                  className="w-24 text-right font-semibold text-navy text-sm"
                 >
-                  {inputs.processingTimeMinutes} min
+                  ${inputs.hourlyRate}/hr
                 </output>
               </div>
-              <p className="text-xs text-gray-500 mt-1">minutes per document</p>
+              <p className="text-xs text-muted mt-1">fully loaded cost per hour</p>
             </div>
           </div>
 
           {/* Results */}
-          <div className="space-y-6">
-            <h4 className="font-heading font-semibold text-gov-navy text-lg">
-              Projected Annual Impact
+          <div className="space-y-5">
+            <h4 className="font-heading font-semibold text-navy text-lg">
+              Projected Annual Savings
             </h4>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-gov-gray rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="w-5 h-5 text-green-700" aria-hidden="true" />
-                  <span className="text-sm font-medium text-gov-gray-dark">Time Saved</span>
-                </div>
-                <p className="text-2xl font-bold text-gov-navy" aria-live="polite">
-                  {results.timeSavedHours.toLocaleString()}
-                </p>
-                <p className="text-xs text-gray-500">hours per year</p>
+            <div className="bg-warm-cream rounded-warm p-6 space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-text">Migration Automation (ASM)</span>
+                <span className="font-semibold text-navy">{formatCurrency(results.asmSavings)}</span>
               </div>
-
-              <div className="bg-gov-gray rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="w-5 h-5 text-green-700" aria-hidden="true" />
-                  <span className="text-sm font-medium text-gov-gray-dark">Annual Savings</span>
-                </div>
-                <p className="text-2xl font-bold text-gov-navy" aria-live="polite">
-                  {formatCurrency(results.annualSavings)}
-                </p>
-                <p className="text-xs text-gray-500">estimated cost reduction</p>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-text">Content Intelligence (IBIG)</span>
+                <span className="font-semibold text-navy">{formatCurrency(results.ibigSavings)}</span>
               </div>
-
-              <div className="bg-gov-gray rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="w-5 h-5 text-green-700" aria-hidden="true" />
-                  <span className="text-sm font-medium text-gov-gray-dark">Cost Reduction</span>
-                </div>
-                <p className="text-2xl font-bold text-gov-navy" aria-live="polite">
-                  {results.costReduction}%
-                </p>
-                <p className="text-xs text-gray-500">in processing costs</p>
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-text">Capture Automation</span>
+                <span className="font-semibold text-navy">{formatCurrency(results.captureSavings)}</span>
               </div>
-
-              <div className="bg-gov-gray rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="w-5 h-5 text-green-700" aria-hidden="true" />
-                  <span className="text-sm font-medium text-gov-gray-dark">Efficiency Gain</span>
-                </div>
-                <p className="text-2xl font-bold text-gov-navy" aria-live="polite">
-                  {results.efficiencyGain}%
-                </p>
-                <p className="text-xs text-gray-500">workflow improvement</p>
+              <div className="border-t border-warm-border pt-4 flex justify-between items-center">
+                <span className="font-heading font-bold text-navy">Total Annual Savings</span>
+                <span className="font-heading text-2xl font-bold text-teal" aria-live="polite">
+                  {formatCurrency(results.totalSavings)}
+                </span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-muted">Estimated ROI</span>
+                <span className="font-semibold text-teal">{results.roiPercent}%</span>
               </div>
             </div>
 
-            <p className="text-xs text-gray-500 leading-relaxed">
-              Estimates based on industry averages for enterprise document processing automation.
-              Actual results vary based on document complexity, integration requirements, and
-              organizational factors. Contact us for a detailed assessment.
+            <Link to="/contact" className="btn-primary w-full text-center">
+              Schedule a Consultation
+            </Link>
+
+            <p className="text-xs text-muted leading-relaxed">
+              Estimates based on industry averages for enterprise document processing.
+              Actual results vary based on complexity and organizational factors.
             </p>
           </div>
         </div>

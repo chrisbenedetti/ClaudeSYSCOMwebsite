@@ -4,7 +4,8 @@
 
 @layer base {
   body {
-    @apply bg-dark-900 text-cream-100 font-body antialiased;
+    @apply bg-[#050508] text-[#faf8f5] font-body antialiased;
+    font-weight: 300;
   }
 
   ::selection {
@@ -15,43 +16,93 @@
   ::-webkit-scrollbar {
     width: 6px;
   }
-
   ::-webkit-scrollbar-track {
-    @apply bg-dark-950;
+    background: #0a0a12;
   }
-
   ::-webkit-scrollbar-thumb {
-    @apply bg-dark-600 rounded-full;
+    background: #c4935e40;
+    border-radius: 3px;
   }
-
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-dark-500;
+    background: #c4935e70;
   }
 
   /* Firefox scrollbar */
   html {
     scrollbar-width: thin;
-    scrollbar-color: #222222 #050505;
+    scrollbar-color: #c4935e40 #0a0a12;
   }
 }
 
-@layer utilities {
+@layer components {
+  /* Copper gradient text utility */
+  .text-gradient-copper {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #d4a574, #c4935e, #d4b896);
+  }
+
+  /* Glass card */
+  .glass-card {
+    @apply backdrop-blur-sm;
+    background: rgba(18, 18, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Noise overlay for premium texture */
   .noise-overlay {
     position: relative;
   }
-
   .noise-overlay::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
     background-size: 128px 128px;
     pointer-events: none;
     z-index: 1;
   }
+}
 
-  .text-gradient-copper {
-    @apply bg-gradient-to-r from-copper-400 to-gold-400 bg-clip-text text-transparent;
+@layer utilities {
+  /* Range slider - copper thumb */
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2px;
+    background: #22222e;
+    cursor: pointer;
+    outline: none;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #c4935e;
+    border: 0;
+    margin-top: -5px;
+  }
+  input[type='range']::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #c4935e;
+    border: 0;
+  }
+
+  /* Custom thin scrollbar for chat etc */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #c4935e30;
+    border-radius: 2px;
   }
 }
