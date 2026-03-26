@@ -1,0 +1,20 @@
+{
+  "name": "syscom-website",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:techforward": "npm run dev --workspace=packages/techforward",
+    "dev:govfriendly": "npm run dev --workspace=packages/govfriendly",
+    "dev:premium": "npm run dev --workspace=packages/premium",
+    "build:techforward": "npm run build --workspace=packages/techforward",
+    "build:govfriendly": "npm run build --workspace=packages/govfriendly",
+    "build:premium": "npm run build --workspace=packages/premium",
+    "build:all": "npm run build:techforward && npm run build:govfriendly && npm run build:premium",
+    "preview:techforward": "npm run preview --workspace=packages/techforward",
+    "preview:govfriendly": "npm run preview --workspace=packages/govfriendly",
+    "preview:premium": "npm run preview --workspace=packages/premium"
+  }
+}
