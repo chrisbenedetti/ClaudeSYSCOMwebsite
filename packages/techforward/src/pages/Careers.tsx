@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { company } from '@shared/data/company';
+import { company, careerInfo } from '@shared/data/company';
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -181,6 +181,51 @@ export default function Careers() {
         </div>
       </section>
 
+      {/* Skills in Demand & Roles */}
+      <section className="py-20 sm:py-28 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeSection>
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+              <div>
+                <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-3">
+                  Technologies in Demand
+                </p>
+                <h2 className="font-heading font-bold text-2xl sm:text-3xl tracking-[-2px] mb-6">
+                  Skills we&apos;re hiring for
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {careerInfo.skillsInDemand.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1.5 rounded-lg text-sm font-mono bg-cyan/5 text-cyan/80 border border-cyan/10"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-emerald mb-3">
+                  Role Categories
+                </p>
+                <h2 className="font-heading font-bold text-2xl sm:text-3xl tracking-[-2px] mb-6">
+                  Positions we hire for
+                </h2>
+                <ul className="space-y-3">
+                  {careerInfo.roleCategories.map((role) => (
+                    <li key={role} className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald shrink-0" />
+                      <span className="text-sm text-muted">{role}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </FadeSection>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 sm:py-28">
         <FadeSection>
@@ -189,17 +234,27 @@ export default function Careers() {
               Interested in joining SYSCOM?
             </h2>
             <p className="text-muted max-w-xl mx-auto mb-8">
-              We&apos;re always looking for talented engineers and consultants. Send us your
-              resume and tell us what you&apos;re passionate about.
+              We&apos;re always looking for talented engineers and consultants. Check our
+              open positions or send us your resume directly.
             </p>
-            <a
-              href={`mailto:${company.email}?subject=Career Inquiry`}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan to-purple hover:opacity-90 transition-opacity"
-            >
-              Apply Now &rarr;
-            </a>
-            <p className="text-xs text-muted/60 mt-4">
-              Send your resume to {company.email}
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              <a
+                href={company.careerPortal}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-cyan to-purple hover:opacity-90 transition-opacity"
+              >
+                View Open Positions &rarr;
+              </a>
+              <a
+                href={`mailto:${company.email}?subject=Career Inquiry`}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white/80 border border-border hover:bg-white/5 transition-colors"
+              >
+                Email Your Resume
+              </a>
+            </div>
+            <p className="text-xs text-muted/60">
+              Or send your resume directly to {company.email}
             </p>
           </div>
         </FadeSection>

@@ -2,6 +2,10 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { company, services, products, aiCapabilities, verticals, stats } from '@shared/data/company';
 
+/* ── Featured vs utility products ── */
+const featuredProducts = products.filter(p => p.category === 'flagship' || p.category === 'core');
+const utilityProducts = products.filter(p => p.category === 'utility');
+
 /* ── Scroll fade-in hook ── */
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -48,6 +52,7 @@ const serviceEmoji: Record<string, string> = {
   capture: '\u{1F4C4}',
   migration: '\u{1F504}',
   ai: '\u{1F9E0}',
+  'custom-apps': '\u{1F4BB}',
   staffing: '\u{1F465}',
 };
 
@@ -57,6 +62,12 @@ const productAccent: Record<string, string> = {
   'ais-bridge': '#fb7185',
   ibig: '#a78bfa',
   'content-services': '#34d399',
+  cce: '#f59e0b',
+  'content-viewer': '#06b6d4',
+  'ais-ee': '#8b5cf6',
+  asimport: '#10b981',
+  ip2cm: '#22d3ee',
+  'mvs-connect': '#64748b',
 };
 
 const productAccentBg: Record<string, string> = {
@@ -64,6 +75,12 @@ const productAccentBg: Record<string, string> = {
   'ais-bridge': 'bg-rose/10 text-rose border-rose/20',
   ibig: 'bg-purple/10 text-purple border-purple/20',
   'content-services': 'bg-emerald/10 text-emerald border-emerald/20',
+  cce: 'bg-amber/10 text-amber border-amber/20',
+  'content-viewer': 'bg-cyan/10 text-cyan border-cyan/20',
+  'ais-ee': 'bg-purple/10 text-purple border-purple/20',
+  asimport: 'bg-emerald/10 text-emerald border-emerald/20',
+  ip2cm: 'bg-cyan/10 text-cyan border-cyan/20',
+  'mvs-connect': 'bg-slate/10 text-slate border-slate/20',
 };
 
 export default function Home() {
@@ -149,10 +166,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeSection className="mb-14">
             <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-3">
-              Centers of Excellence
+              What We Do
             </p>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px]">
-              What we build
+              Our Services
             </h2>
           </FadeSection>
 
@@ -189,11 +206,12 @@ export default function Home() {
             </h2>
           </FadeSection>
 
+          {/* Featured products (flagship + core) */}
           <div className="grid sm:grid-cols-2 gap-4">
-            {products.map((product, i) => (
+            {featuredProducts.map((product, i) => (
               <FadeSection key={product.id} delay={i * 0.08}>
                 <Link
-                  to="/products"
+                  to={`/products#${product.id}`}
                   className="group block h-full rounded-2xl bg-card border border-border p-6 lg:p-8 card-hover"
                 >
                   <span
@@ -242,6 +260,42 @@ export default function Home() {
               </FadeSection>
             ))}
           </div>
+
+          {/* Utility products (compact row) */}
+          <FadeSection className="mt-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {utilityProducts.map((product) => (
+                <Link
+                  key={product.id}
+                  to={`/products#${product.id}`}
+                  className="group flex items-center gap-4 rounded-xl bg-card border border-border p-4 card-hover"
+                >
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-heading font-bold text-sm tracking-tight group-hover:text-cyan transition-colors">
+                      {product.name}
+                    </h4>
+                    <p className="text-xs text-muted truncate">{product.tagline}</p>
+                  </div>
+                  <span
+                    className="text-xs font-medium shrink-0"
+                    style={{ color: productAccent[product.id] }}
+                  >
+                    &rarr;
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </FadeSection>
+
+          {/* View all link */}
+          <FadeSection className="mt-8 text-center">
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-2 text-sm font-medium text-cyan hover:gap-3 transition-all"
+            >
+              View All Products &rarr;
+            </Link>
+          </FadeSection>
         </div>
       </section>
 
@@ -327,7 +381,7 @@ export default function Home() {
                 but it&apos;s sometimes the only solution. And we know the difference.
               </p>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {verticals.map((v) => (
                   <div key={v.name} className="rounded-xl bg-card border border-border p-4">
                     <h4 className="font-heading font-bold text-xs text-white mb-0.5">{v.name}</h4>

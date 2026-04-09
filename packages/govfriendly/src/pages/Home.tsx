@@ -8,6 +8,7 @@ const SERVICE_EMOJIS: Record<string, string> = {
   migration: '\u{1F500}',
   ai: '\u{1F9E0}',
   staffing: '\u{1F465}',
+  'custom-apps': '\u{1F4BB}',
 };
 
 const PRODUCT_COLORS: Record<string, { badge: string; border: string }> = {
@@ -15,6 +16,12 @@ const PRODUCT_COLORS: Record<string, { badge: string; border: string }> = {
   'ais-bridge': { badge: 'bg-terracotta/10 text-terracotta', border: 'border-terracotta/30' },
   ibig: { badge: 'bg-navy/10 text-navy', border: 'border-navy/30' },
   'content-services': { badge: 'bg-sage/10 text-sage', border: 'border-sage/30' },
+  cce: { badge: 'bg-amber-50 text-amber-700', border: 'border-amber-200' },
+  'content-viewer': { badge: 'bg-cyan-50 text-cyan-700', border: 'border-cyan-200' },
+  'ais-ee': { badge: 'bg-violet-50 text-violet-700', border: 'border-violet-200' },
+  asimport: { badge: 'bg-emerald-50 text-emerald-700', border: 'border-emerald-200' },
+  ip2cm: { badge: 'bg-sky-50 text-sky-700', border: 'border-sky-200' },
+  'mvs-connect': { badge: 'bg-slate-50 text-slate-700', border: 'border-slate-200' },
 };
 
 const VERTICAL_EMOJIS: Record<string, string> = {
@@ -22,6 +29,9 @@ const VERTICAL_EMOJIS: Record<string, string> = {
   building: '\u{1F3E6}',
   factory: '\u{1F3ED}',
   'heart-pulse': '\u{1FA7A}',
+  shield: '\u{1F6E1}\u{FE0F}',
+  activity: '\u{1FA7A}',
+  truck: '\u{1F69A}',
 };
 
 export default function Home() {
@@ -77,10 +87,10 @@ export default function Home() {
               id="services-heading"
               className="font-heading text-3xl sm:text-4xl font-bold text-navy"
             >
-              Centers of Excellence
+              Our Services
             </h2>
             <p className="mt-3 text-lg text-muted max-w-2xl mx-auto">
-              Six specialized practices built on decades of real-world enterprise deployments.
+              Seven specialized service areas built on decades of real-world enterprise deployments.
             </p>
           </div>
 
@@ -127,8 +137,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => {
+          {/* Flagship & Core Products — full cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.filter((p) => p.category === 'flagship' || p.category === 'core').map((product) => {
               const colors = PRODUCT_COLORS[product.id] || PRODUCT_COLORS.asm;
               return (
                 <Link
@@ -158,6 +169,33 @@ export default function Home() {
               );
             })}
           </div>
+
+          {/* Utility Products — compact cards */}
+          <div className="mt-8">
+            <h3 className="font-heading text-lg font-semibold text-navy text-center mb-4">
+              Specialized Tools
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {products.filter((p) => p.category === 'utility').map((product) => (
+                <Link
+                  key={product.id}
+                  to={`/products#${product.id}`}
+                  className="group block bg-white border border-warm-border rounded-warm p-4 transition-all hover:shadow-md text-center"
+                >
+                  <h4 className="font-heading font-semibold text-sm text-navy group-hover:text-teal transition-colors">
+                    {product.name}
+                  </h4>
+                  <p className="mt-1 text-xs text-warm-brown">{product.tagline}</p>
+                  <span className="mt-2 inline-flex items-center text-xs font-medium text-teal group-hover:underline">
+                    Details
+                    <svg className="w-3 h-3 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -176,7 +214,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {verticals.map((vertical) => (
               <div
                 key={vertical.name}

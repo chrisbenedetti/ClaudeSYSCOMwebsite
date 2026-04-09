@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { company, services } from '@shared/data/company';
+import { company, services, directions } from '@shared/data/company';
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,6 +55,11 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Website Inquiry${form.service ? ` — ${form.service}` : ''}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nPhone: ${form.phone}\n\n${form.message}`
+    );
+    window.open(`mailto:${company.email}?subject=${subject}&body=${body}`, '_self');
     setSubmitted(true);
   };
 
@@ -185,7 +190,7 @@ export default function Contact() {
                         {services.map((s) => (
                           <option key={s.id} value={s.id} className="bg-card">{s.name}</option>
                         ))}
-                        <option value="products" className="bg-card">Products (ASM, AIS Bridge, IBIG)</option>
+                        <option value="products" className="bg-card">Products (ASM, AIS Bridge, IBIG, and more)</option>
                         <option value="other" className="bg-card">Other / General Inquiry</option>
                       </select>
                     </div>
@@ -226,8 +231,7 @@ export default function Contact() {
                       Office
                     </p>
                     <p className="text-sm text-muted">
-                      {company.address.street}<br />
-                      {company.address.city}, {company.address.state} {company.address.zip}
+                      {company.address.full}
                     </p>
                   </div>
 
@@ -237,29 +241,72 @@ export default function Contact() {
                     </p>
                     <a
                       href={`tel:${company.phone}`}
-                      className="text-sm text-muted hover:text-cyan transition-colors"
+                      className="text-sm text-muted hover:text-cyan transition-colors block"
                     >
                       {company.phone}
                     </a>
-                    <span className="text-muted mx-2">/</span>
                     <a
-                      href="tel:800-7SYSCOM"
-                      className="text-sm font-heading font-bold text-white hover:text-cyan transition-colors"
+                      href={`tel:${company.phoneTollfreeNumeric}`}
+                      className="text-sm font-heading font-bold text-white hover:text-cyan transition-colors block mt-1"
                     >
-                      {company.phoneTollfree}
+                      {company.phoneTollfree} (Toll-Free)
                     </a>
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-1.5">
+                      Fax
+                    </p>
+                    <p className="text-sm text-muted">{company.fax}</p>
                   </div>
 
                   <div>
                     <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-1.5">
                       Email
                     </p>
-                    <a
-                      href={`mailto:${company.email}`}
-                      className="text-sm text-muted hover:text-cyan transition-colors"
-                    >
-                      {company.email}
-                    </a>
+                    <div className="space-y-1">
+                      <a
+                        href={`mailto:${company.email}`}
+                        className="text-sm text-muted hover:text-cyan transition-colors block"
+                      >
+                        {company.email} (Sales)
+                      </a>
+                      <a
+                        href={`mailto:${company.supportEmail}`}
+                        className="text-sm text-muted hover:text-cyan transition-colors block"
+                      >
+                        {company.supportEmail} (Support)
+                      </a>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-1.5">
+                      Business Hours
+                    </p>
+                    <p className="text-sm text-muted">{company.businessHours}</p>
+                  </div>
+                </div>
+
+                {/* Directions */}
+                <div className="rounded-2xl bg-card border border-border p-6">
+                  <h3 className="font-heading font-bold text-base tracking-tight mb-4">Directions</h3>
+                  <p className="text-sm text-muted leading-relaxed mb-4">
+                    {directions.landmarks}
+                  </p>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs font-heading font-bold uppercase tracking-[2px] text-cyan mb-1">From I-95</p>
+                      <p className="text-xs text-muted leading-relaxed">{directions.fromI95}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-heading font-bold uppercase tracking-[2px] text-cyan mb-1">From I-83</p>
+                      <p className="text-xs text-muted leading-relaxed">{directions.fromI83}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-heading font-bold uppercase tracking-[2px] text-cyan mb-1">From BWI Airport</p>
+                      <p className="text-xs text-muted leading-relaxed">{directions.fromBWI}</p>
+                    </div>
                   </div>
                 </div>
 

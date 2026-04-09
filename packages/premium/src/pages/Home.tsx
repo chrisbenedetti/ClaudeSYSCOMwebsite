@@ -14,6 +14,9 @@ import {
   Shield,
   BarChart3,
   Settings,
+  Laptop,
+  Truck,
+  Activity,
 } from 'lucide-react';
 import {
   company,
@@ -30,6 +33,7 @@ const serviceIcons: Record<string, React.ReactNode> = {
   capture: <ScanLine size={22} />,
   migration: <ArrowLeftRight size={22} />,
   ai: <Brain size={22} />,
+  'custom-apps': <Laptop size={22} />,
   staffing: <Users size={22} />,
 };
 
@@ -38,6 +42,9 @@ const verticalIcons: Record<string, React.ReactNode> = {
   building: <Building2 size={24} />,
   factory: <Factory size={24} />,
   'heart-pulse': <HeartPulse size={24} />,
+  shield: <Shield size={24} />,
+  activity: <Activity size={24} />,
+  truck: <Truck size={24} />,
 };
 
 const aiIcons: Record<string, React.ReactNode> = {
@@ -48,6 +55,10 @@ const aiIcons: Record<string, React.ReactNode> = {
 };
 
 export default function Home() {
+  const coreProducts = products.filter(
+    (p) => p.category === 'core'
+  );
+
   return (
     <>
       {/* HERO - Maximum drama */}
@@ -118,7 +129,7 @@ export default function Home() {
               What We Do
             </p>
             <h2 className="font-heading text-3xl md:text-5xl text-cream-100 font-light">
-              Centers of Excellence
+              Our Expertise
             </h2>
           </div>
 
@@ -216,9 +227,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Other Products */}
-          <div className="grid md:grid-cols-3 gap-5">
-            {products.slice(1).map((product) => (
+          {/* Core Products Grid */}
+          <div className="grid md:grid-cols-2 gap-5 mb-10">
+            {coreProducts.map((product) => (
               <Link
                 key={product.id}
                 to="/products"
@@ -238,6 +249,20 @@ export default function Home() {
                 </p>
               </Link>
             ))}
+          </div>
+
+          {/* View All Products Link */}
+          <div className="text-center">
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-copper-500 hover:text-copper-400 transition-colors duration-500 group"
+            >
+              View all products
+              <ArrowRight
+                size={14}
+                className="group-hover:translate-x-1 transition-transform duration-300"
+              />
+            </Link>
           </div>
         </div>
       </section>
@@ -287,7 +312,7 @@ export default function Home() {
 
       {/* VERTICALS */}
       <section className="py-28 md:py-36 px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4">
               Industries We Serve

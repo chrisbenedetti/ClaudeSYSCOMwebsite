@@ -5,40 +5,86 @@ export const company = {
   yearsInBusiness: new Date().getFullYear() - 1982,
   address: {
     street: "400 East Pratt Street, Suite 600",
+    building: "Inner Harbor Center",
     city: "Baltimore",
     state: "Maryland",
     zip: "21202",
+    full: "Inner Harbor Center, 400 East Pratt Street (at Gay Street), Suite 600, Baltimore, MD 21202-3116",
   },
   phone: "(410) 539-3737",
-  phoneTollfree: "800-7SYSCOM",
+  phoneTollfree: "1-800-7-SYSCOM",
+  phoneTollfreeNumeric: "1-800-779-7266",
+  fax: "(410) 837-9535",
   email: "sales@syscom.com",
+  supportEmail: "supportcenter@syscom.com",
   website: "https://syscom.com",
+  businessHours: "Monday - Friday, 8:00 AM - 5:00 PM ET",
+  phoneTree: [
+    { key: "0", label: "Operator" },
+    { key: "2", label: "Sales" },
+    { key: "4", label: "Technical Support" },
+  ],
   mission:
-    "To create and deliver the right technology solutions by teaming with our customers to understand their business needs.",
+    "To create and deliver the right technology solutions by teaming with our customers to understand their business needs and empower them to achieve their goals.",
+  divisions: [
+    "Professional Services",
+    "Sales & Marketing",
+    "Corporate Services",
+  ],
+  retentionRate: "90%",
+  equalOpportunityEmployer: true,
+  careerPortal: "https://syscom.catsone.com/careers/95588-General/",
 };
 
 export const leadership = [
   {
     name: "Ted Bayer",
-    title: "President",
-    bio: "Founder and President of SYSCOM, Ted has led the company's growth from a startup to a leading ECM solutions provider over four decades.",
+    title: "President & CEO",
+    bio: "Founder and President of SYSCOM since 1982, Ted has led the company from a startup to a leading enterprise content management solutions provider. With over four decades of experience in enterprise IT, Ted's vision for delivering the right technology — not just the newest — has guided SYSCOM's strategy and growth.",
+    education: [
+      "Carnegie Mellon University, BS Psychology",
+      "Johns Hopkins University, Operations Research",
+      "MIT, Executive Management & Artificial Intelligence",
+    ],
+    awards: [
+      "Ernst & Young Entrepreneur of the Year",
+      "Deloitte & Touche / Inc. Magazine Recognition",
+    ],
   },
   {
     name: "Mark Anzmann",
     title: "Executive Vice President",
-    bio: "Mark oversees SYSCOM's strategic client relationships and business development across government and financial services verticals.",
+    bio: "Mark oversees SYSCOM's Professional Services division and strategic client relationships across government and financial services verticals. With over 20 years of experience and six IBM certifications, Mark brings deep technical expertise to every engagement. He has served as Chair of the Baltimore/Washington DB2 Users Group.",
+    education: [
+      "James Madison University, BS Computer Science",
+    ],
+    certifications: [
+      "6 IBM Certifications",
+      "Baltimore/Washington DB2 Users Group Chair",
+    ],
   },
   {
     name: "Chris Benedetti",
     title: "Chief Technology Officer",
-    bio: "Chris drives SYSCOM's technology strategy, leading AI integration, cloud modernization, and product development initiatives.",
+    bio: "Chris drives SYSCOM's technology strategy, leading AI integration, cloud modernization, and product development initiatives. Under his leadership, SYSCOM has expanded into AI-powered document intelligence, semantic search, and next-generation migration tooling.",
+  },
+];
+
+export const partnerships = [
+  {
+    name: "IBM",
+    description: "Decades-long partnership spanning FileNet P8, Content Manager, ImagePlus, BAW, and the broader IBM ECM ecosystem.",
+  },
+  {
+    name: "Tungsten Automation (Kofax)",
+    description: "30+ year partnership covering enterprise capture, intelligent document processing, and automation.",
   },
 ];
 
 export const services = [
   {
     id: "ecm",
-    name: "Content Services / ECM",
+    name: "Enterprise Content Management",
     shortName: "ECM",
     description:
       "IBM FileNet P8, Content Manager Enterprise Edition, Content Manager for iSeries, ImagePlus support and migration, Content Manager OnDemand. Federation, application integration, and migration between platforms.",
@@ -49,7 +95,7 @@ export const services = [
     name: "Business Process Automation",
     shortName: "BPA",
     description:
-      "End-to-end workflow definition and optimization. Process analysis and redesign. Workflow orchestration using IBM and Tungsten platforms.",
+      "End-to-end workflow design and optimization. Process analysis, redesign, and orchestration using IBM Business Automation Workflow and Tungsten platforms. Case management, business rules, and human-in-the-loop automation.",
     icon: "workflow",
   },
   {
@@ -65,7 +111,7 @@ export const services = [
     name: "Content Migration",
     shortName: "Migration",
     description:
-      "Move content between any ECM platform with full metadata, security, and folder structure preservation. Powered by our proprietary AnySource Migrator — 25+ pre-built repository connectors.",
+      "Move content between any ECM platform with full metadata, security, and folder structure preservation. Powered by our proprietary AnySource Migrator — 25+ pre-built repository connectors. Strategies include gradual migration, overnight switchover, and federated coexistence.",
     icon: "move",
   },
   {
@@ -77,11 +123,19 @@ export const services = [
     icon: "brain",
   },
   {
+    id: "custom-apps",
+    name: "Custom Application Services",
+    shortName: "Custom Apps",
+    description:
+      "Purpose-built applications and integrations tailored to your specific business processes. From front-end portals to backend system integrations, we design and build solutions that work the way your organization does.",
+    icon: "code",
+  },
+  {
     id: "staffing",
-    name: "Contract Staffing",
+    name: "Staffing & Workforce Augmentation",
     shortName: "Staffing",
     description:
-      "Project Managers, Architects, Business Analysts, Programmers, Technical Writers, and Testers. Individual resources, teams, or entire departments. Rapid deployment backed by deep ECM technical knowledge.",
+      "Project Managers, Architects, Business Analysts, Programmers, Technical Writers, Testers, DBAs, and Cybersecurity Engineers. Individual resources, teams, or entire departments. Short-term engagements to long-term placements exceeding 10 years. Rapid deployment backed by deep ECM technical knowledge.",
     icon: "users",
   },
 ];
@@ -147,15 +201,16 @@ export const products = [
       { icon: "check", label: "Validate" },
     ],
     flagship: true,
+    category: "flagship" as const,
   },
   {
     id: "ais-bridge",
     name: "AIS Bridge",
     shortName: "Bridge",
-    tagline: "ImagePlus to Modern. Zero disruption.",
+    tagline: "ImagePlus to modern. Zero disruption.",
     badge: "Modernization",
     description:
-      "A complete, fully-supported drop-in replacement for IBM ImagePlus. Preserves every integration, workflow, and user process. Backed by decades of ImagePlus expertise.",
+      "A complete, fully-supported drop-in replacement for IBM ImagePlus. Preserves every integration, workflow, and user process — including AIS Bridge Viewer and ICN Plugin. Backed by decades of ImagePlus expertise.",
     features: [
       {
         title: "Drop-In Replacement",
@@ -195,6 +250,7 @@ export const products = [
       { icon: "shield", label: "Support" },
     ],
     flagship: false,
+    category: "core" as const,
   },
   {
     id: "ibig",
@@ -203,7 +259,7 @@ export const products = [
     tagline: "Don't just search your documents. Understand them.",
     badge: "Next Gen",
     description:
-      "The Imagetext Business Intelligence Gateway, reborn with AI. Crawls existing repositories, uses LLMs to understand documents — not just OCR text — and builds a semantic knowledge layer with natural language search.",
+      "The Intelligent Business Information Gateway, reborn with AI. Crawls existing repositories, uses LLMs to understand documents — not just OCR text — and builds a semantic knowledge layer with natural language search.",
     features: [
       {
         title: "AI Document Understanding",
@@ -253,15 +309,16 @@ export const products = [
       { icon: "search", label: "Search" },
     ],
     flagship: false,
+    category: "core" as const,
   },
   {
     id: "content-services",
-    name: "Content Services",
-    shortName: "CS",
+    name: "SYSCOM Content Services",
+    shortName: "SCS",
     tagline: "Config-driven content workflows. Ship in days.",
     badge: "Platform",
     description:
-      "SOA architecture for rapid ECM service deployment. Build powerful content workflows through configuration, not custom code. Pre-built templates for common patterns.",
+      "SOA architecture for rapid ECM service deployment. Build powerful content workflows through configuration, not custom code. Pre-built templates for common patterns. Sarbanes-Oxley compliance support.",
     features: [
       {
         title: "No-Code Configuration",
@@ -301,6 +358,278 @@ export const products = [
       { icon: "bar-chart", label: "Monitor" },
     ],
     flagship: false,
+    category: "core" as const,
+  },
+  {
+    id: "cce",
+    name: "Customer Communication Experience",
+    shortName: "CCE",
+    tagline: "Unified digital communication for customer engagement.",
+    badge: "Platform",
+    description:
+      "Subscription-based digital communication platform that unifies customer onboarding, eSignature workflows, and branded experiences into a single integrated solution. Reduces cycle times and rejection rates across customer-facing processes.",
+    features: [
+      {
+        title: "eSignature Workflows",
+        description:
+          "Built-in electronic signature capture integrated directly into customer-facing processes.",
+      },
+      {
+        title: "Digital Onboarding",
+        description:
+          "Streamlined customer onboarding flows that reduce cycle times and rejection rates.",
+      },
+      {
+        title: "Branded Experiences",
+        description:
+          "Fully customizable, white-label interfaces that maintain your organization's identity.",
+      },
+      {
+        title: "Subscription Model",
+        description:
+          "SaaS delivery with predictable costs and continuous platform updates.",
+      },
+    ],
+    connectors: [
+      "Web Portal",
+      "eSignature API",
+      "CRM Systems",
+      "Document Management",
+      "Email & SMS",
+    ],
+    workflow: [
+      { icon: "edit", label: "Create" },
+      { icon: "plug", label: "Brand" },
+      { icon: "rocket", label: "Deploy" },
+      { icon: "check", label: "Sign" },
+      { icon: "bar-chart", label: "Track" },
+    ],
+    flagship: false,
+    category: "core" as const,
+  },
+  {
+    id: "content-viewer",
+    name: "SYSCOM Content Viewer",
+    shortName: "Viewer",
+    tagline: "View any document, any repository, any browser.",
+    badge: "Viewer",
+    description:
+      "HTML5 browser-based document viewer for content stored across IBM CM8, ImagePlus, CMOD, and FileNet repositories. Supports PDF, AFP/MO:DCA, and TIFF formats with zero client installation — a modern replacement for deprecated Java applet-based viewers.",
+    features: [
+      {
+        title: "Zero Install",
+        description:
+          "Pure HTML5 — runs in any modern browser with no plugins, applets, or client software required.",
+      },
+      {
+        title: "Multi-Repository",
+        description:
+          "Single viewer for documents across CM8, ImagePlus, CMOD, and FileNet repositories.",
+      },
+      {
+        title: "Format Support",
+        description:
+          "Native rendering of PDF, AFP/MO:DCA, TIFF, and other enterprise document formats.",
+      },
+      {
+        title: "Legacy Replacement",
+        description:
+          "Modern replacement for deprecated Java applet-based viewers with full feature parity.",
+      },
+    ],
+    connectors: ["IBM CM8", "ImagePlus", "CMOD", "FileNet", "Web Browser"],
+    workflow: [
+      { icon: "search", label: "Find" },
+      { icon: "eye", label: "View" },
+      { icon: "edit", label: "Annotate" },
+      { icon: "check", label: "Complete" },
+    ],
+    flagship: false,
+    category: "utility" as const,
+  },
+  {
+    id: "ais-ee",
+    name: "AIS+EE",
+    shortName: "AIS+EE",
+    tagline: "Enhanced access to IBM content repositories.",
+    badge: "Client",
+    description:
+      "Advanced client interface for IBM content repositories. Provides enhanced folder management, workflow integration, and document retrieval through both desktop and web-based clients.",
+    features: [
+      {
+        title: "Dual Client Architecture",
+        description:
+          "Desktop workstation client for power users and web-based client for broad enterprise access.",
+      },
+      {
+        title: "Enhanced Folder Management",
+        description:
+          "Advanced folder operations, document organization, and metadata management beyond standard IBM interfaces.",
+      },
+      {
+        title: "Workflow Integration",
+        description:
+          "Native integration with IBM Folder and Workflow Application for streamlined document processing.",
+      },
+      {
+        title: "Enterprise Search",
+        description:
+          "Fast, flexible search across content repositories with compound query support.",
+      },
+    ],
+    connectors: [
+      "IBM Content Manager",
+      "ImagePlus",
+      "IBM Workflow",
+      "Windows Desktop",
+      "Web Browser",
+    ],
+    workflow: [
+      { icon: "search", label: "Search" },
+      { icon: "folder", label: "Browse" },
+      { icon: "eye", label: "View" },
+      { icon: "edit", label: "Edit" },
+      { icon: "check", label: "Complete" },
+    ],
+    flagship: false,
+    category: "utility" as const,
+  },
+  {
+    id: "asimport",
+    name: "ASImport",
+    shortName: "ASImport",
+    tagline: "High-speed content ingestion for IBM Content Manager.",
+    badge: "Utility",
+    description:
+      "High-performance content import tool for IBM Content Manager. Ingests documents and metadata from any source with platform-independent operation across Windows and AIX environments — non-intrusive to day-to-day operations.",
+    features: [
+      {
+        title: "Platform Independent",
+        description:
+          "Runs on Windows and AIX with identical functionality. No platform lock-in.",
+      },
+      {
+        title: "Non-Intrusive Operation",
+        description:
+          "Import operations run alongside day-to-day system activity without performance impact.",
+      },
+      {
+        title: "Flexible Source Support",
+        description:
+          "Import images and data from virtually any source format or system.",
+      },
+      {
+        title: "Metadata Preservation",
+        description:
+          "Full metadata mapping and transformation during import to ensure data integrity.",
+      },
+    ],
+    connectors: [
+      "IBM Content Manager",
+      "File Systems",
+      "Image Sources",
+      "Data Feeds",
+      "Windows",
+      "AIX",
+    ],
+    workflow: [
+      { icon: "folder", label: "Source" },
+      { icon: "settings", label: "Map" },
+      { icon: "rocket", label: "Import" },
+      { icon: "check", label: "Verify" },
+    ],
+    flagship: false,
+    category: "utility" as const,
+  },
+  {
+    id: "ip2cm",
+    name: "IP2CM",
+    shortName: "IP2CM",
+    tagline: "ImagePlus to Content Manager at scale.",
+    badge: "Migration",
+    description:
+      "Purpose-built migration utility for moving IBM ImagePlus content to Content Manager. Processes approximately one million documents per hour through a structured three-phase approach: assessment, execution, and validation.",
+    features: [
+      {
+        title: "Million-Per-Hour Throughput",
+        description:
+          "Engineered for speed — migrates approximately one million documents per hour at sustained rates.",
+      },
+      {
+        title: "Three-Phase Process",
+        description:
+          "Pre-migration assessment, controlled execution, and post-migration validation ensure zero data loss.",
+      },
+      {
+        title: "Full Fidelity",
+        description:
+          "Preserves all metadata, security settings, and document relationships during migration.",
+      },
+      {
+        title: "Minimal Downtime",
+        description:
+          "Phased approach minimizes system downtime and operational disruption.",
+      },
+    ],
+    connectors: [
+      "IBM ImagePlus",
+      "IBM Content Manager",
+      "ImagePlus API",
+      "CM8 API",
+    ],
+    workflow: [
+      { icon: "clipboard", label: "Assess" },
+      { icon: "ruler", label: "Plan" },
+      { icon: "rocket", label: "Migrate" },
+      { icon: "check", label: "Validate" },
+    ],
+    flagship: false,
+    category: "utility" as const,
+  },
+  {
+    id: "mvs-connect",
+    name: "MVS Connect",
+    shortName: "MVS Connect",
+    tagline: "Mainframe-to-capture integration at speed.",
+    badge: "Integration",
+    description:
+      "High-speed integration layer connecting IBM ImagePlus/390 with enterprise capture platforms. Supports both real-time and batch document storage workflows for mainframe-centric environments.",
+    features: [
+      {
+        title: "Real-Time & Batch",
+        description:
+          "Supports both real-time document storage and scheduled batch processing workflows.",
+      },
+      {
+        title: "High-Speed Interface",
+        description:
+          "Optimized for throughput in high-volume mainframe document processing environments.",
+      },
+      {
+        title: "Capture Integration",
+        description:
+          "Direct integration with Kofax Ascent Capture and other enterprise capture platforms.",
+      },
+      {
+        title: "Mainframe Native",
+        description:
+          "Built for IBM mainframe environments with native MVS connectivity.",
+      },
+    ],
+    connectors: [
+      "IBM ImagePlus/390",
+      "Kofax Capture",
+      "MVS",
+      "Mainframe I/O",
+    ],
+    workflow: [
+      { icon: "eye", label: "Capture" },
+      { icon: "plug", label: "Connect" },
+      { icon: "rocket", label: "Store" },
+      { icon: "check", label: "Confirm" },
+    ],
+    flagship: false,
+    category: "utility" as const,
   },
 ];
 
@@ -339,30 +668,127 @@ export const verticals = [
   },
   {
     name: "Financial Services",
-    subtitle: "Banking & Insurance",
+    subtitle: "Banking & Credit Unions",
     description:
-      "Content management and automation for banks, credit unions, and financial institutions with strict regulatory requirements.",
+      "Content management and automation for banks, credit unions, and financial institutions with strict regulatory and statutory compliance requirements.",
     icon: "building",
   },
   {
-    name: "Manufacturing",
-    subtitle: "Industrial & Telecom",
+    name: "Insurance",
+    subtitle: "P&C, Life & Auto",
     description:
-      "Document management and process automation for manufacturing and telecommunications organizations.",
-    icon: "factory",
+      "Claims processing, policy management, and adjudication workflows for property & casualty, life, and auto insurance carriers. Decades of industry experience.",
+    icon: "shield",
+  },
+  {
+    name: "Health & Human Services",
+    subtitle: "Government & Compliance",
+    description:
+      "Family investment, social services, and child support programs. Over 15 years of experience with human services agencies processing complex case documentation.",
+    icon: "heart-pulse",
   },
   {
     name: "Healthcare",
-    subtitle: "Compliance-driven",
+    subtitle: "Payers & Providers",
     description:
       "Claims processing, adjudication workflows, and document management for healthcare payers managing complex member records. HIPAA compliance.",
-    icon: "heart-pulse",
+    icon: "activity",
+  },
+  {
+    name: "Transportation & Logistics",
+    subtitle: "Shipping, Trucking & Rail",
+    description:
+      "Document management and process automation for shipping, trucking, and railroad operations. Streamlined handling of manifests, compliance records, and operational documents.",
+    icon: "truck",
+  },
+  {
+    name: "Manufacturing & Telecom",
+    subtitle: "Industrial Operations",
+    description:
+      "Document management and process automation for manufacturing and telecommunications organizations managing high-volume operational records.",
+    icon: "factory",
   },
 ];
 
 export const stats = [
   { value: "40+", label: "Years" },
-  { value: "90%", label: "Retention" },
+  { value: "90%", label: "Client Retention" },
   { value: "25+", label: "Connectors" },
   { value: "30+", label: "Yr Kofax Partner" },
 ];
+
+export const methodology = {
+  title: "Our Project Approach",
+  description:
+    "SYSCOM follows a disciplined project management methodology rooted in PMI's PMBOK framework. Our PMP-certified project managers apply a structured lifecycle approach — from discovery through production support — with built-in quality assurance and change management at every stage.",
+  phases: [
+    "Project Initiation & Discovery",
+    "Requirements Analysis & Definition",
+    "System Architecture & Design",
+    "Iterative Development & Unit Testing",
+    "Integration Testing & QA",
+    "User Acceptance Testing",
+    "Deployment & Production Cutover",
+    "Knowledge Transfer & Training",
+    "Post-Deployment Support & Optimization",
+  ],
+  highlights: [
+    "PMP-certified Project Managers on every engagement",
+    "PMBOK-based methodology with Earned Value Management",
+    "Modified Agile approach — weekly goals, daily standups, continuous delivery",
+    "Formal QA and Change Management processes",
+    "Comprehensive documentation and knowledge transfer",
+  ],
+};
+
+export const migrationStrategies = [
+  {
+    name: "Gradual Migration",
+    description:
+      "Move content in stages while both old and new systems run in parallel. Minimizes risk and allows validation at each step.",
+  },
+  {
+    name: "Overnight Switchover",
+    description:
+      "Full cutover in a single planned maintenance window. Best for smaller repositories or when parallel operation isn't feasible.",
+  },
+  {
+    name: "Federated Coexistence",
+    description:
+      "Run both systems simultaneously with a federation layer providing unified access. Migrate at your own pace with zero user disruption.",
+  },
+];
+
+export const directions = {
+  landmarks: "Near the World Trade Center, National Aquarium, and Camden Yards in Baltimore's Inner Harbor.",
+  fromI95: "Take I-95 to I-395 North (Downtown Baltimore). Follow signs to Pratt Street. Turn right on Pratt Street, continue to Gay Street. Inner Harbor Center is on the left.",
+  fromI83: "Take I-83 South to Pratt Street. Turn left on Pratt Street, continue east to Gay Street. Inner Harbor Center is on the right.",
+  fromBWI: "Take I-295 North to I-95 North to I-395 North (Downtown Baltimore). Follow signs to Pratt Street, continue to Gay Street.",
+};
+
+export const careerInfo = {
+  retentionStat: "70%+ employee tenure exceeding 5 years",
+  portalUrl: "https://syscom.catsone.com/careers/95588-General/",
+  skillsInDemand: [
+    "Java",
+    ".NET",
+    "SQL Server",
+    "Oracle",
+    "Workday",
+    "Hadoop",
+    "Azure",
+    "AWS",
+    "EPIC",
+  ],
+  roleCategories: [
+    "Project Managers",
+    "Business Analysts",
+    "Software Architects",
+    "Application Developers",
+    "Database Administrators",
+    "Cybersecurity Engineers",
+    "Technical Writers",
+    "QA & Test Engineers",
+    "IT Support Specialists",
+  ],
+};

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { company, leadership, services, stats } from '@shared/data/company';
+import { company, leadership, services, stats, methodology, partnerships } from '@shared/data/company';
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -111,8 +111,7 @@ export default function About() {
                     Focus Areas
                   </div>
                   <p className="text-white/80">
-                    Enterprise Content Management, Business Process Automation,
-                    AI &amp; Intelligent Automation
+                    {services.map(s => s.shortName).join(', ')}
                   </p>
                 </div>
                 <div>
@@ -120,7 +119,7 @@ export default function About() {
                     Key Verticals
                   </div>
                   <p className="text-white/80">
-                    Government, Financial Services, Health Insurance
+                    Government, Financial Services, Insurance, Healthcare, Transportation &amp; Logistics
                   </p>
                 </div>
               </div>
@@ -172,7 +171,31 @@ export default function About() {
                   </div>
                   <h3 className="font-heading font-bold text-base tracking-tight">{member.name}</h3>
                   <p className="text-sm text-cyan font-medium mb-3">{member.title}</p>
-                  <p className="text-sm text-muted leading-relaxed">{member.bio}</p>
+                  <p className="text-sm text-muted leading-relaxed mb-3">{member.bio}</p>
+                  {'education' in member && (member as any).education && (
+                    <div className="mt-3 pt-3 border-t border-border">
+                      <p className="text-[10px] font-heading font-bold uppercase tracking-[2px] text-muted mb-1.5">Education</p>
+                      {((member as any).education as string[]).map((edu: string) => (
+                        <p key={edu} className="text-[11px] text-muted/80 leading-relaxed">{edu}</p>
+                      ))}
+                    </div>
+                  )}
+                  {'awards' in member && (member as any).awards && (
+                    <div className="mt-3 pt-3 border-t border-border">
+                      <p className="text-[10px] font-heading font-bold uppercase tracking-[2px] text-muted mb-1.5">Recognition</p>
+                      {((member as any).awards as string[]).map((award: string) => (
+                        <p key={award} className="text-[11px] text-muted/80 leading-relaxed">{award}</p>
+                      ))}
+                    </div>
+                  )}
+                  {'certifications' in member && (member as any).certifications && (
+                    <div className="mt-3 pt-3 border-t border-border">
+                      <p className="text-[10px] font-heading font-bold uppercase tracking-[2px] text-muted mb-1.5">Certifications</p>
+                      {((member as any).certifications as string[]).map((cert: string) => (
+                        <p key={cert} className="text-[11px] text-muted/80 leading-relaxed">{cert}</p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </FadeSection>
             ))}
@@ -180,43 +203,73 @@ export default function About() {
         </div>
       </section>
 
-      {/* Centers of Excellence */}
+      {/* Our Approach */}
+      <section className="py-20 sm:py-28 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeSection>
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              <div>
+                <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-emerald mb-3">
+                  Our Approach
+                </p>
+                <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px] mb-6">
+                  {methodology.title}
+                </h2>
+                <p className="text-muted leading-relaxed mb-6">
+                  {methodology.description}
+                </p>
+                <ul className="space-y-3">
+                  {methodology.highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald mt-2 shrink-0" />
+                      <span className="text-sm text-muted leading-relaxed">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-2xl bg-card border border-border p-6">
+                <h3 className="text-xs font-heading font-bold uppercase tracking-[3px] text-muted mb-5">
+                  Project Lifecycle
+                </h3>
+                <ol className="space-y-3">
+                  {methodology.phases.map((phase, i) => (
+                    <li key={phase} className="flex items-start gap-3">
+                      <span className="w-6 h-6 rounded-lg bg-cyan/10 flex items-center justify-center shrink-0 text-[10px] font-heading font-bold text-cyan">
+                        {i + 1}
+                      </span>
+                      <span className="text-sm text-muted leading-relaxed pt-0.5">{phase}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </FadeSection>
+        </div>
+      </section>
+
+      {/* Partnerships */}
       <section className="py-20 sm:py-28 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeSection className="text-center mb-14">
-            <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-emerald mb-3">
-              Centers of Excellence
+            <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-purple mb-3">
+              Partnerships
             </p>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-[-2px] mb-4">
-              Six specialized disciplines
+              Strategic technology partnerships
             </h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              Every engagement draws from our deep, focused expertise. Each Center of
-              Excellence is staffed by practitioners who have spent their careers in that discipline.
-            </p>
           </FadeSection>
 
           <FadeSection>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {services.map((service) => (
-                <Link
-                  key={service.id}
-                  to="/services"
-                  className="flex items-center gap-4 rounded-xl bg-card border border-border hover:border-cyan/30 p-5 transition-all group"
+            <div className="grid sm:grid-cols-2 gap-5">
+              {partnerships.map((partner) => (
+                <div
+                  key={partner.name}
+                  className="rounded-2xl bg-card border border-border p-6"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-cyan/10 flex items-center justify-center shrink-0 group-hover:bg-cyan/20 transition-colors">
-                    <span className="font-heading font-bold text-cyan text-sm">
-                      {service.shortName.charAt(0)}
-                    </span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-heading font-bold text-sm tracking-tight group-hover:text-cyan transition-colors">
-                      {service.name}
-                    </h4>
-                    <p className="text-xs text-muted truncate">{service.shortName}</p>
-                  </div>
-                  <span className="text-muted group-hover:text-cyan transition-colors">&rarr;</span>
-                </Link>
+                  <h3 className="font-heading font-bold text-lg tracking-tight mb-2">{partner.name}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{partner.description}</p>
+                </div>
               ))}
             </div>
           </FadeSection>

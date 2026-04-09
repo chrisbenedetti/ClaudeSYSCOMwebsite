@@ -45,16 +45,24 @@ export default function Footer() {
               Products
             </h3>
             <ul className="space-y-2">
-              {products.map((p) => (
+              {products.filter((p) => p.category === 'flagship' || p.category === 'core').map((p) => (
                 <li key={p.id}>
                   <Link
                     to={`/products#${p.id}`}
                     className="text-sm text-white/70 hover:text-white transition-colors"
                   >
-                    {p.name}
+                    {p.shortName}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/products"
+                  className="text-sm text-gold hover:text-white transition-colors"
+                >
+                  All Products &rarr;
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -77,6 +85,11 @@ export default function Footer() {
               <li>
                 <a href={`mailto:${company.email}`} className="hover:text-white transition-colors">
                   {company.email}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${company.supportEmail}`} className="hover:text-white transition-colors">
+                  {company.supportEmail}
                 </a>
               </li>
             </ul>

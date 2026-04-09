@@ -5,6 +5,7 @@ import {
   ArrowLeftRight,
   Brain,
   Users,
+  Laptop,
 } from 'lucide-react';
 import { services } from '@shared/data/company';
 import ROICalculator from '../components/ROICalculator';
@@ -15,6 +16,7 @@ const serviceIcons: Record<string, React.ReactNode> = {
   capture: <ScanLine size={28} />,
   migration: <ArrowLeftRight size={28} />,
   ai: <Brain size={28} />,
+  'custom-apps': <Laptop size={28} />,
   staffing: <Users size={28} />,
 };
 
@@ -49,10 +51,19 @@ const serviceDetails: Record<string, string[]> = {
     'Semantic search and knowledge graphs in IBIG 2.0',
     'On-premises model deployment for air-gapped environments',
   ],
+  'custom-apps': [
+    'Custom web portals and client-facing applications',
+    'Backend system integration and API development',
+    'Legacy application modernization',
+    'Mobile-responsive enterprise applications',
+    'Database design and optimization',
+    'End-to-end testing and deployment',
+  ],
   staffing: [
     'Project Managers, Architects, Business Analysts, Programmers',
     'Technical Writers and Testers with deep ECM knowledge',
     'Individual resources, teams, or entire departments',
+    'Short-term engagements to long-term placements exceeding 10 years',
     'Rapid deployment backed by decades of technical expertise',
   ],
 };
@@ -64,7 +75,7 @@ export default function Services() {
       <section className="pt-36 pb-20 md:pt-44 md:pb-28 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4 animate-fade-in">
-            Centers of Excellence
+            Our Expertise
           </p>
           <h1 className="font-heading text-5xl md:text-7xl text-cream-100 animate-slide-up font-light">
             What We Do
@@ -73,7 +84,7 @@ export default function Services() {
             className="mt-8 text-cream-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light animate-slide-up"
             style={{ animationDelay: '150ms' }}
           >
-            Six disciplines. Four decades of refinement. Each one backed by
+            Seven disciplines. Four decades of refinement. Each one backed by
             proprietary technology and hard-won expertise.
           </p>
         </div>

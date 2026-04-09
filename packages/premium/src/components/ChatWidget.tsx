@@ -33,6 +33,14 @@ export default function ChatWidget() {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) setIsOpen(false);
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
+
   const handleSend = () => {
     if (!input.trim()) return;
     sendMessage(input.trim());
@@ -56,7 +64,7 @@ export default function ChatWidget() {
             : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
       >
-        <div className="bg-dark-900/95 backdrop-blur-xl border border-copper-500/10 shadow-2xl shadow-copper-500/5 rounded-2xl overflow-hidden">
+        <div role="dialog" aria-label="Chat with SYSCOM assistant" className="bg-dark-900/95 backdrop-blur-xl border border-copper-500/10 shadow-2xl shadow-copper-500/5 rounded-2xl overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/[0.06]">
             <div className="flex items-center gap-3">
@@ -151,7 +159,7 @@ export default function ChatWidget() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Type a message..."
-                className="flex-1 bg-dark-800 border border-white/[0.06] text-cream-100 placeholder-cream-400/30 text-sm px-4 py-2.5 rounded-lg focus:outline-none focus:border-copper-500/30 transition-colors"
+                className="flex-1 bg-dark-800 border border-white/[0.06] text-cream-100 placeholder-cream-400/30 text-sm px-4 py-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-copper-500/50 focus:border-copper-500/30 transition-colors"
               />
               <button
                 onClick={handleSend}
@@ -171,6 +179,7 @@ export default function ChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center rounded-full bg-dark-800 border border-copper-500/25 shadow-lg shadow-copper-500/10 hover:border-copper-500/50 hover:shadow-copper-500/20 transition-all duration-500 group`}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
+        aria-expanded={isOpen}
       >
         {isOpen ? (
           <X size={20} className="text-copper-500" />
@@ -184,3 +193,4 @@ export default function ChatWidget() {
     </>
   );
 }
+ 

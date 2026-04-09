@@ -2,6 +2,9 @@ export interface LeadershipMember {
   name: string;
   title: string;
   bio: string;
+  education?: string[];
+  awards?: string[];
+  certifications?: string[];
 }
 
 export interface Service {
@@ -33,6 +36,7 @@ export interface Product {
   connectors: string[];
   workflow: WorkflowStep[];
   flagship: boolean;
+  category?: 'flagship' | 'core' | 'utility';
 }
 
 export interface AICapability {

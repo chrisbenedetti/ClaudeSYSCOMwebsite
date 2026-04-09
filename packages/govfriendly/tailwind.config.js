@@ -24,7 +24,7 @@ export default {
         muted: '#718096',
       },
       fontFamily: {
-        heading: ['Georgia', 'serif'],
+        heading: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
         body: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       animation: {

@@ -1,11 +1,23 @@
 import { useState } from 'react';
-import { company, services } from '@shared/data/company';
+import { company, services, directions } from '@shared/data/company';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const org = formData.get('company') as string;
+    const phone = formData.get('phone') as string;
+    const service = formData.get('service') as string;
+    const message = formData.get('message') as string;
+    const subject = encodeURIComponent(`Website Inquiry${service ? ` — ${service}` : ''}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nOrganization: ${org}\nPhone: ${phone}\n\n${message}`
+    );
+    window.open(`mailto:${company.email}?subject=${subject}&body=${body}`, '_self');
     setSubmitted(true);
   };
 
@@ -147,7 +159,7 @@ export default function Contact() {
                           {service.name}
                         </option>
                       ))}
-                      <option value="products">Products (ASM, AIS Bridge, IBIG, CS)</option>
+                      <option value="products">Products (ASM, AIS Bridge, IBIG, SCS, CCE, and more)</option>
                       <option value="general">General Inquiry</option>
                     </select>
                   </div>
@@ -194,10 +206,7 @@ export default function Contact() {
                 <div>
                   <p className="font-medium text-navy text-sm">Office Address</p>
                   <p className="text-sm text-slate mt-1">
-                    {company.address.street}
-                    <br />
-                    {company.address.city}, {company.address.state}{' '}
-                    {company.address.zip}
+                    {company.address.full}
                   </p>
                 </div>
 
@@ -211,11 +220,16 @@ export default function Contact() {
                   </a>
                   <br />
                   <a
-                    href={`tel:${company.phoneTollfree}`}
+                    href={`tel:${company.phoneTollfreeNumeric}`}
                     className="text-sm text-teal hover:underline"
                   >
-                    {company.phoneTollfree}
+                    {company.phoneTollfree} ({company.phoneTollfreeNumeric})
                   </a>
+                </div>
+
+                <div>
+                  <p className="font-medium text-navy text-sm">Fax</p>
+                  <p className="text-sm text-slate">{company.fax}</p>
                 </div>
 
                 <div>
@@ -227,6 +241,16 @@ export default function Contact() {
                     {company.email}
                   </a>
                 </div>
+
+                <div>
+                  <p className="font-medium text-navy text-sm">Technical Support</p>
+                  <a
+                    href={`mailto:${company.supportEmail}`}
+                    className="text-sm text-teal hover:underline"
+                  >
+                    {company.supportEmail}
+                  </a>
+                </div>
               </div>
 
               {/* Map placeholder */}
@@ -236,9 +260,9 @@ export default function Contact() {
                   Baltimore Inner Harbor
                 </p>
                 <p className="text-xs text-slate mt-1">
-                  400 East Pratt Street, Suite 600
-                  <br />
-                  Baltimore, Maryland 21202
+                  {company.address.building}<br />
+                  {company.address.street}<br />
+                  {company.address.city}, {company.address.state} {company.address.zip}
                 </p>
               </div>
 
@@ -246,8 +270,33 @@ export default function Contact() {
               <div className="mt-6 bg-warm-light rounded-warm p-4 border border-warm-border">
                 <p className="font-medium text-navy text-sm">Business Hours</p>
                 <p className="text-sm text-slate mt-1">
-                  Monday - Friday: 8:30 AM - 5:30 PM ET
+                  {company.businessHours}
                 </p>
+              </div>
+
+              {/* Directions */}
+              <div className="mt-6 bg-warm-light rounded-warm p-4 border border-warm-border">
+                <p className="font-medium text-navy text-sm mb-2">Getting Here</p>
+                <p className="text-xs text-slate mb-2">{directions.landmarks}</p>
+                <details className="text-xs text-slate">
+                  <summary className="cursor-pointer font-medium text-teal hover:underline">
+                    Driving Directions
+                  </summary>
+                  <ul className="mt-2 space-y-2">
+                    <li>
+                      <span className="font-medium text-navy">From I-95:</span>{' '}
+                      {directions.fromI95}
+                    </li>
+                    <li>
+                      <span className="font-medium text-navy">From I-83:</span>{' '}
+                      {directions.fromI83}
+                    </li>
+                    <li>
+                      <span className="font-medium text-navy">From BWI Airport:</span>{' '}
+                      {directions.fromBWI}
+                    </li>
+                  </ul>
+                </details>
               </div>
             </div>
           </div>

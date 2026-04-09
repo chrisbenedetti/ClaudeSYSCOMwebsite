@@ -3,8 +3,11 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-  base: '/syscom-techforward/',
+  base: '/ClaudeSYSCOMwebsite/techforward/',
   plugins: [react()],
+  server: {
+    port: 5173,
+  },
   resolve: {
     alias: {
       '@shared': path.resolve(__dirname, '../shared/src'),
@@ -21,3 +24,4 @@ export default defineConfig({
     },
   },
 });
+   

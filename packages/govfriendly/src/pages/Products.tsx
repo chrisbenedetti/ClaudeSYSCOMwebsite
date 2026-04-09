@@ -8,6 +8,12 @@ const PRODUCT_ACCENTS: Record<string, { accent: string; badgeClass: string; labe
   'ais-bridge': { accent: 'terracotta', badgeClass: 'bg-terracotta/10 text-terracotta', label: 'Modernization' },
   ibig: { accent: 'navy', badgeClass: 'bg-navy/10 text-navy', label: 'Next Gen' },
   'content-services': { accent: 'sage', badgeClass: 'bg-sage/10 text-sage', label: 'Platform' },
+  cce: { accent: 'amber', badgeClass: 'bg-amber-50 text-amber-700', label: 'Platform' },
+  'content-viewer': { accent: 'cyan', badgeClass: 'bg-cyan-50 text-cyan-700', label: 'Viewer' },
+  'ais-ee': { accent: 'violet', badgeClass: 'bg-violet-50 text-violet-700', label: 'Client' },
+  asimport: { accent: 'emerald', badgeClass: 'bg-emerald-50 text-emerald-700', label: 'Utility' },
+  ip2cm: { accent: 'sky', badgeClass: 'bg-sky-50 text-sky-700', label: 'Migration' },
+  'mvs-connect': { accent: 'slate', badgeClass: 'bg-slate-50 text-slate-700', label: 'Integration' },
 };
 
 export default function Products() {
@@ -116,12 +122,14 @@ export default function Products() {
             content lifecycle from capture to migration to delivery.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { emoji: '\u{1F500}', title: 'Migrate', desc: 'Use ASM to move content from legacy platforms to modern repositories with full fidelity.', color: 'text-teal' },
-              { emoji: '\u{1F6E1}\u{FE0F}', title: 'Preserve', desc: 'AIS Bridge maintains critical ImagePlus workflows while modernizing infrastructure.', color: 'text-terracotta' },
-              { emoji: '\u{1F9E0}', title: 'Understand', desc: 'IBIG 2.0 crawls your repositories and builds a semantic knowledge layer with AI.', color: 'text-navy' },
-              { emoji: '\u{26A1}', title: 'Deliver', desc: 'Content Services provides config-driven workflows that deploy in days, not months.', color: 'text-sage' },
+              { emoji: '\u{1F500}', title: 'Migrate', desc: 'ASM moves content from legacy platforms to modern repositories with full fidelity. IP2CM handles high-speed ImagePlus-to-CM migrations.', color: 'text-teal' },
+              { emoji: '\u{1F6E1}\u{FE0F}', title: 'Preserve', desc: 'AIS Bridge maintains critical ImagePlus workflows while modernizing infrastructure. AIS+EE provides enhanced access to IBM content repositories.', color: 'text-terracotta' },
+              { emoji: '\u{1F9E0}', title: 'Understand', desc: 'IBIG 2.0 crawls your repositories and builds a semantic knowledge layer with AI-powered search.', color: 'text-navy' },
+              { emoji: '\u{26A1}', title: 'Deliver', desc: 'SCS provides config-driven workflows that deploy in days. CCE unifies customer communication and digital onboarding.', color: 'text-sage' },
+              { emoji: '\u{1F4C4}', title: 'View & Import', desc: 'Content Viewer renders any document in any browser. ASImport handles high-speed content ingestion into IBM Content Manager.', color: 'text-navy' },
+              { emoji: '\u{1F517}', title: 'Connect', desc: 'MVS Connect bridges mainframe environments with enterprise capture platforms for seamless document storage.', color: 'text-teal' },
             ].map((item) => (
               <div key={item.title} className="bg-warm-light rounded-warm p-6 border border-warm-border text-center">
                 <span className="text-2xl" aria-hidden="true">{item.emoji}</span>

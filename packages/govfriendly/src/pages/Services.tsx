@@ -9,6 +9,7 @@ const SERVICE_EMOJIS: Record<string, string> = {
   migration: '\u{1F500}',
   ai: '\u{1F9E0}',
   staffing: '\u{1F465}',
+  'custom-apps': '\u{1F4BB}',
 };
 
 const serviceDetails: Record<string, { capabilities: string[]; detail: string }> = {
@@ -84,6 +85,18 @@ const serviceDetails: Record<string, { capabilities: string[]; detail: string }>
       'Deep ECM technical knowledge',
     ],
   },
+  'custom-apps': {
+    detail:
+      'We design and build custom applications tailored to your specific business processes. From web portals to backend integrations, our development team creates solutions that work the way your organization does — not the other way around.',
+    capabilities: [
+      'Custom web portals and client-facing applications',
+      'Backend system integration and API development',
+      'Legacy application modernization',
+      'Mobile-responsive enterprise applications',
+      'Database design and optimization',
+      'End-to-end testing and deployment',
+    ],
+  },
 };
 
 export default function Services() {
@@ -96,7 +109,7 @@ export default function Services() {
             Our Services
           </h1>
           <p className="mt-4 text-lg text-slate max-w-3xl leading-relaxed">
-            Six specialized Centers of Excellence, each backed by decades of real-world
+            Seven specialized service areas, each backed by decades of real-world
             deployments. We don't just advise. We build, implement, and support.
           </p>
         </div>

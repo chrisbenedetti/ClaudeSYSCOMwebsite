@@ -30,6 +30,14 @@ export default function ChatWidget() {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) setIsOpen(false);
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
+
   const handleSend = () => {
     const trimmed = input.trim();
     if (!trimmed) return;
@@ -59,6 +67,8 @@ export default function ChatWidget() {
         }`}
       >
         <div
+          role="dialog"
+          aria-label="Chat with SYSCOM assistant"
           className="rounded-3xl overflow-hidden border border-border bg-bg flex flex-col animate-chat-slide"
           style={{
             height: '560px',
@@ -178,6 +188,7 @@ export default function ChatWidget() {
         }`}
         style={{ boxShadow: '0 4px 24px rgba(34, 211, 238, 0.3)' }}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
+        aria-expanded={isOpen}
       >
         {/* Chat icon */}
         <svg

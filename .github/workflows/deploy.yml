@@ -4,16 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-    inputs:
-      variant:
-        description: 'Which variant to deploy'
-        required: true
-        default: 'techforward'
-        type: choice
-        options:
-          - techforward
-          - govfriendly
-          - premium
 
 permissions:
   contents: read
@@ -37,15 +27,72 @@ jobs:
 
       - run: npm ci
 
-      - name: Build selected variant
+      - name: Build all variants
         run: |
-          VARIANT="${{ github.event.inputs.variant || 'techforward' }}"
-          npm run build:${VARIANT}
+          npm run build:techforward
+          npm run build:govfriendly
+          npm run build:premium
+
+      - name: Combine into single site
+        run: |
+          mkdir -p _site/techforward _site/govfriendly _site/premium
+          cp -r packages/techforward/dist/* _site/techforward/
+          cp -r packages/govfriendly/dist/* _site/govfriendly/
+          cp -r packages/premium/dist/* _site/premium/
+          cat > _site/index.html << 'LANDING'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>SYSCOM Website — Variant Preview</title>
+            <style>
+              * { margin: 0; padding: 0; box-sizing: border-box; }
+              body { font-family: system-ui, sans-serif; background: #0a0a0b; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+              .container { max-width: 800px; padding: 2rem; text-align: center; }
+              h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+              .sub { color: #888; margin-bottom: 3rem; }
+              .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+              .card { background: #141416; border: 1px solid #222; border-radius: 12px; padding: 2rem 1.5rem; text-decoration: none; color: #fff; transition: border-color 0.3s, transform 0.2s; }
+              .card:hover { border-color: #555; transform: translateY(-2px); }
+              .card h2 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+              .card p { font-size: 0.875rem; color: #888; line-height: 1.5; }
+              .tag { display: inline-block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 999px; margin-bottom: 1rem; }
+              .tf .tag { background: rgba(34,211,238,0.15); color: #22d3ee; }
+              .gf .tag { background: rgba(46,125,111,0.15); color: #2e7d6f; }
+              .pm .tag { background: rgba(196,147,94,0.15); color: #c4935e; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h1>SYSCOM Website</h1>
+              <p class="sub">Select a variant to preview</p>
+              <div class="cards">
+                <a class="card tf" href="techforward/">
+                  <span class="tag">Tech-Forward</span>
+                  <h2>Modern &amp; AI-Forward</h2>
+                  <p>Clean energy, gradient accents, technical credibility. Vercel/Stripe aesthetic.</p>
+                </a>
+                <a class="card gf" href="govfriendly/">
+                  <span class="tag">Government-Friendly</span>
+                  <h2>Trusted &amp; Accessible</h2>
+                  <p>WCAG AA compliant, high contrast, professional. USDS design energy.</p>
+                </a>
+                <a class="card pm" href="premium/">
+                  <span class="tag">Premium Dark</span>
+                  <h2>Sophisticated &amp; Cinematic</h2>
+                  <p>Dark theme, elegant typography, luxury brand feel. Apple aesthetic.</p>
+                </a>
+              </div>
+            </div>
+          </body>
+          </html>
+          LANDING
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: packages/${{ github.event.inputs.variant || 'techforward' }}/dist
+          path: _site
 
   deploy:
     environment:

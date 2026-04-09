@@ -1,5 +1,12 @@
-import { User } from 'lucide-react';
-import { company, leadership } from '@shared/data/company';
+import { Link } from 'react-router-dom';
+import { User, ArrowRight, GraduationCap, Award } from 'lucide-react';
+import {
+  company,
+  leadership,
+  stats,
+  methodology,
+  partnerships,
+} from '@shared/data/company';
 
 export default function About() {
   return (
@@ -13,6 +20,31 @@ export default function About() {
           <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl text-cream-100 animate-slide-up font-light">
             Our Story
           </h1>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-16 md:py-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+            {stats.map((stat, i) => (
+              <div
+                key={i}
+                className={`text-center ${
+                  i < stats.length - 1
+                    ? 'md:border-r md:border-copper-500/10'
+                    : ''
+                } py-4 md:py-0`}
+              >
+                <p className="font-heading text-5xl md:text-6xl text-cream-100 font-light">
+                  {stat.value}
+                </p>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-cream-400 mt-3 font-body">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -30,7 +62,7 @@ export default function About() {
             </p>
             <p>
               We are not a body shop. We build and own our intellectual property.
-              Our proprietary products -- AnySource Migrator, AIS Bridge, IBIG,
+              Our proprietary products -- AnySource Migrator, AIS Bridge, IBIG 2.0,
               and Content Services -- exist because we saw problems that nobody
               else was solving and built the solutions ourselves.
             </p>
@@ -72,6 +104,54 @@ export default function About() {
         </div>
       </section>
 
+      {/* Our Approach / Methodology */}
+      <section className="py-28 md:py-36 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-20">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4">
+              Discipline
+            </p>
+            <h2 className="font-heading text-3xl md:text-5xl text-cream-100 font-light">
+              Our Approach
+            </h2>
+          </div>
+
+          <div className="md:flex gap-16 items-start">
+            <div className="md:w-1/2 mb-10 md:mb-0">
+              <p className="text-cream-300 text-base leading-relaxed font-light mb-8">
+                {methodology.description}
+              </p>
+              <div className="space-y-3">
+                {methodology.highlights.map((highlight, i) => (
+                  <div key={i} className="flex items-start gap-4 text-sm text-cream-300">
+                    <span className="w-1 h-1 rounded-full bg-copper-500 mt-2 shrink-0" />
+                    <span className="leading-relaxed font-light">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="md:w-1/2">
+              <div className="glass-card rounded-lg p-8">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-copper-500 mb-6">
+                  Project Lifecycle
+                </p>
+                <div className="space-y-4">
+                  {methodology.phases.map((phase, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <span className="text-[10px] text-copper-500/60 font-body w-5 text-right shrink-0">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-cream-200 text-sm font-light">{phase}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Leadership */}
       <section className="py-28 md:py-36 px-6">
         <div className="max-w-5xl mx-auto">
@@ -99,8 +179,77 @@ export default function About() {
                 <p className="text-[10px] uppercase tracking-[0.2em] text-copper-500 mt-1 mb-5">
                   {person.title}
                 </p>
-                <p className="text-cream-400 text-sm leading-relaxed font-light">
+                <p className="text-cream-400 text-sm leading-relaxed font-light mb-5">
                   {person.bio}
+                </p>
+
+                {/* Education */}
+                {person.education && person.education.length > 0 && (
+                  <div className="border-t border-white/[0.04] pt-5 mt-5 text-left">
+                    <div className="flex items-center gap-2 mb-3">
+                      <GraduationCap size={14} className="text-copper-500/50" />
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-cream-300">
+                        Education
+                      </p>
+                    </div>
+                    <ul className="space-y-1.5">
+                      {person.education.map((edu, i) => (
+                        <li key={i} className="text-cream-400 text-xs leading-relaxed font-light">
+                          {edu}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Awards & Certifications */}
+                {((person.awards && person.awards.length > 0) ||
+                  (person.certifications && person.certifications.length > 0)) && (
+                  <div className="border-t border-white/[0.04] pt-5 mt-5 text-left">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Award size={14} className="text-copper-500/50" />
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-cream-300">
+                        {person.awards ? 'Recognition' : 'Certifications'}
+                      </p>
+                    </div>
+                    <ul className="space-y-1.5">
+                      {(person.awards || person.certifications || []).map((item, i) => (
+                        <li key={i} className="text-cream-400 text-xs leading-relaxed font-light">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Partnerships */}
+      <section className="py-28 md:py-36 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-20">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4">
+              Alliances
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl text-cream-100 font-light">
+              Technology Partnerships
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {partnerships.map((partner) => (
+              <div
+                key={partner.name}
+                className="glass-card rounded-lg p-8"
+              >
+                <h3 className="font-heading text-2xl text-cream-100 mb-4 font-normal">
+                  {partner.name}
+                </h3>
+                <p className="text-cream-400 text-sm leading-relaxed font-light">
+                  {partner.description}
                 </p>
               </div>
             ))}
@@ -152,6 +301,29 @@ export default function About() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-36 md:py-44 px-6">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-heading text-4xl md:text-5xl text-cream-100 mb-6 font-light">
+            Ready to Work Together?
+          </h2>
+          <p className="text-cream-400 text-base mb-12 max-w-md mx-auto font-light">
+            {company.yearsInBusiness} years of solving enterprise content
+            challenges. Let us bring that experience to your organization.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-copper-500 border border-copper-500/25 px-10 py-4 hover:bg-copper-500/8 hover:border-copper-500/50 transition-all duration-700 group"
+          >
+            Get in Touch
+            <ArrowRight
+              size={14}
+              className="group-hover:translate-x-1 transition-transform duration-500"
+            />
+          </Link>
         </div>
       </section>
     </>

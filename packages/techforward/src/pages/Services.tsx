@@ -42,6 +42,7 @@ const serviceEmoji: Record<string, string> = {
   capture: '\u{1F4C4}',
   migration: '\u{1F504}',
   ai: '\u{1F9E0}',
+  'custom-apps': '\u{1F4BB}',
   staffing: '\u{1F465}',
 };
 
@@ -86,6 +87,14 @@ const serviceCapabilities: Record<string, string[]> = {
     'Cloud and on-premises model deployment for air-gapped environments',
     'Computer vision, NLP, and intelligent classification',
   ],
+  'custom-apps': [
+    'Custom web portals and client-facing applications',
+    'Backend system integration and API development',
+    'Legacy application modernization',
+    'Mobile-responsive enterprise applications',
+    'Database design and optimization',
+    'End-to-end testing and deployment automation',
+  ],
   staffing: [
     'Project Managers, Architects, Business Analysts',
     'Programmers, Technical Writers, and Testers',
@@ -102,6 +111,7 @@ const serviceAccent: Record<string, string> = {
   capture: '#34d399',
   migration: '#22d3ee',
   ai: '#fbbf24',
+  'custom-apps': '#f97316',
   staffing: '#fb7185',
 };
 
@@ -117,11 +127,11 @@ export default function Services() {
               Our Services
             </p>
             <h1 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl tracking-[-3px] leading-tight mb-6">
-              Centers of{' '}
-              <span className="gradient-text">Excellence</span>
+              Our{' '}
+              <span className="gradient-text">Services</span>
             </h1>
             <p className="text-lg text-muted leading-relaxed max-w-2xl">
-              Six specialized disciplines, each staffed by practitioners who have spent
+              Seven specialized disciplines, each staffed by practitioners who have spent
               their careers mastering enterprise content challenges. We don&apos;t generalize
               &mdash; we go deep.
             </p>

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { company } from '@shared/data/company';
+import { company, services } from '@shared/data/company';
 
 export default function Footer() {
   return (
-    <footer className="bg-dark-950 border-t border-white/[0.06]">
+    <footer className="bg-dark-950 border-t border-white/[0.06]" role="contentinfo">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Brand */}
@@ -49,20 +49,13 @@ export default function Footer() {
               Expertise
             </h4>
             <ul className="space-y-3">
-              {[
-                'Content Management',
-                'Process Automation',
-                'Enterprise Capture',
-                'Content Migration',
-                'AI & Automation',
-                'Contract Staffing',
-              ].map((item) => (
-                <li key={item}>
+              {services.map((service) => (
+                <li key={service.id}>
                   <Link
                     to="/services"
                     className="text-cream-400 text-sm hover:text-copper-500 transition-colors duration-500"
                   >
-                    {item}
+                    {service.shortName === 'Custom Apps' ? 'Custom Applications' : service.name}
                   </Link>
                 </li>
               ))}
@@ -90,10 +83,26 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href={`tel:${company.phoneTollfreeNumeric}`}
+                  className="hover:text-copper-500 transition-colors duration-500"
+                >
+                  {company.phoneTollfree}
+                </a>
+              </li>
+              <li>
+                <a
                   href={`mailto:${company.email}`}
                   className="hover:text-copper-500 transition-colors duration-500"
                 >
                   {company.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${company.supportEmail}`}
+                  className="hover:text-copper-500 transition-colors duration-500"
+                >
+                  {company.supportEmail}
                 </a>
               </li>
             </ul>

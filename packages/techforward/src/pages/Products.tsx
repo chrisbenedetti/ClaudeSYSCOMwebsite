@@ -42,6 +42,12 @@ const productAccent: Record<string, string> = {
   'ais-bridge': '#fb7185',
   ibig: '#a78bfa',
   'content-services': '#34d399',
+  cce: '#f59e0b',
+  'content-viewer': '#06b6d4',
+  'ais-ee': '#8b5cf6',
+  asimport: '#10b981',
+  ip2cm: '#22d3ee',
+  'mvs-connect': '#64748b',
 };
 
 const productAccentBg: Record<string, string> = {
@@ -49,6 +55,12 @@ const productAccentBg: Record<string, string> = {
   'ais-bridge': 'bg-rose/10 text-rose border-rose/20',
   ibig: 'bg-purple/10 text-purple border-purple/20',
   'content-services': 'bg-emerald/10 text-emerald border-emerald/20',
+  cce: 'bg-amber/10 text-amber border-amber/20',
+  'content-viewer': 'bg-cyan/10 text-cyan border-cyan/20',
+  'ais-ee': 'bg-purple/10 text-purple border-purple/20',
+  asimport: 'bg-emerald/10 text-emerald border-emerald/20',
+  ip2cm: 'bg-cyan/10 text-cyan border-cyan/20',
+  'mvs-connect': 'bg-slate/10 text-slate border-slate/20',
 };
 
 export default function Products() {
@@ -187,20 +199,21 @@ export default function Products() {
           </FadeSection>
 
           <FadeSection>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {products.map((product) => {
                 const accent = productAccent[product.id] || '#22d3ee';
                 return (
-                  <div
+                  <a
                     key={product.id}
-                    className="rounded-xl bg-card border border-border p-5 text-center"
+                    href={`#${product.id}`}
+                    className="rounded-xl bg-card border border-border p-5 text-center hover:border-cyan/30 transition-all group"
                   >
-                    <h3 className="font-heading font-bold text-sm tracking-tight mb-1">{product.name}</h3>
+                    <h3 className="font-heading font-bold text-sm tracking-tight mb-1 group-hover:text-cyan transition-colors">{product.name}</h3>
                     <p className="text-xs font-medium mb-2" style={{ color: accent }}>{product.tagline}</p>
                     <p className="text-[11px] text-muted leading-relaxed">
                       {product.description.split('.')[0]}.
                     </p>
-                  </div>
+                  </a>
                 );
               })}
             </div>
@@ -223,7 +236,7 @@ export default function Products() {
               Ready to see our products in action?
             </h2>
             <p className="text-muted max-w-xl mx-auto mb-8">
-              Schedule a demo to see how ASM, AIS Bridge, IBIG 2.0, and Content Services
+              Schedule a demo to see how our suite of {products.length} products
               can solve your enterprise content challenges.
             </p>
             <Link

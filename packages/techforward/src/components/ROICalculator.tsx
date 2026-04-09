@@ -82,6 +82,7 @@ export default function ROICalculator() {
                 step="10000"
                 value={inputs.documents}
                 onChange={(e) => updateInput('documents', Number(e.target.value))}
+                aria-label="Total documents"
               />
               <div className="flex justify-between text-xs text-muted/60 mt-1.5">
                 <span>10K</span>
@@ -104,6 +105,7 @@ export default function ROICalculator() {
                 step="1"
                 value={inputs.repositories}
                 onChange={(e) => updateInput('repositories', Number(e.target.value))}
+                aria-label="Number of repositories"
               />
               <div className="flex justify-between text-xs text-muted/60 mt-1.5">
                 <span>1</span>
@@ -126,6 +128,7 @@ export default function ROICalculator() {
                 step="5"
                 value={inputs.manualHoursPerWeek}
                 onChange={(e) => updateInput('manualHoursPerWeek', Number(e.target.value))}
+                aria-label="Weekly manual hours"
               />
               <div className="flex justify-between text-xs text-muted/60 mt-1.5">
                 <span>5 hrs</span>
@@ -148,6 +151,7 @@ export default function ROICalculator() {
                 step="5"
                 value={inputs.hourlyRate}
                 onChange={(e) => updateInput('hourlyRate', Number(e.target.value))}
+                aria-label="Average hourly rate"
               />
               <div className="flex justify-between text-xs text-muted/60 mt-1.5">
                 <span>$40</span>
@@ -167,7 +171,7 @@ export default function ROICalculator() {
           </div>
 
           {/* Results */}
-          <div className="space-y-6 opacity-0 animate-fade-up-2">
+          <div className="space-y-6 opacity-0 animate-fade-up-2" aria-live="polite">
             {/* Savings bars */}
             <div className="rounded-2xl bg-card border border-border p-6 space-y-6">
               <h3 className="font-heading font-bold text-sm uppercase tracking-wider text-muted">

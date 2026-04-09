@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Send } from 'lucide-react';
-import { company } from '@shared/data/company';
+import { Phone, Mail, MapPin, Send, Clock, Printer, Navigation } from 'lucide-react';
+import { company, services, products, directions } from '@shared/data/company';
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -23,11 +23,18 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Website Inquiry${form.interest ? ` — ${form.interest}` : ''}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nPhone: ${form.phone}\n\n${form.message}`
+    );
+    window.open(`mailto:${company.email}?subject=${subject}&body=${body}`, '_self');
     setSubmitted(true);
   };
 
   const inputClasses =
-    'w-full bg-dark-800 border border-white/[0.06] text-cream-100 placeholder-cream-400/25 text-sm px-5 py-3.5 rounded-lg focus:outline-none focus:border-copper-500/40 transition-colors duration-500 font-light';
+    'w-full bg-dark-800 border border-white/[0.06] text-cream-100 placeholder-cream-400/25 text-sm px-5 py-3.5 rounded-lg focus-visible:outline-2 focus-visible:outline-copper-500/50 focus:border-copper-500/40 transition-colors duration-500 font-light';
+
+  const flagshipProducts = products.filter((p) => p.category === 'flagship' || p.category === 'core');
 
   return (
     <>
@@ -158,12 +165,20 @@ export default function Contact() {
                       className={`${inputClasses} appearance-none`}
                     >
                       <option value="">Select an area</option>
-                      <option value="ecm">Enterprise Content Management</option>
-                      <option value="bpa">Business Process Automation</option>
-                      <option value="capture">Enterprise Capture</option>
-                      <option value="migration">Content Migration</option>
-                      <option value="ai">AI & Intelligent Automation</option>
-                      <option value="staffing">Contract Staffing</option>
+                      <optgroup label="Services">
+                        {services.map((s) => (
+                          <option key={s.id} value={s.id}>
+                            {s.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Products">
+                        {flagshipProducts.map((p) => (
+                          <option key={p.id} value={p.id}>
+                            {p.name}
+                          </option>
+                        ))}
+                      </optgroup>
                       <option value="general">General Inquiry</option>
                     </select>
                   </div>
@@ -203,7 +218,7 @@ export default function Contact() {
 
             {/* Contact Info */}
             <div className="md:col-span-2">
-              <div className="space-y-10 md:pt-8">
+              <div className="space-y-8 md:pt-8">
                 <div>
                   <div className="flex items-center gap-3 mb-3">
                     <MapPin size={16} className="text-copper-500/50" />
@@ -212,6 +227,8 @@ export default function Contact() {
                     </h4>
                   </div>
                   <p className="text-cream-200 text-sm leading-relaxed pl-7 font-light">
+                    {company.address.building}
+                    <br />
                     {company.address.street}
                     <br />
                     {company.address.city}, {company.address.state}{' '}
@@ -226,12 +243,32 @@ export default function Contact() {
                       Phone
                     </h4>
                   </div>
-                  <a
-                    href={`tel:${company.phone}`}
-                    className="text-cream-200 text-sm hover:text-copper-500 transition-colors duration-500 pl-7 font-light"
-                  >
-                    {company.phone}
-                  </a>
+                  <div className="pl-7 space-y-1.5">
+                    <a
+                      href={`tel:${company.phone}`}
+                      className="block text-cream-200 text-sm hover:text-copper-500 transition-colors duration-500 font-light"
+                    >
+                      {company.phone}
+                    </a>
+                    <a
+                      href={`tel:${company.phoneTollfreeNumeric}`}
+                      className="block text-cream-200 text-sm hover:text-copper-500 transition-colors duration-500 font-light"
+                    >
+                      {company.phoneTollfree} ({company.phoneTollfreeNumeric})
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <Printer size={16} className="text-copper-500/50" />
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-cream-300">
+                      Fax
+                    </h4>
+                  </div>
+                  <p className="text-cream-200 text-sm pl-7 font-light">
+                    {company.fax}
+                  </p>
                 </div>
 
                 <div>
@@ -241,20 +278,85 @@ export default function Contact() {
                       Email
                     </h4>
                   </div>
-                  <a
-                    href={`mailto:${company.email}`}
-                    className="text-cream-200 text-sm hover:text-copper-500 transition-colors duration-500 pl-7 font-light"
-                  >
-                    {company.email}
-                  </a>
+                  <div className="pl-7 space-y-1.5">
+                    <a
+                      href={`mailto:${company.email}`}
+                      className="block text-cream-200 text-sm hover:text-copper-500 transition-colors duration-500 font-light"
+                    >
+                      {company.email}
+                      <span className="text-cream-400/50 text-xs ml-2">Sales</span>
+                    </a>
+                    <a
+                      href={`mailto:${company.supportEmail}`}
+                      className="block text-cream-200 text-sm hover:text-copper-500 transition-colors duration-500 font-light"
+                    >
+                      {company.supportEmail}
+                      <span className="text-cream-400/50 text-xs ml-2">Support</span>
+                    </a>
+                  </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/[0.04]">
-                  <p className="text-cream-400 text-sm leading-relaxed font-light">
-                    Prefer a direct conversation? Call us during business hours,
-                    Monday through Friday, 9am to 5pm Eastern.
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <Clock size={16} className="text-copper-500/50" />
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-cream-300">
+                      Business Hours
+                    </h4>
+                  </div>
+                  <p className="text-cream-200 text-sm pl-7 font-light">
+                    {company.businessHours}
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Directions */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-4">
+              Visit Us
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl text-cream-100 font-light">
+              Getting Here
+            </h2>
+          </div>
+
+          <div className="glass-card rounded-lg p-8 md:p-12">
+            <div className="flex items-center gap-3 mb-6">
+              <Navigation size={16} className="text-copper-500/60" />
+              <p className="text-cream-200 text-sm font-light">
+                {directions.landmarks}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.2em] text-copper-500 mb-3">
+                  From I-95
+                </h4>
+                <p className="text-cream-400 text-sm leading-relaxed font-light">
+                  {directions.fromI95}
+                </p>
+              </div>
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.2em] text-copper-500 mb-3">
+                  From I-83
+                </h4>
+                <p className="text-cream-400 text-sm leading-relaxed font-light">
+                  {directions.fromI83}
+                </p>
+              </div>
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.2em] text-copper-500 mb-3">
+                  From BWI Airport
+                </h4>
+                <p className="text-cream-400 text-sm leading-relaxed font-light">
+                  {directions.fromBWI}
+                </p>
               </div>
             </div>
           </div>
@@ -263,3 +365,4 @@ export default function Contact() {
     </>
   );
 }
+      

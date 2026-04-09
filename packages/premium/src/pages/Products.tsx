@@ -3,6 +3,18 @@ import { ArrowRight } from 'lucide-react';
 import { products } from '@shared/data/company';
 import WorkflowAnimation from '../components/WorkflowAnimation';
 
+const accentColors: Record<number, 'copper' | 'gold'> = {
+  1: 'copper',
+  2: 'gold',
+  3: 'copper',
+  4: 'gold',
+};
+
+function getAccentColor(index: number): 'copper' | 'gold' {
+  if (accentColors[index]) return accentColors[index];
+  return index % 2 === 0 ? 'gold' : 'copper';
+}
+
 export default function Products() {
   return (
     <>
@@ -29,6 +41,7 @@ export default function Products() {
       {products.map((product, productIndex) => (
         <section
           key={product.id}
+          id={product.id}
           className={`py-24 md:py-32 px-6 ${
             productIndex > 0 ? 'border-t border-white/[0.04]' : ''
           }`}
@@ -134,7 +147,7 @@ export default function Products() {
                   <div className="mb-8">
                     <WorkflowAnimation
                       steps={product.workflow}
-                      accentColor={productIndex === 2 ? 'gold' : 'copper'}
+                      accentColor={getAccentColor(productIndex)}
                     />
                   </div>
 
@@ -170,11 +183,12 @@ export default function Products() {
             </h2>
             <p className="text-cream-400 text-base leading-relaxed font-light">
               ASM migrates your content. AIS Bridge preserves your ImagePlus
-              investment. IBIG delivers intelligent content discovery. Content
-              Services deploys workflows in days. Together, they form a complete
-              platform for organizations modernizing their content
-              infrastructure -- built by a team that has been doing this longer
-              than most companies have existed.
+              investment. IBIG 2.0 delivers intelligent content discovery. Content
+              Services deploys workflows in days. CCE transforms customer
+              communication. Content Viewer provides zero-install document access.
+              Together, they form a complete platform for organizations modernizing
+              their content infrastructure -- built by a team that has been doing
+              this longer than most companies have existed.
             </p>
           </div>
         </div>

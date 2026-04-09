@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
+  { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
   { to: '/products', label: 'Products' },
   { to: '/about', label: 'About' },
+  { to: '/careers', label: 'Careers' },
 ];
 
 export default function Navbar() {
@@ -29,6 +31,8 @@ export default function Navbar() {
           ? 'bg-[rgba(9,9,11,0.92)] backdrop-blur-md border-b border-border/50'
           : 'bg-transparent'
       }`}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -78,6 +82,8 @@ export default function Navbar() {
             onClick={() => setMobileOpen((prev) => !prev)}
             className="lg:hidden p-2 rounded-lg text-muted hover:text-white transition-colors"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
               <span
@@ -97,6 +103,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
+        id="mobile-menu"
         className={`lg:hidden overflow-hidden transition-all duration-300 ${
           mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}

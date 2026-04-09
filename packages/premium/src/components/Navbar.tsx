@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
+  { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
   { label: 'Services', path: '/services' },
   { label: 'Products', path: '/products' },
@@ -33,6 +34,8 @@ export default function Navbar() {
             ? 'bg-dark-900/90 backdrop-blur-xl border-b border-white/[0.06]'
             : 'bg-transparent'
         }`}
+        role="navigation"
+        aria-label="Main navigation"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
@@ -75,6 +78,8 @@ export default function Navbar() {
               className="md:hidden text-cream-300 hover:text-cream-100 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
             >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -84,6 +89,9 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
+        role="dialog"
+        aria-label="Navigation menu"
         className={`fixed inset-0 z-40 bg-dark-950/98 backdrop-blur-sm transition-all duration-500 md:hidden ${
           menuOpen
             ? 'opacity-100 pointer-events-auto'

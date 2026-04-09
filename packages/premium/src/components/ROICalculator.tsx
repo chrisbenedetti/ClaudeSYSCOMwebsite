@@ -52,6 +52,7 @@ export default function ROICalculator() {
             step={10000}
             value={inputs.documents}
             onChange={(e) => updateInput('documents', Number(e.target.value))}
+            aria-label="Document volume"
           />
           <p className="font-heading text-2xl text-cream-100 mt-3">
             {formatNumber(inputs.documents)}
@@ -69,6 +70,7 @@ export default function ROICalculator() {
             step={1}
             value={inputs.repositories}
             onChange={(e) => updateInput('repositories', Number(e.target.value))}
+            aria-label="Number of repositories"
           />
           <p className="font-heading text-2xl text-cream-100 mt-3">
             {inputs.repositories}
@@ -88,6 +90,7 @@ export default function ROICalculator() {
             onChange={(e) =>
               updateInput('manualHoursPerWeek', Number(e.target.value))
             }
+            aria-label="Manual hours per week"
           />
           <p className="font-heading text-2xl text-cream-100 mt-3">
             {inputs.manualHoursPerWeek}h
@@ -105,6 +108,7 @@ export default function ROICalculator() {
             step={5}
             value={inputs.hourlyRate}
             onChange={(e) => updateInput('hourlyRate', Number(e.target.value))}
+            aria-label="Hourly rate"
           />
           <p className="font-heading text-2xl text-cream-100 mt-3">
             ${inputs.hourlyRate}
@@ -116,7 +120,7 @@ export default function ROICalculator() {
       <div className="border-t border-copper-500/15 mb-14" />
 
       {/* Savings Breakdown */}
-      <div className="space-y-6 mb-14">
+      <div className="space-y-6 mb-14" aria-live="polite">
         {[
           {
             label: 'Migration Savings (ASM)',

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { company, leadership, services, stats } from '@shared/data/company';
+import { company, leadership, stats, methodology, partnerships } from '@shared/data/company';
 
 export default function About() {
   return (
@@ -151,35 +151,96 @@ export default function About() {
                 <p className="mt-3 text-sm text-slate leading-relaxed">
                   {leader.bio}
                 </p>
+                {leader.education && leader.education.length > 0 && (
+                  <div className="mt-4 text-left">
+                    <p className="text-xs font-semibold text-navy uppercase tracking-wider mb-1">Education</p>
+                    <ul className="space-y-0.5">
+                      {leader.education.map((edu) => (
+                        <li key={edu} className="text-xs text-slate">{edu}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {leader.certifications && leader.certifications.length > 0 && (
+                  <div className="mt-3 text-left">
+                    <p className="text-xs font-semibold text-navy uppercase tracking-wider mb-1">Certifications</p>
+                    <ul className="space-y-0.5">
+                      {leader.certifications.map((cert) => (
+                        <li key={cert} className="text-xs text-slate">{cert}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {leader.awards && leader.awards.length > 0 && (
+                  <div className="mt-3 text-left">
+                    <p className="text-xs font-semibold text-navy uppercase tracking-wider mb-1">Recognition</p>
+                    <ul className="space-y-0.5">
+                      {leader.awards.map((award) => (
+                        <li key={award} className="text-xs text-slate">{award}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Centers of Excellence */}
-      <section className="py-20 bg-warm-cream" aria-labelledby="coe-heading">
+      {/* Our Approach */}
+      <section className="py-20 bg-warm-cream" aria-labelledby="approach-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2
-            id="coe-heading"
+            id="approach-heading"
             className="font-heading text-3xl font-bold text-navy text-center mb-4"
           >
-            Centers of Excellence
+            {methodology.title}
           </h2>
-          <p className="text-lg text-muted text-center max-w-2xl mx-auto mb-12">
-            Specialized practices backed by decades of real-world enterprise experience.
+          <p className="text-lg text-muted text-center max-w-3xl mx-auto mb-12">
+            {methodology.description}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {services.map((service) => (
+          <div className="max-w-2xl mx-auto bg-white rounded-warm p-8 border border-warm-border">
+            <h3 className="font-heading font-semibold text-lg text-navy mb-5">
+              Methodology Highlights
+            </h3>
+            <ul className="space-y-4">
+              {methodology.highlights.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="text-teal mt-0.5 shrink-0" aria-hidden="true">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span className="text-slate text-sm leading-relaxed">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Partnerships */}
+      <section className="py-20 bg-white" aria-labelledby="partnerships-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            id="partnerships-heading"
+            className="font-heading text-3xl font-bold text-navy text-center mb-12"
+          >
+            Technology Partnerships
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {partnerships.map((partner) => (
               <div
-                key={service.id}
-                className="bg-white rounded-warm p-5 border border-warm-border"
+                key={partner.name}
+                className="bg-warm-light rounded-warm p-6 border border-warm-border"
               >
-                <h3 className="font-heading font-semibold text-base text-navy">
-                  {service.name}
+                <h3 className="font-heading font-bold text-xl text-navy">
+                  {partner.name}
                 </h3>
-                <p className="mt-1 text-sm text-slate leading-relaxed">
-                  {service.description}
+                <p className="mt-2 text-sm text-slate leading-relaxed">
+                  {partner.description}
                 </p>
               </div>
             ))}

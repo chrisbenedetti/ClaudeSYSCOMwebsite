@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-bg border-t border-border">
+    <footer className="relative bg-bg border-t border-border" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Company info */}
@@ -49,10 +49,10 @@ export default function Footer() {
               Software
             </h4>
             <ul className="space-y-2.5">
-              {products.map((product) => (
+              {products.filter(p => p.category === 'flagship' || p.category === 'core').map((product) => (
                 <li key={product.id}>
                   <Link
-                    to="/products"
+                    to={`/products#${product.id}`}
                     className="text-sm text-muted/80 hover:text-cyan transition-colors"
                   >
                     {product.name}
@@ -62,9 +62,9 @@ export default function Footer() {
               <li>
                 <Link
                   to="/products"
-                  className="text-sm text-muted/80 hover:text-cyan transition-colors"
+                  className="text-sm text-cyan/70 hover:text-cyan transition-colors"
                 >
-                  Content Viewer
+                  All Products &rarr;
                 </Link>
               </li>
             </ul>
@@ -110,7 +110,10 @@ export default function Footer() {
             &copy; {currentYear} {company.name} All rights reserved.
           </p>
           <p className="text-xs text-muted/60">
-            {company.address.city}, {company.address.state} &middot; {company.phone}
+            {company.address.city}, {company.address.state} &middot; {company.phone} &middot; {company.phoneTollfree} &middot;{' '}
+            <a href={`mailto:${company.supportEmail}`} className="hover:text-cyan transition-colors">
+              {company.supportEmail}
+            </a>
           </p>
         </div>
       </div>
