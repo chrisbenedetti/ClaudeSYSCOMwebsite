@@ -17,8 +17,7 @@ PRODUCTS (10):
 2. AIS Bridge - Drop-in ImagePlus replacement. Full CICS/IMS/MQ Workflow compatibility. Zero-downtime migration.
 3. IBIG 2.0 - AI-powered content discovery. LLM document understanding, semantic search, knowledge graphs. Works with all ASM connectors.
 4. SYSCOM Content Services (SCS) - SOA platform for config-driven ECM service deployment. REST/SOAP interfaces. Sarbanes-Oxley support.
-5. Customer Communication Experience (CCE) - Unified digital communication platform. eSignature, digital onboarding, branded experiences. SaaS subscription model.
-6. SYSCOM Content Viewer - HTML5 browser-based viewer for CM8, ImagePlus, CMOD, FileNet. PDF, AFP/MO:DCA, TIFF support. Zero install.
+5. SYSCOM Content Viewer - HTML5 browser-based viewer for CM8, ImagePlus, CMOD, FileNet. PDF, AFP/MO:DCA, TIFF support. Zero install.
 7. AIS+EE - Advanced client interface for IBM content repositories. Desktop and web clients.
 8. ASImport - High-speed content import for IBM Content Manager. Platform-independent (Windows/AIX).
 9. IP2CM - ImagePlus to Content Manager migration. ~1 million docs/hour.
@@ -78,11 +77,6 @@ const FALLBACK_RESPONSES: Record<string, { keywords: string[]; response: string 
     response:
       '**SYSCOM Content Services** provides SOA-based rapid ECM service deployment through configuration. REST and SOAP interfaces, pre-built templates, integrates with Office, SharePoint, and LOB systems. Sarbanes-Oxley compliance support. Deploy in days.',
   },
-  cce: {
-    keywords: ['cce', 'customer communication', 'esignature', 'onboarding', 'digital communication'],
-    response:
-      '**Customer Communication Experience (CCE)** is our unified digital communication platform. It brings eSignature workflows, customer onboarding, and branded experiences into a single subscription-based solution — reducing cycle times and rejection rates across customer-facing processes.',
-  },
   viewer: {
     keywords: ['viewer', 'content viewer', 'html5 viewer', 'document viewer'],
     response:
@@ -121,10 +115,10 @@ function getFallbackResponse(query: string): string {
     if (entry.keywords.some((kw) => lower.includes(kw))) return entry.response;
   }
   if (lower.includes('hello') || lower.includes('hi ') || lower === 'hi' || lower === 'hey')
-    return "Hello! I'm SYSCOM's AI assistant. I can help with our products (ASM, AIS Bridge, IBIG 2.0, Content Services, CCE, Content Viewer, and more), services (ECM, capture, migration, BPA, AI, staffing), or security & compliance. What would you like to know?";
+    return "Hello! I'm SYSCOM's AI assistant. I can help with our products (ASM, AIS Bridge, IBIG 2.0, Content Services, Content Viewer, and more), services (ECM, capture, migration, BPA, AI, staffing), or security & compliance. What would you like to know?";
   if (lower.includes('what') && (lower.includes('do') || lower.includes('offer')))
-    return "SYSCOM provides enterprise content management, intelligent capture, business process automation, and AI-powered solutions. Our product suite includes AnySource Migrator, AIS Bridge, IBIG 2.0, Content Services, CCE, Content Viewer, and more. Plus enterprise capture consulting (30+ year Kofax partnership) and staffing & workforce augmentation. What area interests you?";
-  return "I can help with **products** (ASM, AIS Bridge, IBIG, Content Services, CCE, Viewer, and more), **services** (ECM, capture, migration, BPA, AI, staffing), **security & compliance**, or **company info**. What would you like to explore?";
+    return "SYSCOM provides enterprise content management, intelligent capture, business process automation, and AI-powered solutions. Our product suite includes AnySource Migrator, AIS Bridge, IBIG 2.0, Content Services, Content Viewer, and more. Plus enterprise capture consulting (30+ year Kofax partnership) and staffing & workforce augmentation. What area interests you?";
+  return "I can help with **products** (ASM, AIS Bridge, IBIG, Content Services, Viewer, and more), **services** (ECM, capture, migration, BPA, AI, staffing), **security & compliance**, or **company info**. What would you like to explore?";
 }
 
 export const QUICK_PROMPTS = [

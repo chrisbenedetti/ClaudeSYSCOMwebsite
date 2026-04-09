@@ -16,7 +16,6 @@ const PRODUCT_COLORS: Record<string, { badge: string; border: string }> = {
   'ais-bridge': { badge: 'bg-terracotta/10 text-terracotta', border: 'border-terracotta/30' },
   ibig: { badge: 'bg-navy/10 text-navy', border: 'border-navy/30' },
   'content-services': { badge: 'bg-sage/10 text-sage', border: 'border-sage/30' },
-  cce: { badge: 'bg-amber-50 text-amber-700', border: 'border-amber-200' },
   'content-viewer': { badge: 'bg-cyan-50 text-cyan-700', border: 'border-cyan-200' },
   'ais-ee': { badge: 'bg-violet-50 text-violet-700', border: 'border-violet-200' },
   asimport: { badge: 'bg-emerald-50 text-emerald-700', border: 'border-emerald-200' },

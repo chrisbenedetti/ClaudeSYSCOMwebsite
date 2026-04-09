@@ -159,7 +159,7 @@ export default function Contact() {
                           {service.name}
                         </option>
                       ))}
-                      <option value="products">Products (ASM, AIS Bridge, IBIG, SCS, CCE, and more)</option>
+                      <option value="products">Products (ASM, AIS Bridge, IBIG, SCS, and more)</option>
                       <option value="general">General Inquiry</option>
                     </select>
                   </div>

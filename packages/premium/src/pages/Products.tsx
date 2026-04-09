@@ -184,8 +184,8 @@ export default function Products() {
             <p className="text-cream-400 text-base leading-relaxed font-light">
               ASM migrates your content. AIS Bridge preserves your ImagePlus
               investment. IBIG 2.0 delivers intelligent content discovery. Content
-              Services deploys workflows in days. CCE transforms customer
-              communication. Content Viewer provides zero-install document access.
+              Services deploys workflows in days. Content Viewer provides
+              zero-install document access across every repository.
               Together, they form a complete platform for organizations modernizing
               their content infrastructure -- built by a team that has been doing
               this longer than most companies have existed.

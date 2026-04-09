@@ -361,53 +361,6 @@ export const products = [
     category: "core" as const,
   },
   {
-    id: "cce",
-    name: "Customer Communication Experience",
-    shortName: "CCE",
-    tagline: "Unified digital communication for customer engagement.",
-    badge: "Platform",
-    description:
-      "Subscription-based digital communication platform that unifies customer onboarding, eSignature workflows, and branded experiences into a single integrated solution. Reduces cycle times and rejection rates across customer-facing processes.",
-    features: [
-      {
-        title: "eSignature Workflows",
-        description:
-          "Built-in electronic signature capture integrated directly into customer-facing processes.",
-      },
-      {
-        title: "Digital Onboarding",
-        description:
-          "Streamlined customer onboarding flows that reduce cycle times and rejection rates.",
-      },
-      {
-        title: "Branded Experiences",
-        description:
-          "Fully customizable, white-label interfaces that maintain your organization's identity.",
-      },
-      {
-        title: "Subscription Model",
-        description:
-          "SaaS delivery with predictable costs and continuous platform updates.",
-      },
-    ],
-    connectors: [
-      "Web Portal",
-      "eSignature API",
-      "CRM Systems",
-      "Document Management",
-      "Email & SMS",
-    ],
-    workflow: [
-      { icon: "edit", label: "Create" },
-      { icon: "plug", label: "Brand" },
-      { icon: "rocket", label: "Deploy" },
-      { icon: "check", label: "Sign" },
-      { icon: "bar-chart", label: "Track" },
-    ],
-    flagship: false,
-    category: "core" as const,
-  },
-  {
     id: "content-viewer",
     name: "SYSCOM Content Viewer",
     shortName: "Viewer",
