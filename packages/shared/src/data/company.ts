@@ -672,10 +672,10 @@ export const verticals = [
 ];
 
 export const stats = [
-  { value: "40+", label: "Years" },
-  { value: "Decades", label: "Client Relationships" },
-  { value: "25+", label: "Connectors" },
-  { value: "30+", label: "Yr Kofax Partner" },
+  { value: "40+", label: "Years in Business" },
+  { value: "8", label: "Service Disciplines" },
+  { value: "9", label: "Software Products" },
+  { value: "5", label: "Industry Verticals" },
 ];
 
 export const methodology = {
