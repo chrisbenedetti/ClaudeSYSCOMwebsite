@@ -66,7 +66,7 @@ export const leadership = [
   {
     name: "Chris Benedetti",
     title: "Chief Technology Officer",
-    bio: "Chris has spent over 25 years at SYSCOM, progressing from capture engineer to CTO. He leads product development and technology strategy across the entire SYSCOM portfolio — including AnySource Migrator, IBIG 2.0, and AIS Bridge. Chris has architected and delivered enterprise content solutions for clients including Wells Fargo, Navy Federal Credit Union, the United Nations, and numerous federal and state government agencies. He also co-founded Bishop Records, a vinyl record company. Under his leadership, SYSCOM has expanded into AI-powered document intelligence, semantic search, and next-generation migration tooling.",
+    bio: "Chris has spent over 25 years at SYSCOM, progressing from capture engineer to CTO. He leads product development and technology strategy across the SYSCOM portfolio — including AnySource Migrator, IBIG 2.0, and AIS Bridge — and has delivered solutions for clients including Wells Fargo, Navy Federal, the United Nations, and numerous government agencies. Chris also co-founded Bishop Records, a vinyl record company.",
     education: [
       "University of Cincinnati, BBA — Information Systems & Management",
     ],
