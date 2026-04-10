@@ -77,8 +77,8 @@ export default function Products() {
               <span className="gradient-text">experience.</span>
             </h1>
             <p className="text-lg text-muted leading-relaxed max-w-2xl">
-              SYSCOM doesn&apos;t resell other people&apos;s software. We build our own. Each product
-              was born from a real client need that no off-the-shelf tool could solve.
+              We configure the best platforms when they fit. When they don&apos;t, we build our own.
+              Every SYSCOM product was born from a real client need that nothing else could solve.
             </p>
           </div>
         </div>

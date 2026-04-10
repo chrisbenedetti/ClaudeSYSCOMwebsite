@@ -128,7 +128,7 @@ export default function Home() {
               Our Products
             </h2>
             <p className="mt-3 text-lg text-muted max-w-2xl mx-auto">
-              Purpose-built software we develop and own. Not off-the-shelf. Not vaporware.
+              We use the right tool for the job — proven platforms when they fit, custom-built solutions when they don't.
             </p>
           </div>
 

@@ -49,10 +49,10 @@ export default function About() {
               and data.
             </p>
             <p>
-              We are not a body shop. We build and own our intellectual property.
-              Our proprietary products -- AnySource Migrator, AIS Bridge, IBIG 2.0,
-              and Content Services -- exist because we saw problems that nobody
-              else was solving and built the solutions ourselves.
+              We use the best platforms when they exist, configure and extend them
+              to fit, and build our own when the market has no answer. Our proprietary
+              products -- AnySource Migrator, AIS Bridge, IBIG 2.0, and Content
+              Services -- exist because we saw problems that nobody else was solving.
             </p>
             <p>
               Our clients are government agencies processing millions of citizen
@@ -260,8 +260,8 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-5">
             {[
               {
-                title: 'Ownership',
-                text: 'We build and own our intellectual property. Every product we ship, every solution we architect -- it belongs to us and to you.',
+                title: 'Pragmatism',
+                text: 'We use proven platforms when they fit, customize them when they almost fit, and build from scratch when nothing else will do. Whatever makes sense.',
               },
               {
                 title: 'Longevity',

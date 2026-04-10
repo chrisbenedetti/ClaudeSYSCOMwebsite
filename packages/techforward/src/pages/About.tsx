@@ -84,9 +84,9 @@ export default function About() {
                     sometimes the only solution. And we know the difference.
                   </p>
                   <p>
-                    We are not a body shop. SYSCOM builds and owns the intellectual property
-                    behind our products. Every solution we deploy is backed by engineers who
-                    built it, understand it, and support it long-term.
+                    We use proven platforms when they fit, configure and customize them to match
+                    your workflows, and build our own when nothing on the market solves the problem.
+                    Every solution we deploy is backed by engineers who understand it and support it long-term.
                   </p>
                   <p>
                     Our clients &mdash; in government, financial services, and healthcare &mdash;

@@ -25,8 +25,8 @@ export default function Products() {
             Our Products
           </h1>
           <p className="mt-4 text-lg text-slate max-w-3xl leading-relaxed">
-            Purpose-built software developed and maintained by SYSCOM. We own the code,
-            control the roadmap, and support every deployment ourselves.
+            Software we built because off-the-shelf didn't solve the problem. We own the code,
+            control the roadmap, and support every deployment — alongside the best platforms in the industry.
           </p>
         </div>
       </section>

@@ -31,8 +31,8 @@ export default function Products() {
             className="mt-8 text-cream-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light animate-slide-up"
             style={{ animationDelay: '150ms' }}
           >
-            We own our intellectual property. Every product exists because we saw
-            a problem nobody else was solving -- and built the answer.
+            Proven platforms when they fit. Custom solutions when they don't.
+            Every product here exists because nothing else solved the problem.
           </p>
         </div>
       </section>

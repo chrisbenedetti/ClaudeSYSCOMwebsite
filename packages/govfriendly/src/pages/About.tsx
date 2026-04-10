@@ -12,8 +12,8 @@ export default function About() {
           </h1>
           <p className="mt-4 text-lg text-slate max-w-3xl leading-relaxed">
             Since {company.founded}, SYSCOM has been solving enterprise content management
-            challenges for organizations that can't afford to get it wrong. We build proven
-            solutions, own our intellectual property, and stand behind every deployment.
+            challenges for organizations that can't afford to get it wrong. We deploy proven
+            platforms, customize them to fit, build our own where needed, and stand behind every deployment.
           </p>
         </div>
       </section>
@@ -46,8 +46,8 @@ export default function About() {
                 comes from {company.yearsInBusiness} years of hands-on enterprise deployments.
               </p>
               <p className="mt-4 text-slate leading-relaxed">
-                SYSCOM is not a body shop. We build and own our products, develop deep
-                expertise in every platform we support, and maintain long-term relationships
+                SYSCOM is not a body shop. We develop deep expertise in every platform
+                we support, build our own products where the market falls short, and maintain long-term relationships
                 with our clients. Many of our client relationships span decades — the
                 people who know your systems stay with us.
               </p>
@@ -62,7 +62,7 @@ export default function About() {
                   `${company.yearsInBusiness}+ years of continuous operation in ECM`,
                   'Proprietary migration technology (AnySource Migrator)',
                   'Deep IBM ecosystem expertise (CM8, FileNet, BAW)',
-                  'We build and own our intellectual property',
+                  'We use proven platforms and build our own where needed',
                   'AI-forward strategy led by a dedicated CTO',
                   '30+ year Tungsten Automation (Kofax) partnership',
                 ].map((item) => (

@@ -365,8 +365,8 @@ export default function Home() {
               </h2>
               <p className="text-muted leading-relaxed mb-6">
                 Founded in {company.founded} in {company.address.city}, SYSCOM has built a reputation
-                on deep technical expertise and long-term client partnerships. We are not a body shop.
-                We build and own the IP behind every product we sell.
+                on deep technical expertise and long-term client partnerships. We configure proven
+                platforms, customize them to fit, and build our own tools when nothing else will do.
               </p>
               <p className="text-muted leading-relaxed mb-8">
                 We know that the newest, latest technology is not always the best solution &mdash;
