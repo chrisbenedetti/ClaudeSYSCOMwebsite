@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { company, leadership, stats, methodology, partnerships } from '@shared/data/company';
+import { company, leadership, methodology, partnerships } from '@shared/data/company';
 
 export default function About() {
   return (
@@ -254,19 +254,13 @@ export default function About() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 bg-navy" aria-label="Company statistics">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {stats.map((stat) => (
-              <div key={stat.label} className="py-2">
-                <p className="font-heading text-3xl sm:text-4xl font-bold text-white">
-                  {stat.value}
-                </p>
-                <p className="mt-1 text-sm text-white/60">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+      {/* Mission */}
+      <section className="py-16 bg-navy" aria-label="Company mission">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs font-heading font-bold uppercase tracking-wider text-gold mb-3">Our Mission</p>
+          <blockquote className="text-xl sm:text-2xl text-white font-heading font-semibold italic leading-relaxed">
+            &ldquo;{company.mission}&rdquo;
+          </blockquote>
         </div>
       </section>
 

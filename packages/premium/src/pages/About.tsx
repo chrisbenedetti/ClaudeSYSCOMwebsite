@@ -3,7 +3,6 @@ import { User, ArrowRight, GraduationCap, Award } from 'lucide-react';
 import {
   company,
   leadership,
-  stats,
   methodology,
   partnerships,
 } from '@shared/data/company';
@@ -23,30 +22,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-16 md:py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
-            {stats.map((stat, i) => (
-              <div
-                key={i}
-                className={`text-center ${
-                  i < stats.length - 1
-                    ? 'md:border-r md:border-copper-500/10'
-                    : ''
-                } py-4 md:py-0`}
-              >
-                <p className="font-heading text-5xl md:text-6xl text-cream-100 font-light">
-                  {stat.value}
-                </p>
-                <p className="text-[10px] uppercase tracking-[0.25em] text-cream-400 mt-3 font-body">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Mission (already shown above — removed stats) */}
 
       {/* Mission */}
       <section className="py-16 md:py-20 px-6">

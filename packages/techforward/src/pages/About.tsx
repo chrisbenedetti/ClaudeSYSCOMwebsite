@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { company, leadership, services, stats, methodology, partnerships } from '@shared/data/company';
+import { company, leadership, services, methodology, partnerships } from '@shared/data/company';
 
 function useFadeIn() {
   const ref = useRef<HTMLDivElement>(null);
@@ -134,19 +134,13 @@ export default function About() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Mission */}
       <section className="py-16 border-y border-border">
-        <FadeSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-heading font-bold text-3xl sm:text-4xl gradient-text tracking-tight mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs font-heading uppercase tracking-wider text-muted">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+        <FadeSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-4">Our Mission</p>
+          <blockquote className="text-xl sm:text-2xl text-white/90 leading-relaxed italic max-w-3xl mx-auto">
+            &ldquo;{company.mission}&rdquo;
+          </blockquote>
         </FadeSection>
       </section>
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { company, services, products, aiCapabilities, verticals, stats } from '@shared/data/company';
+import { company, services, products, aiCapabilities, verticals } from '@shared/data/company';
 
 /* ── Featured vs utility products ── */
 const featuredProducts = products.filter(p => p.category === 'flagship' || p.category === 'core');
@@ -140,18 +140,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Stats row */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-20 pt-10 border-t border-border opacity-0 animate-fade-up-5">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-heading font-bold text-3xl sm:text-4xl gradient-text tracking-tight mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs font-heading uppercase tracking-wider text-muted">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+          {/* Mission */}
+          <div className="mt-20 pt-10 border-t border-border opacity-0 animate-fade-up-5 max-w-3xl">
+            <p className="text-xs font-heading font-bold uppercase tracking-[3px] text-cyan mb-3">Our Mission</p>
+            <blockquote className="text-lg sm:text-xl text-white/80 leading-relaxed italic">
+              &ldquo;{company.mission}&rdquo;
+            </blockquote>
           </div>
         </div>
 

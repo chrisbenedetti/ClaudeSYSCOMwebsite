@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { company, services, products, verticals, stats } from '@shared/data/company';
+import { company, services, products, verticals } from '@shared/data/company';
 
 const SERVICE_EMOJIS: Record<string, string> = {
   ecm: '\u{1F4C1}',
@@ -64,16 +64,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <p className="font-heading text-3xl sm:text-4xl font-bold text-navy">
-                  {stat.value}
-                </p>
-                <p className="mt-1 text-sm text-muted">{stat.label}</p>
-              </div>
-            ))}
+          {/* Mission */}
+          <div className="mt-16 bg-warm-light border border-warm-border rounded-warm p-8">
+            <p className="text-xs font-heading font-bold uppercase tracking-wider text-teal mb-2">Our Mission</p>
+            <blockquote className="text-lg text-navy font-heading font-semibold italic leading-relaxed">
+              &ldquo;{company.mission}&rdquo;
+            </blockquote>
           </div>
         </div>
       </section>

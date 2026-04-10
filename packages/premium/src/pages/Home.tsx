@@ -24,7 +24,6 @@ import {
   products,
   aiCapabilities,
   verticals,
-  stats,
 } from '@shared/data/company';
 
 const serviceIcons: Record<string, React.ReactNode> = {
@@ -96,28 +95,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS - Large Cormorant numbers with copper dividers */}
+      {/* Mission */}
       <section className="py-28 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
-            {stats.map((stat, i) => (
-              <div
-                key={i}
-                className={`text-center ${
-                  i < stats.length - 1
-                    ? 'md:border-r md:border-copper-500/10'
-                    : ''
-                } py-4 md:py-0`}
-              >
-                <p className="font-heading text-5xl md:text-6xl text-cream-100 font-light">
-                  {stat.value}
-                </p>
-                <p className="text-[10px] uppercase tracking-[0.25em] text-cream-400 mt-3 font-body">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-copper-500 mb-6">Our Mission</p>
+          <blockquote className="font-heading text-2xl md:text-3xl text-cream-100 font-light leading-relaxed">
+            &ldquo;{company.mission}&rdquo;
+          </blockquote>
         </div>
       </section>
 
