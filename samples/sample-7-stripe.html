@@ -4,39 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SYSCOM, Inc. — Enterprise Content. Intelligent Automation.</title>
-  <meta name="description" content="SYSCOM, Inc. — 40+ years of enterprise content management, intelligent automation, and content migration. Baltimore, MD.">
+  <meta name="description" content="SYSCOM builds the infrastructure for enterprise content management, intelligent automation, and content migration. 40+ years. Baltimore, MD.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* ===== Reset & Base ===== */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* ===== Reset ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --navy: #1B2A4A;
-      --navy-light: #2A3F6B;
-      --navy-faint: #EEF1F6;
-      --gold: #D4A843;
-      --gold-light: #E8C97A;
-      --gold-faint: #FBF6EC;
-      --text-primary: #1B2A4A;
-      --text-secondary: #4A5568;
-      --text-tertiary: #718096;
-      --bg-white: #FFFFFF;
-      --bg-off-white: #FAFBFC;
-      --bg-light: #F7F8FA;
-      --border: #E2E8F0;
-      --border-light: #EDF2F7;
-      --code-bg: #F8FAFC;
-      --code-border: #E2E8F0;
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
+      --stripe-purple: #635BFF;
+      --stripe-blue: #0A2540;
+      --stripe-cyan: #00D4AA;
+      --stripe-green: #77E6B6;
+      --stripe-light-purple: #A590FF;
+      --text-dark: #0A2540;
+      --text-mid: #425466;
+      --text-light: #6B7C93;
+      --bg: #FFFFFF;
+      --bg-off: #F6F9FC;
+      --border: #E3E8EE;
+      --code-bg: #0A2540;
+      --code-text: #ADBDCC;
+      --code-green: #77E6B6;
+      --code-purple: #A590FF;
+      --code-cyan: #80E9FF;
+      --code-yellow: #EECA76;
+      --code-orange: #FF9580;
+      --code-white: #F0F4F8;
     }
 
     html {
@@ -48,107 +43,119 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: var(--text-primary);
-      background: var(--bg-white);
+      color: var(--text-dark);
+      background: var(--bg);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* ===== Typography ===== */
-    h1, h2, h3, h4 {
+    /* ===== Typography — Stripe's massive size contrast ===== */
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
       font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.02em;
     }
 
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      letter-spacing: -0.025em;
-    }
-
-    h3 {
-      font-size: clamp(1.25rem, 2vw, 1.5rem);
-    }
-
     p {
-      color: var(--text-secondary);
+      color: var(--text-mid);
       line-height: 1.7;
+      font-size: 1.0625rem;
+    }
+
+    p.large {
+      font-size: 1.25rem;
+      line-height: 1.65;
     }
 
     .mono {
       font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
     }
 
+    a {
+      color: var(--stripe-purple);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    a:hover { opacity: 0.8; }
+
     /* ===== Layout ===== */
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .container-narrow {
-      max-width: 800px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     .container-wide {
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    section {
-      padding: 120px 0;
-    }
-
-    @media (max-width: 768px) {
-      section {
-        padding: 80px 0;
-      }
-    }
-
-    /* ===== Navigation ===== */
+    /* ===== Navigation — Stripe-style thin minimal ===== */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-light);
-      transition: all 0.3s ease;
+      z-index: 100;
+      padding: 16px 0;
+      transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
     }
 
     nav.scrolled {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 var(--border);
     }
 
-    .nav-inner {
+    nav .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
     }
 
     .nav-logo {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-weight: 700;
-      color: var(--navy);
-      text-decoration: none;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo .logo-mark {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--stripe-purple), var(--stripe-cyan));
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo .logo-mark svg {
+      width: 16px;
+      height: 16px;
     }
 
     .nav-links {
@@ -159,34 +166,26 @@
     }
 
     .nav-links a {
-      font-size: 0.9rem;
+      font-size: 0.9375rem;
       font-weight: 500;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s ease;
+      color: var(--text-mid);
+      transition: color 0.15s;
     }
-
-    .nav-links a:hover {
-      color: var(--navy);
-    }
+    .nav-links a:hover { color: var(--text-dark); opacity: 1; }
 
     .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.9rem;
+      background: var(--stripe-purple);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.875rem;
       font-weight: 600;
-      color: var(--bg-white) !important;
-      background: var(--navy);
-      padding: 8px 20px;
-      border-radius: var(--radius-sm);
-      text-decoration: none;
-      transition: all 0.2s ease;
+      transition: background 0.15s, transform 0.1s;
     }
-
     .nav-cta:hover {
-      background: var(--navy-light);
-      color: var(--bg-white) !important;
+      background: #4b44e0;
+      opacity: 1 !important;
+      transform: translateY(-1px);
     }
 
     .nav-hamburger {
@@ -194,116 +193,144 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 8px;
+      padding: 4px;
     }
+    .nav-hamburger svg { width: 24px; height: 24px; color: var(--text-dark); }
 
-    .nav-hamburger span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: var(--navy);
-      margin: 4px 0;
-      transition: all 0.3s ease;
-      border-radius: 1px;
-    }
-
-    @media (max-width: 768px) {
-      .nav-hamburger {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: var(--bg-white);
-        flex-direction: column;
-        padding: 24px;
-        gap: 20px;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-    }
-
-    /* ===== Hero ===== */
+    /* ===== Hero — Gradient mesh background ===== */
     .hero {
-      padding: 160px 0 120px;
-      text-align: center;
-      background: var(--bg-white);
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 120px;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    .hero-gradient-bg {
       position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(212, 168, 67, 0.06) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(99, 91, 255, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 30%, rgba(0, 212, 170, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 50% at 50% 80%, rgba(128, 233, 255, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 10% 70%, rgba(119, 230, 182, 0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 90% 80%, rgba(165, 144, 255, 0.1) 0%, transparent 70%),
+        linear-gradient(180deg, #FFFFFF 0%, #F6F9FC 100%);
+      z-index: 0;
     }
 
-    .hero::after {
-      content: '';
+    /* Animated gradient orbs */
+    .hero-orb {
       position: absolute;
-      bottom: -100px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(27, 42, 74, 0.04) 0%, transparent 70%);
-      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      z-index: 0;
+      animation: orb-float 20s ease-in-out infinite;
+    }
+
+    .hero-orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 91, 255, 0.35), transparent 70%);
+      top: -10%;
+      left: -5%;
+      animation-delay: 0s;
+    }
+
+    .hero-orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 212, 170, 0.3), transparent 70%);
+      top: 20%;
+      right: -10%;
+      animation-delay: -7s;
+      animation-duration: 25s;
+    }
+
+    .hero-orb-3 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(128, 233, 255, 0.25), transparent 70%);
+      bottom: -5%;
+      left: 30%;
+      animation-delay: -14s;
+      animation-duration: 22s;
+    }
+
+    .hero-orb-4 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(165, 144, 255, 0.2), transparent 70%);
+      bottom: 10%;
+      right: 15%;
+      animation-delay: -3s;
+      animation-duration: 18s;
+    }
+
+    @keyframes orb-float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.05); }
+      50% { transform: translate(-20px, 15px) scale(0.95); }
+      75% { transform: translate(15px, 25px) scale(1.02); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--navy);
-      background: var(--navy-faint);
+      background: rgba(99, 91, 255, 0.08);
+      border: 1px solid rgba(99, 91, 255, 0.15);
       padding: 6px 16px;
-      border-radius: 100px;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--stripe-purple);
       margin-bottom: 32px;
       letter-spacing: 0.02em;
-      text-transform: uppercase;
     }
 
-    .hero-badge::before {
-      content: '';
-      display: inline-block;
+    .hero-badge .dot {
       width: 6px;
       height: 6px;
-      background: var(--gold);
       border-radius: 50%;
+      background: var(--stripe-cyan);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
 
     .hero h1 {
-      max-width: 800px;
-      margin: 0 auto 28px;
-    }
-
-    .hero h1 .gradient-text {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 40%, var(--gold) 100%);
+      background: linear-gradient(135deg, var(--text-dark) 0%, var(--stripe-purple) 50%, var(--stripe-cyan) 100%);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      animation: gradient-shift 8s ease-in-out infinite;
+      margin-bottom: 28px;
     }
 
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2vw, 1.25rem);
-      color: var(--text-tertiary);
-      max-width: 560px;
-      margin: 0 auto 48px;
-      line-height: 1.7;
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero p.large {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 44px;
     }
 
     .hero-actions {
@@ -318,187 +345,162 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.95rem;
+      background: var(--stripe-purple);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      font-size: 0.9375rem;
       font-weight: 600;
-      color: var(--bg-white);
-      background: var(--navy);
-      padding: 14px 32px;
-      border-radius: var(--radius-sm);
-      text-decoration: none;
       border: none;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
     }
-
     .btn-primary:hover {
-      background: var(--navy-light);
+      background: #4b44e0;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(27, 42, 74, 0.2);
+      box-shadow: 0 4px 20px rgba(99, 91, 255, 0.3);
+      color: #fff;
+      opacity: 1;
     }
+    .btn-primary svg { width: 16px; height: 16px; }
 
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.95rem;
+      background: transparent;
+      color: var(--text-dark);
+      padding: 14px 28px;
+      border-radius: 9999px;
+      font-size: 0.9375rem;
       font-weight: 600;
-      color: var(--text-primary);
-      background: var(--bg-white);
-      padding: 14px 32px;
-      border-radius: var(--radius-sm);
-      text-decoration: none;
       border: 1px solid var(--border);
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: border-color 0.15s, background 0.15s, transform 0.1s;
     }
-
     .btn-secondary:hover {
-      border-color: var(--navy);
-      background: var(--navy-faint);
+      border-color: var(--text-light);
+      background: var(--bg-off);
       transform: translateY(-1px);
+      opacity: 1;
+    }
+    .btn-secondary svg { width: 16px; height: 16px; }
+
+    /* ===== Flowing narrative sections ===== */
+    .section {
+      padding: 140px 24px;
+      position: relative;
     }
 
-    .btn-arrow {
-      transition: transform 0.2s ease;
+    .section-alt {
+      background: var(--bg-off);
     }
 
-    .btn-primary:hover .btn-arrow,
-    .btn-secondary:hover .btn-arrow {
-      transform: translateX(3px);
-    }
-
-    /* ===== Section Label ===== */
     .section-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.1em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--stripe-purple);
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
 
     .section-label::before {
       content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--stripe-purple), var(--stripe-cyan));
+      border-radius: 1px;
     }
 
-    .section-description {
-      font-size: clamp(1.05rem, 1.5vw, 1.15rem);
-      color: var(--text-tertiary);
-      max-width: 640px;
-      line-height: 1.8;
-      margin-top: 20px;
+    .section-title {
+      margin-bottom: 24px;
     }
 
-    /* ===== Product Narrative Sections ===== */
-    .product-section {
-      position: relative;
+    .section-desc {
+      max-width: 560px;
+      margin-bottom: 64px;
     }
 
-    .product-section:nth-child(even) {
-      background: var(--bg-off-white);
-    }
-
-    .product-grid {
+    /* Two-column narrative layout */
+    .narrative {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: center;
+      align-items: start;
     }
 
-    .product-grid.reverse {
-      direction: rtl;
+    .narrative-text {
+      padding-top: 20px;
     }
 
-    .product-grid.reverse > * {
-      direction: ltr;
+    .narrative-text .section-label {
+      margin-bottom: 16px;
     }
 
-    @media (max-width: 900px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .product-grid.reverse {
-        direction: ltr;
-      }
-    }
-
-    .product-content h2 {
-      margin-bottom: 8px;
-    }
-
-    .product-tagline {
-      font-size: 1.1rem;
-      color: var(--gold);
-      font-weight: 500;
+    .narrative-text h2 {
       margin-bottom: 20px;
     }
 
-    .product-text {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-secondary);
-      margin-bottom: 28px;
+    .narrative-text p {
+      margin-bottom: 20px;
     }
 
-    .product-features {
+    .narrative-text p:last-of-type {
+      margin-bottom: 32px;
+    }
+
+    .feature-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      margin-bottom: 36px;
     }
 
-    .product-features li {
+    .feature-list li {
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      font-size: 0.95rem;
-      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      color: var(--text-mid);
       line-height: 1.5;
     }
 
-    .product-features li::before {
-      content: '';
+    .feature-list li svg {
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
-      width: 6px;
-      height: 6px;
-      margin-top: 8px;
-      background: var(--gold);
-      border-radius: 50%;
+      color: var(--stripe-cyan);
+      margin-top: 1px;
     }
 
-    .product-link {
+    .link-arrow {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.95rem;
+      font-size: 0.9375rem;
       font-weight: 600;
-      color: var(--navy);
-      text-decoration: none;
-      margin-top: 24px;
-      transition: gap 0.2s ease;
+      color: var(--stripe-purple);
+      transition: gap 0.2s;
     }
+    .link-arrow:hover { gap: 10px; opacity: 1; }
+    .link-arrow svg { width: 16px; height: 16px; }
 
-    .product-link:hover {
-      gap: 10px;
-    }
-
-    /* ===== Code Blocks ===== */
+    /* ===== Code blocks — Stripe-style dark terminal ===== */
     .code-window {
-      background: var(--navy);
-      border-radius: var(--radius-lg);
+      background: var(--code-bg);
+      border-radius: 12px;
       overflow: hidden;
       box-shadow:
-        0 4px 6px rgba(27, 42, 74, 0.06),
-        0 20px 60px rgba(27, 42, 74, 0.12);
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 8px 40px rgba(10, 37, 64, 0.12),
+        0 24px 80px rgba(10, 37, 64, 0.08);
     }
 
     .code-window-bar {
@@ -506,157 +508,121 @@
       align-items: center;
       gap: 8px;
       padding: 14px 20px;
-      background: rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .code-dot {
+    .code-window-dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.12);
     }
-
-    .code-dot:nth-child(1) { background: #FF5F57; }
-    .code-dot:nth-child(2) { background: #FEBC2E; }
-    .code-dot:nth-child(3) { background: #28C840; }
 
     .code-window-title {
+      margin-left: 8px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.4);
-      margin-left: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.02em;
     }
 
-    .code-window pre {
+    .code-block {
       padding: 24px;
       overflow-x: auto;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.85);
-      -webkit-overflow-scrolling: touch;
+      font-size: 0.8125rem;
+      line-height: 1.75;
+      color: var(--code-text);
     }
 
-    .code-window pre::-webkit-scrollbar {
-      height: 6px;
+    .code-block pre {
+      margin: 0;
+      white-space: pre;
     }
 
-    .code-window pre::-webkit-scrollbar-track {
-      background: transparent;
-    }
+    /* Syntax highlighting tokens */
+    .ck  { color: var(--code-cyan); }    /* key */
+    .cs  { color: var(--code-green); }   /* string */
+    .cn  { color: var(--code-orange); }  /* number */
+    .cp  { color: var(--code-purple); }  /* punctuation/type */
+    .cc  { color: rgba(173, 189, 204, 0.4); } /* comment */
+    .cw  { color: var(--code-white); }   /* white/keyword */
+    .cy  { color: var(--code-yellow); }  /* yaml key */
 
-    .code-window pre::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-    }
-
-    .code-key { color: #7EC8E3; }
-    .code-string { color: #A8D8A8; }
-    .code-number { color: #E8C97A; }
-    .code-comment { color: rgba(255, 255, 255, 0.35); }
-    .code-bracket { color: rgba(255, 255, 255, 0.5); }
-    .code-keyword { color: #C792EA; }
-    .code-bool { color: #F78C6C; }
-
-    /* ===== Platform Section ===== */
-    .platform-section {
-      background: var(--bg-white);
-    }
-
+    /* ===== Platform section ===== */
     .platform-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: var(--border-light);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
+      background: var(--border);
+      border-radius: 16px;
       overflow: hidden;
-      margin-top: 64px;
-    }
-
-    @media (max-width: 768px) {
-      .platform-grid {
-        grid-template-columns: 1fr;
-      }
+      border: 1px solid var(--border);
     }
 
     .platform-card {
-      background: var(--bg-white);
-      padding: 48px 40px;
-      transition: background 0.2s ease;
+      background: var(--bg);
+      padding: 48px 36px;
+      transition: background 0.2s;
     }
 
     .platform-card:hover {
-      background: var(--bg-off-white);
+      background: var(--bg-off);
     }
 
     .platform-icon {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--navy-faint);
-      border-radius: var(--radius-sm);
       margin-bottom: 24px;
     }
 
     .platform-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--navy);
+      width: 24px;
+      height: 24px;
     }
+
+    .platform-icon-purple { background: rgba(99, 91, 255, 0.1); color: var(--stripe-purple); }
+    .platform-icon-cyan   { background: rgba(0, 212, 170, 0.1); color: var(--stripe-cyan); }
+    .platform-icon-green  { background: rgba(119, 230, 182, 0.1); color: #10B981; }
 
     .platform-card h3 {
       margin-bottom: 12px;
-      font-size: 1.15rem;
+      font-size: 1.25rem;
     }
 
     .platform-card p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--text-tertiary);
+      font-size: 0.9375rem;
+      color: var(--text-light);
+      line-height: 1.6;
     }
 
-    /* ===== Trust Section ===== */
+    /* ===== Trust section with gradient ===== */
     .trust-section {
-      background: var(--navy);
-      color: white;
       position: relative;
+      padding: 160px 24px;
       overflow: hidden;
     }
 
-    .trust-section::before {
-      content: '';
+    .trust-gradient {
       position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(212, 168, 67, 0.08) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 50%, rgba(99, 91, 255, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 70% 50%, rgba(0, 212, 170, 0.05) 0%, transparent 70%),
+        var(--bg-off);
+      z-index: 0;
     }
 
     .trust-content {
       position: relative;
       z-index: 1;
-    }
-
-    .trust-section .section-label {
-      color: var(--gold-light);
-    }
-
-    .trust-section .section-label::before {
-      background: var(--gold-light);
-    }
-
-    .trust-section h2 {
-      color: white;
-      max-width: 600px;
-    }
-
-    .trust-section .section-description {
-      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
     .trust-stats {
@@ -664,140 +630,92 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 48px;
       margin-top: 72px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    @media (max-width: 768px) {
-      .trust-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 36px;
-      }
+    .trust-stat {
+      text-align: center;
     }
 
-    @media (max-width: 480px) {
-      .trust-stats {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-    }
-
-    .trust-stat-value {
+    .trust-stat-number {
       font-size: clamp(2.5rem, 4vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: white;
+      font-weight: 800;
+      letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 8px;
-    }
-
-    .trust-stat-value .accent {
-      color: var(--gold);
+      background: linear-gradient(135deg, var(--stripe-purple), var(--stripe-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .trust-stat-label {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.875rem;
+      color: var(--text-light);
       font-weight: 500;
     }
 
-    .trust-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 64px;
-    }
-
-    .trust-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.7);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 10px 20px;
-      border-radius: 100px;
-    }
-
-    .trust-badge svg {
-      width: 14px;
-      height: 14px;
-      color: var(--gold-light);
-    }
-
-    /* ===== CTA Section ===== */
+    /* ===== CTA ===== */
     .cta-section {
+      padding: 140px 24px;
       text-align: center;
-      background: var(--bg-off-white);
-      border-top: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-gradient-bar {
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--stripe-purple), var(--stripe-cyan), var(--stripe-green));
+      border-radius: 2px;
+      margin: 0 auto 40px;
     }
 
     .cta-section h2 {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .cta-section p {
-      font-size: 1.1rem;
-      max-width: 480px;
-      margin: 0 auto 40px;
-      color: var(--text-tertiary);
+      max-width: 500px;
+      margin: 0 auto 48px;
     }
 
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .cta-note {
-      display: block;
-      margin-top: 24px;
-      font-size: 0.85rem;
-      color: var(--text-tertiary);
-    }
-
-    /* ===== Footer ===== */
+    /* ===== Footer — Stripe style ===== */
     footer {
-      background: var(--bg-white);
-      border-top: 1px solid var(--border-light);
-      padding: 64px 0 48px;
+      background: var(--bg-off);
+      border-top: 1px solid var(--border);
+      padding: 80px 24px 48px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 64px;
+      margin-bottom: 64px;
     }
 
-    @media (max-width: 768px) {
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 36px;
-      }
+    .footer-brand {
+      max-width: 280px;
     }
 
-    @media (max-width: 480px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
+    .footer-brand .nav-logo {
+      margin-bottom: 16px;
     }
 
     .footer-brand p {
-      font-size: 0.9rem;
-      color: var(--text-tertiary);
-      margin-top: 12px;
-      max-width: 300px;
+      font-size: 0.875rem;
+      color: var(--text-light);
       line-height: 1.7;
     }
 
     .footer-col h4 {
-      font-size: 0.8rem;
+      font-size: 0.8125rem;
       font-weight: 600;
-      color: var(--text-tertiary);
+      color: var(--text-dark);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       margin-bottom: 20px;
     }
 
@@ -809,27 +727,23 @@
     }
 
     .footer-col a {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s ease;
+      font-size: 0.875rem;
+      color: var(--text-light);
+      transition: color 0.15s;
     }
-
-    .footer-col a:hover {
-      color: var(--navy);
-    }
+    .footer-col a:hover { color: var(--text-dark); opacity: 1; }
 
     .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-light);
-      font-size: 0.85rem;
-      color: var(--text-tertiary);
-      flex-wrap: wrap;
-      gap: 16px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-bottom p {
+      font-size: 0.8125rem;
+      color: var(--text-light);
     }
 
     .footer-bottom-links {
@@ -838,47 +752,108 @@
     }
 
     .footer-bottom-links a {
-      color: var(--text-tertiary);
-      text-decoration: none;
-      transition: color 0.2s ease;
+      font-size: 0.8125rem;
+      color: var(--text-light);
     }
 
-    .footer-bottom-links a:hover {
-      color: var(--navy);
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .narrative {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .narrative.reverse .narrative-text {
+        order: -1;
+      }
+
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
     }
 
-    /* ===== Connector Tags ===== */
-    .connector-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 24px;
+    @media (max-width: 768px) {
+      .section {
+        padding: 100px 20px;
+      }
+
+      .hero {
+        padding: 120px 20px 100px;
+        min-height: auto;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+      }
+
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .trust-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .footer-bottom-links {
+        justify-content: center;
+      }
+
+      .code-block {
+        font-size: 0.75rem;
+        padding: 16px;
+      }
     }
 
-    .connector-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      background: var(--bg-light);
-      border: 1px solid var(--border);
-      padding: 4px 12px;
-      border-radius: 100px;
-      letter-spacing: 0.01em;
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .section {
+        padding: 80px 16px;
+      }
     }
 
-    /* ===== Divider ===== */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border-light);
-    }
-
-    /* ===== Animations ===== */
+    /* ===== Subtle entrance animations ===== */
     .fade-up {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .fade-up.visible {
@@ -886,524 +861,462 @@
       transform: translateY(0);
     }
 
-    .fade-up-delay-1 { transition-delay: 0.1s; }
-    .fade-up-delay-2 { transition-delay: 0.2s; }
-    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
 
-    /* ===== Mainframe Section ===== */
-    .mainframe-visual {
-      background: var(--bg-light);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .mainframe-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .mainframe-node {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 16px 24px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-primary);
-      text-align: center;
-      flex: 1;
-      transition: all 0.2s ease;
-    }
-
-    .mainframe-node:hover {
-      border-color: var(--navy);
-      box-shadow: 0 2px 8px rgba(27, 42, 74, 0.08);
-    }
-
-    .mainframe-node.active {
-      background: var(--navy);
-      color: white;
-      border-color: var(--navy);
-    }
-
-    .mainframe-node.gold {
-      background: var(--gold-faint);
-      border-color: var(--gold);
-      color: var(--navy);
-    }
-
-    .mainframe-arrow {
-      color: var(--text-tertiary);
-      flex-shrink: 0;
-      font-size: 1.2rem;
-    }
-
-    .mainframe-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-
-    /* ===== Responsive Utility ===== */
-    @media (max-width: 768px) {
-      .hero {
-        padding: 120px 0 80px;
-      }
-
-      .mainframe-row {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .mainframe-arrow {
-        transform: rotate(90deg);
-      }
+    /* Gradient text helper */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--stripe-purple), var(--stripe-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== Navigation ===== -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">SYSCOM</a>
-      <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#products">Products</a></li>
-        <li><a href="#platform">Solutions</a></li>
-        <li><a href="#trust">About</a></li>
-        <li><a href="#contact" class="nav-cta">Contact <span class="btn-arrow">&rarr;</span></a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- ===== Hero ===== -->
-  <section class="hero">
-    <div class="container">
-      <div class="fade-up">
-        <span class="hero-badge">Since 1982 &mdash; Baltimore, MD</span>
+<!-- ===== Navigation ===== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </div>
-      <h1 class="fade-up fade-up-delay-1">
-        <span class="gradient-text">Enterprise Content.</span><br>
-        <span class="gradient-text">Intelligent Automation.</span>
-      </h1>
-      <p class="hero-subtitle fade-up fade-up-delay-2">
-        We build the infrastructure that powers document intelligence, content migration, and process automation for government and financial institutions.
-      </p>
-      <div class="hero-actions fade-up fade-up-delay-3">
-        <a href="#contact" class="btn-primary">Talk to an expert <span class="btn-arrow">&rarr;</span></a>
-        <a href="#products" class="btn-secondary">Explore products <span class="btn-arrow">&rarr;</span></a>
-      </div>
-    </div>
-  </section>
+      SYSCOM
+    </a>
+    <ul class="nav-links">
+      <li><a href="#ibig">Products</a></li>
+      <li><a href="#asm">Migration</a></li>
+      <li><a href="#platform">Platform</a></li>
+      <li><a href="#trust">About</a></li>
+      <li><a href="#contact" class="nav-cta">Contact sales</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
 
-  <!-- ===== IBIG Section ===== -->
-  <section class="product-section" id="products" style="background: var(--bg-off-white);">
-    <div class="container">
-      <div class="product-grid">
-        <div class="product-content fade-up">
-          <span class="section-label">IBIG 2.0</span>
-          <h2>AI Document Intelligence</h2>
-          <p class="product-tagline">Don't just search your documents. Understand them.</p>
-          <p class="product-text">
-            The Intelligent Business Information Gateway crawls your existing repositories, uses LLMs to comprehend document meaning &mdash; not just OCR text &mdash; and builds a semantic knowledge layer with natural language search. Ask questions in plain English. Get ranked, contextualized answers.
-          </p>
-          <ul class="product-features">
-            <li>Zero-shot classification without templates</li>
-            <li>Knowledge graph maps relationships across your entire archive</li>
-            <li>On-premises deployment for air-gapped environments</li>
-            <li>25+ repository connectors inherited from ASM</li>
-          </ul>
-          <a href="#contact" class="product-link">Learn more <span class="btn-arrow">&rarr;</span></a>
-        </div>
-        <div class="fade-up fade-up-delay-1">
-          <div class="code-window">
-            <div class="code-window-bar">
-              <span class="code-dot"></span>
-              <span class="code-dot"></span>
-              <span class="code-dot"></span>
-              <span class="code-window-title">GET /api/v2/search</span>
-            </div>
-            <pre><span class="code-comment">// Natural language query &rarr; ranked results</span>
-<span class="code-bracket">{</span>
-  <span class="code-key">"query"</span>: <span class="code-string">"contracts expiring Q2 2026"</span>,
-  <span class="code-key">"results"</span>: <span class="code-bracket">[</span>
-    <span class="code-bracket">{</span>
-      <span class="code-key">"id"</span>: <span class="code-string">"doc-849271"</span>,
-      <span class="code-key">"title"</span>: <span class="code-string">"Master Services Agreement"</span>,
-      <span class="code-key">"source"</span>: <span class="code-string">"FileNet P8"</span>,
-      <span class="code-key">"confidence"</span>: <span class="code-number">0.96</span>,
-      <span class="code-key">"entities"</span>: <span class="code-bracket">{</span>
-        <span class="code-key">"expiration"</span>: <span class="code-string">"2026-06-30"</span>,
-        <span class="code-key">"party"</span>: <span class="code-string">"State DOT"</span>,
-        <span class="code-key">"value"</span>: <span class="code-string">"$2.4M"</span>
-      <span class="code-bracket">}</span>,
-      <span class="code-key">"relationships"</span>: <span class="code-bracket">[</span>
-        <span class="code-string">"Amendment 3 (doc-849305)"</span>,
-        <span class="code-string">"SOW Attachment (doc-849272)"</span>
-      <span class="code-bracket">]</span>
-    <span class="code-bracket">}</span>
-  <span class="code-bracket">]</span>,
-  <span class="code-key">"total"</span>: <span class="code-number">14</span>,
-  <span class="code-key">"model"</span>: <span class="code-string">"ibig-2.0-semantic"</span>
-<span class="code-bracket">}</span></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-gradient-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-orb hero-orb-4"></div>
 
-  <!-- ===== AnySource Migrator Section ===== -->
-  <section class="product-section">
-    <div class="container">
-      <div class="product-grid reverse">
-        <div class="product-content fade-up">
-          <span class="section-label">AnySource Migrator</span>
-          <h2>Migrate Anything.<br>Lose Nothing.</h2>
-          <p class="product-tagline">Any source. Any destination. Zero compromises.</p>
-          <p class="product-text">
-            ASM is our flagship content migration platform &mdash; 25+ pre-built repository connectors, AI-powered auto-mapping, and real-time monitoring. Move millions of documents between ECM platforms with full metadata, security, and folder structure preservation. No other migration tool on the market matches it.
-          </p>
-          <ul class="product-features">
-            <li>AI auto-mapping reduces weeks of planning to hours</li>
-            <li>TIFF-to-PDF, MODCA-to-TIFF, full-text PDF &mdash; all configurable</li>
-            <li>Live monitoring with anomaly detection</li>
-            <li>Horizontal scaling for multi-million document migrations</li>
-          </ul>
-          <div class="connector-tags">
-            <span class="connector-tag">FileNet P8</span>
-            <span class="connector-tag">Content Manager</span>
-            <span class="connector-tag">ImagePlus</span>
-            <span class="connector-tag">SharePoint</span>
-            <span class="connector-tag">Documentum</span>
-            <span class="connector-tag">CMIS</span>
-            <span class="connector-tag">File System</span>
-            <span class="connector-tag">Custom</span>
+  <div class="hero-content">
+    <div class="hero-badge fade-up">
+      <span class="dot"></span>
+      Built in Baltimore since 1982
+    </div>
+    <h1 class="fade-up delay-1">Enterprise content.<br>Intelligent automation.</h1>
+    <p class="large fade-up delay-2">SYSCOM builds the infrastructure that government agencies and financial institutions use to capture, manage, migrate, and automate their most critical content.</p>
+    <div class="hero-actions fade-up delay-3">
+      <a href="#contact" class="btn-primary">
+        Contact sales
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <a href="#ibig" class="btn-secondary">
+        Explore the platform
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M4 9l4 4 4-4"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IBIG Section ===== -->
+<section class="section" id="ibig">
+  <div class="container-wide">
+    <div class="narrative">
+      <div class="narrative-text">
+        <div class="section-label">IBIG &mdash; Intelligent Business Information Gateway</div>
+        <h2 class="section-title">AI-powered document intelligence, delivered as an API</h2>
+        <p>IBIG provides a service-oriented gateway to every content operation in your enterprise. Classify documents, extract data, route workflows, and query repositories &mdash; all through a unified REST interface.</p>
+        <p>Deploy new ECM services in hours, not months. IBIG connects to your existing repositories (IBM, Microsoft, OpenText) and exposes them through simple, composable endpoints your teams already know how to use.</p>
+        <ul class="feature-list">
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Intelligent document classification with 97%+ accuracy
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Full-text extraction, OCR, and structured data output
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            SOA architecture &mdash; configure, don&rsquo;t code
+          </li>
+        </ul>
+        <a href="#contact" class="link-arrow">
+          Talk to us about IBIG
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+      <div class="narrative-visual">
+        <div class="code-window">
+          <div class="code-window-bar">
+            <div class="code-window-dot"></div>
+            <div class="code-window-dot"></div>
+            <div class="code-window-dot"></div>
+            <span class="code-window-title">POST /api/v2/classify</span>
           </div>
-          <a href="#contact" class="product-link">Learn more <span class="btn-arrow">&rarr;</span></a>
-        </div>
-        <div class="fade-up fade-up-delay-1">
-          <div class="code-window">
-            <div class="code-window-bar">
-              <span class="code-dot"></span>
-              <span class="code-dot"></span>
-              <span class="code-dot"></span>
-              <span class="code-window-title">asm-migration.yml</span>
-            </div>
-            <pre><span class="code-comment"># ASM Migration Configuration</span>
-<span class="code-key">migration</span>:
-  <span class="code-key">name</span>: <span class="code-string">"FileNet to SharePoint"</span>
-  <span class="code-key">source</span>:
-    <span class="code-key">type</span>: <span class="code-string">filenet-p8</span>
-    <span class="code-key">object_store</span>: <span class="code-string">"Production_OS"</span>
-    <span class="code-key">query</span>: <span class="code-string">"SELECT * FROM Document"</span>
-  <span class="code-key">target</span>:
-    <span class="code-key">type</span>: <span class="code-string">sharepoint-online</span>
-    <span class="code-key">site</span>: <span class="code-string">"enterprise-docs"</span>
-    <span class="code-key">library</span>: <span class="code-string">"Migrated Content"</span>
-  <span class="code-key">transforms</span>:
-    - <span class="code-key">type</span>: <span class="code-string">tiff-to-pdf</span>
-      <span class="code-key">ocr</span>: <span class="code-bool">true</span>
-      <span class="code-key">full_text</span>: <span class="code-bool">true</span>
-    - <span class="code-key">type</span>: <span class="code-string">metadata-map</span>
-      <span class="code-key">mode</span>: <span class="code-string">ai-auto</span>  <span class="code-comment"># AI-powered mapping</span>
-  <span class="code-key">options</span>:
-    <span class="code-key">parallel_threads</span>: <span class="code-number">16</span>
-    <span class="code-key">preserve_security</span>: <span class="code-bool">true</span>
-    <span class="code-key">preserve_versions</span>: <span class="code-bool">true</span>
-    <span class="code-key">anomaly_detection</span>: <span class="code-bool">true</span></pre>
-          </div>
+          <div class="code-block"><pre><span class="cc">// IBIG document classification response</span>
+{
+  <span class="ck">"request_id"</span>: <span class="cs">"req_8f2a9c1b4d"</span>,
+  <span class="ck">"document"</span>: {
+    <span class="ck">"type"</span>: <span class="cs">"claims_adjudication"</span>,
+    <span class="ck">"confidence"</span>: <span class="cn">0.986</span>,
+    <span class="ck">"model"</span>: <span class="cs">"ibig-classify-v3"</span>
+  },
+  <span class="ck">"extracted_fields"</span>: {
+    <span class="ck">"claimant_name"</span>: <span class="cs">"REDACTED"</span>,
+    <span class="ck">"policy_number"</span>: <span class="cs">"HC-2024-88412"</span>,
+    <span class="ck">"claim_amount"</span>: <span class="cn">14280.00</span>,
+    <span class="ck">"date_of_service"</span>: <span class="cs">"2024-11-03"</span>,
+    <span class="ck">"provider_npi"</span>: <span class="cs">"1234567890"</span>
+  },
+  <span class="ck">"routing"</span>: {
+    <span class="ck">"workflow"</span>: <span class="cs">"auto_adjudicate"</span>,
+    <span class="ck">"queue"</span>: <span class="cs">"priority_review"</span>,
+    <span class="ck">"sla_hours"</span>: <span class="cn">24</span>
+  },
+  <span class="ck">"repository"</span>: {
+    <span class="ck">"target"</span>: <span class="cs">"ibm_cm8_prod"</span>,
+    <span class="ck">"folder"</span>: <span class="cs">"/claims/2024/q4/auto"</span>,
+    <span class="ck">"status"</span>: <span class="cs">"filed"</span>
+  }
+}</pre></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== AI Mainframe Intelligence Section ===== -->
-  <section class="product-section" style="background: var(--bg-off-white);">
-    <div class="container">
-      <div class="product-grid">
-        <div class="product-content fade-up">
-          <span class="section-label">Mainframe Modernization</span>
-          <h2>AI Meets the<br>Mainframe</h2>
-          <p class="product-tagline">Modernize without migrating.</p>
-          <p class="product-text">
-            Organizations running IBM ImagePlus, CICS, and MVS workloads face a hard problem: modernize the access layer without disrupting decades of operational investment. Our AIS Bridge and MVS Connect products solve this &mdash; drop-in replacements that preserve every integration while delivering modern architecture underneath.
-          </p>
-          <ul class="product-features">
-            <li>AIS Bridge: full API-compatible replacement for ImagePlus</li>
-            <li>Zero-downtime phased migration approach</li>
-            <li>MVS Connect: high-speed mainframe-to-capture integration</li>
-            <li>HTML5 Content Viewer replaces deprecated Java applets</li>
-          </ul>
-          <a href="#contact" class="product-link">Learn more <span class="btn-arrow">&rarr;</span></a>
-        </div>
-        <div class="fade-up fade-up-delay-1">
-          <div class="mainframe-visual">
-            <div class="mainframe-label">Current State</div>
-            <div class="mainframe-row">
-              <div class="mainframe-node">IBM ImagePlus</div>
-              <span class="mainframe-arrow">&rarr;</span>
-              <div class="mainframe-node">CICS / IMS</div>
-              <span class="mainframe-arrow">&rarr;</span>
-              <div class="mainframe-node">Java Applet Viewer</div>
-            </div>
-            <div style="text-align: center; padding: 8px 0;">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="color: var(--gold);">
-                <path d="M10 4v12M10 16l-4-4M10 16l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="mainframe-label">With SYSCOM</div>
-            <div class="mainframe-row">
-              <div class="mainframe-node gold">AIS Bridge</div>
-              <span class="mainframe-arrow">&rarr;</span>
-              <div class="mainframe-node active">AI Layer</div>
-              <span class="mainframe-arrow">&rarr;</span>
-              <div class="mainframe-node gold">HTML5 Viewer</div>
-            </div>
+<!-- ===== AnySource Migrator Section ===== -->
+<section class="section section-alt" id="asm">
+  <div class="container-wide">
+    <div class="narrative reverse">
+      <div class="narrative-visual">
+        <div class="code-window">
+          <div class="code-window-bar">
+            <div class="code-window-dot"></div>
+            <div class="code-window-dot"></div>
+            <div class="code-window-dot"></div>
+            <span class="code-window-title">migration.config.yaml</span>
           </div>
+          <div class="code-block"><pre><span class="cc"># AnySource Migrator — content migration pipeline</span>
+
+<span class="cy">migration</span>:
+  <span class="cy">name</span>: <span class="cs">"DMV Records to SharePoint Online"</span>
+  <span class="cy">batch_id</span>: <span class="cs">"ASM-2024-1147"</span>
+
+<span class="cy">source</span>:
+  <span class="cy">platform</span>: <span class="cs">"ibm_cm8"</span>
+  <span class="cy">version</span>: <span class="cs">"8.5.4"</span>
+  <span class="cy">connection</span>:
+    <span class="cy">host</span>: <span class="cs">"ecm-prod.agency.gov"</span>
+    <span class="cy">library</span>: <span class="cs">"ICMADMIN"</span>
+  <span class="cy">scope</span>:
+    <span class="cy">item_types</span>:
+      - <span class="cs">"driver_license_app"</span>
+      - <span class="cs">"vehicle_registration"</span>
+      - <span class="cs">"title_transfer"</span>
+    <span class="cy">date_range</span>: <span class="cs">"2015-01-01..2024-12-31"</span>
+    <span class="cy">estimated_docs</span>: <span class="cn">12_400_000</span>
+
+<span class="cy">target</span>:
+  <span class="cy">platform</span>: <span class="cs">"sharepoint_online"</span>
+  <span class="cy">site</span>: <span class="cs">"records.agency.gov/sites/dmv"</span>
+  <span class="cy">library</span>: <span class="cs">"Migrated Records"</span>
+
+<span class="cy">options</span>:
+  <span class="cy">preserve_metadata</span>: <span class="cw">true</span>
+  <span class="cy">preserve_security</span>: <span class="cw">true</span>
+  <span class="cy">preserve_folders</span>: <span class="cw">true</span>
+  <span class="cy">verify_checksums</span>: <span class="cw">true</span>
+  <span class="cy">parallel_threads</span>: <span class="cn">16</span>
+  <span class="cy">retry_policy</span>: <span class="cs">"exponential_backoff"</span></pre></div>
+        </div>
+      </div>
+      <div class="narrative-text">
+        <div class="section-label">AnySource Migrator</div>
+        <h2 class="section-title">Move 12 million documents. Keep every byte of metadata.</h2>
+        <p>AnySource Migrator is SYSCOM&rsquo;s proprietary content migration platform. It moves documents between any ECM system &mdash; IBM CM8, FileNet, Documentum, SharePoint, OpenText &mdash; with full preservation of metadata, security ACLs, folder structures, and version histories.</p>
+        <p>No other migration tool on the market handles this breadth of source and target platforms with this level of fidelity. We built it because our clients needed it, and nobody else had solved it.</p>
+        <ul class="feature-list">
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Any source to any target &mdash; 15+ ECM platforms supported
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Full metadata, security, and folder structure preservation
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Checksum verification on every document migrated
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Parallel processing &mdash; millions of documents per engagement
+          </li>
+        </ul>
+        <a href="#contact" class="link-arrow">
+          Plan your migration
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI Mainframe Intelligence Section ===== -->
+<section class="section" id="ai-mainframe">
+  <div class="container-wide">
+    <div class="narrative">
+      <div class="narrative-text">
+        <div class="section-label">AI Mainframe Intelligence</div>
+        <h2 class="section-title">Your mainframe data is a goldmine. Start mining it.</h2>
+        <p>Decades of transactional data locked in COBOL programs, VSAM files, and DB2 tables. SYSCOM&rsquo;s AI Mainframe Intelligence layer reads, interprets, and surfaces that data through modern APIs &mdash; without rewriting a single line of mainframe code.</p>
+        <p>Connect business intelligence tools, feed machine learning models, and build real-time dashboards on top of systems that have been running reliably since the 1980s. Modernize the interface, not the infrastructure.</p>
+        <ul class="feature-list">
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Natural language queries against mainframe data stores
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Automated COBOL program analysis and documentation
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 10 8 14 16 6"/></svg>
+            Real-time REST APIs over legacy transaction processors
+          </li>
+        </ul>
+        <a href="#contact" class="link-arrow">
+          Explore mainframe modernization
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+      <div class="narrative-visual">
+        <div class="code-window">
+          <div class="code-window-bar">
+            <div class="code-window-dot"></div>
+            <div class="code-window-dot"></div>
+            <div class="code-window-dot"></div>
+            <span class="code-window-title">GET /api/mainframe/query</span>
+          </div>
+          <div class="code-block"><pre><span class="cc">// AI Mainframe Intelligence — natural language query</span>
+{
+  <span class="ck">"query"</span>: <span class="cs">"Show all vehicle registrations expiring in Q1 2025 for Baltimore County"</span>,
+  <span class="ck">"engine"</span>: <span class="cs">"syscom-nlq-v2"</span>,
+  <span class="ck">"source"</span>: {
+    <span class="ck">"system"</span>: <span class="cs">"z/OS CICS"</span>,
+    <span class="ck">"program"</span>: <span class="cs">"VEHREG01"</span>,
+    <span class="ck">"datastore"</span>: <span class="cs">"VSAM KSDS"</span>
+  },
+  <span class="ck">"results"</span>: {
+    <span class="ck">"total_records"</span>: <span class="cn">34891</span>,
+    <span class="ck">"query_time_ms"</span>: <span class="cn">127</span>,
+    <span class="ck">"sample"</span>: [
+      {
+        <span class="ck">"reg_id"</span>: <span class="cs">"MD-VR-2024-881204"</span>,
+        <span class="ck">"expiry"</span>: <span class="cs">"2025-02-14"</span>,
+        <span class="ck">"county"</span>: <span class="cs">"BALTIMORE"</span>,
+        <span class="ck">"type"</span>: <span class="cs">"passenger"</span>
+      }
+    ]
+  },
+  <span class="ck">"generated_sql"</span>: <span class="cs">"SELECT * FROM VEHREG WHERE COUNTY='BALT' AND EXPDT BETWEEN '20250101' AND '20250331'"</span>
+}</pre></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== Platform Section ===== -->
-  <section class="platform-section" id="platform">
-    <div class="container">
-      <div class="fade-up" style="text-align: center; max-width: 640px; margin: 0 auto;">
-        <span class="section-label" style="justify-content: center;">The Platform</span>
-        <h2>Everything your content<br>infrastructure needs</h2>
-        <p class="section-description" style="margin: 20px auto 0;">
-          ECM, business process automation, enterprise capture, and AI &mdash; integrated as a single platform. Not a patchwork of acquisitions. One company, one architecture, 40 years of focus.
-        </p>
+<!-- ===== The Platform Section ===== -->
+<section class="section section-alt" id="platform">
+  <div class="container">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto 72px;">
+      <div class="section-label" style="justify-content: center;">The Platform</div>
+      <h2 class="section-title">Everything your enterprise content needs. One partner.</h2>
+      <p>ECM, BPA, intelligent capture, migration, and AI &mdash; SYSCOM delivers the full stack. Not as disconnected point solutions, but as an integrated platform built on 40 years of solving the same class of problems.</p>
+    </div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-icon platform-icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3>Enterprise Content Management</h3>
+        <p>Document repositories, records management, compliance, and governance. Built on IBM CM8, FileNet, and Microsoft platforms with deep configuration expertise.</p>
       </div>
-      <div class="platform-grid fade-up fade-up-delay-1">
-        <div class="platform-card">
-          <div class="platform-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><polyline points="14 2 14 8 20 8"/><path d="m3 15 2 2 4-4"/></svg>
-          </div>
-          <h3>Enterprise Content Management</h3>
-          <p>IBM FileNet P8, Content Manager, Content Manager OnDemand. Federation, integration, and migration between platforms &mdash; we've done it all.</p>
+      <div class="platform-card">
+        <div class="platform-icon platform-icon-cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         </div>
-        <div class="platform-card">
-          <div class="platform-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          </div>
-          <h3>Business Process Automation</h3>
-          <p>End-to-end workflow design with IBM BAW and Tungsten platforms. Case management, business rules, and AI-enhanced routing that gets smarter over time.</p>
+        <h3>Business Process Automation</h3>
+        <p>Workflow design, business rules, case management, and process orchestration. IBM BAW, Kofax TotalAgility, and custom automation solutions.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon platform-icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
         </div>
-        <div class="platform-card">
-          <div class="platform-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          </div>
-          <h3>Enterprise Capture</h3>
-          <p>30+ year Tungsten (Kofax) partnership. Remote and central capture, advanced recognition, classification, and custom validation scripts.</p>
+        <h3>Enterprise Capture</h3>
+        <p>Intelligent document capture with OCR, ICR, classification, and data extraction. Kofax, IBM Datacap, and custom computer vision pipelines.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon platform-icon-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
         </div>
-        <div class="platform-card">
-          <div class="platform-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
-          <h3>Content Migration</h3>
-          <p>Powered by AnySource Migrator. 25+ connectors. Full metadata, security, and folder structure preservation. Gradual, overnight, or federated strategies.</p>
+        <h3>Content Migration</h3>
+        <p>Proprietary AnySource Migrator technology. 15+ ECM platforms. Full metadata preservation. Checksum-verified. Millions of documents per engagement.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon platform-icon-cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
         </div>
-        <div class="platform-card">
-          <div class="platform-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <h3>AI & Intelligent Automation</h3>
-          <p>Zero-shot document classification. AI auto-mapping in ASM 2.0. Semantic search in IBIG 2.0. Compliance-as-Code. Cloud or on-premises deployment.</p>
+        <h3>AI &amp; Intelligent Automation</h3>
+        <p>Computer vision, NLP, intelligent classification, and RPA. We build AI that solves specific content problems &mdash; not AI for AI&rsquo;s sake.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-icon platform-icon-green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
         </div>
-        <div class="platform-card">
-          <div class="platform-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Managed Services & Staffing</h3>
-          <p>Embedded teams running production operations. PMs, architects, developers, DBAs, and cybersecurity engineers. Short-term to 10+ year placements.</p>
-        </div>
+        <h3>Platform Integration</h3>
+        <p>IBM ecosystem (CM8, FileNet, BAW, Datacap, Content Navigator), Microsoft 365, Azure, AWS. Deep platform knowledge, not surface-level connectors.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== Trust Section ===== -->
-  <section class="trust-section" id="trust">
-    <div class="container trust-content">
-      <div class="fade-up">
-        <span class="section-label">Why SYSCOM</span>
-        <h2>Not a startup.<br>Not a body shop.</h2>
-        <p class="section-description">
-          We've been solving enterprise content problems since 1982. We build and own our IP. We know that the newest technology isn't always the best solution &mdash; but it's sometimes the only solution. And we know the difference.
-        </p>
+<!-- ===== Trust Section ===== -->
+<section class="trust-section" id="trust">
+  <div class="trust-gradient"></div>
+  <div class="trust-content">
+    <div class="section-label" style="justify-content: center;">Why SYSCOM</div>
+    <h2 class="section-title">The longest track record in enterprise content</h2>
+    <p class="large">SYSCOM has been solving enterprise content problems since 1982. We build and own our IP. We retain our people. We don&rsquo;t chase trends &mdash; we solve problems. And we know the difference between the right technology and the newest technology.</p>
+    <div class="trust-stats">
+      <div class="trust-stat">
+        <div class="trust-stat-number">42+</div>
+        <div class="trust-stat-label">Years in operation</div>
       </div>
-      <div class="trust-stats fade-up fade-up-delay-1">
-        <div>
-          <div class="trust-stat-value">44<span class="accent">+</span></div>
-          <div class="trust-stat-label">Years in Business</div>
-        </div>
-        <div>
-          <div class="trust-stat-value">9</div>
-          <div class="trust-stat-label">Software Products</div>
-        </div>
-        <div>
-          <div class="trust-stat-value">70<span class="accent">%+</span></div>
-          <div class="trust-stat-label">5-Year Retention</div>
-        </div>
-        <div>
-          <div class="trust-stat-value">25<span class="accent">+</span></div>
-          <div class="trust-stat-label">Migration Connectors</div>
-        </div>
+      <div class="trust-stat">
+        <div class="trust-stat-number">70%+</div>
+        <div class="trust-stat-label">5-year employee retention</div>
       </div>
-      <div class="trust-badges fade-up fade-up-delay-2">
-        <span class="trust-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          NIST 800-53
-        </span>
-        <span class="trust-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          CJIS Compliant
-        </span>
-        <span class="trust-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          IRS Pub 1075
-        </span>
-        <span class="trust-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
-          IBM Business Partner
-        </span>
-        <span class="trust-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
-          Tungsten Partner
-        </span>
-        <span class="trust-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          FedRAMP Aligned
-        </span>
+      <div class="trust-stat">
+        <div class="trust-stat-number">15+</div>
+        <div class="trust-stat-label">ECM platforms supported</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat-number">100M+</div>
+        <div class="trust-stat-label">Documents migrated</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== CTA Section ===== -->
-  <section class="cta-section" id="contact">
-    <div class="container">
-      <div class="fade-up">
-        <span class="section-label" style="justify-content: center; display: flex;">Talk to Us</span>
-        <h2>Ready to modernize your<br>content infrastructure?</h2>
-        <p>We'll walk through your environment, identify quick wins, and show you what's possible &mdash; no pitch deck required.</p>
-        <div class="cta-actions">
-          <a href="mailto:sales@syscom.com" class="btn-primary">Contact sales <span class="btn-arrow">&rarr;</span></a>
-          <a href="tel:+14105393737" class="btn-secondary">Call (410) 539-3737</a>
+<!-- ===== CTA Section ===== -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-gradient-bar"></div>
+    <h2 class="section-title">Ready to modernize your content infrastructure?</h2>
+    <p>Talk to our team about your ECM, migration, or automation challenges. We&rsquo;ve probably solved something like it before.</p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;">
+      <a href="mailto:sales@syscom.com" class="btn-primary">
+        Contact sales
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+      <a href="tel:+14105393737" class="btn-secondary">
+        (410) 539-3737
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </div>
+          SYSCOM
         </div>
-        <span class="cta-note">Inner Harbor Center, 400 East Pratt Street, Suite 600, Baltimore, MD 21202</span>
+        <p>Enterprise content management, intelligent automation, and content migration. Baltimore, Maryland. Since 1982.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#ibig">IBIG</a></li>
+          <li><a href="#asm">AnySource Migrator</a></li>
+          <li><a href="#ai-mainframe">AI Mainframe Intelligence</a></li>
+          <li><a href="#">AIS Bridge</a></li>
+          <li><a href="#">Content Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#platform">Content Management</a></li>
+          <li><a href="#platform">Process Automation</a></li>
+          <li><a href="#platform">Enterprise Capture</a></li>
+          <li><a href="#platform">Content Migration</a></li>
+          <li><a href="#platform">Platform Integration</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#trust">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">400 E Pratt St, Suite 600</a></li>
+          <li><a href="#">Baltimore, MD 21202</a></li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="nav-logo">SYSCOM</a>
-          <p>Enterprise content management and intelligent automation since 1982. Baltimore, Maryland.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Products</h4>
-          <ul>
-            <li><a href="#products">IBIG 2.0</a></li>
-            <li><a href="#products">AnySource Migrator</a></li>
-            <li><a href="#products">AIS Bridge</a></li>
-            <li><a href="#products">Content Viewer</a></li>
-            <li><a href="#products">Content Services</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Solutions</h4>
-          <ul>
-            <li><a href="#platform">ECM</a></li>
-            <li><a href="#platform">Process Automation</a></li>
-            <li><a href="#platform">Enterprise Capture</a></li>
-            <li><a href="#platform">Content Migration</a></li>
-            <li><a href="#platform">AI & Automation</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#trust">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://syscom.catsone.com/careers/95588-General/">Careers</a></li>
-            <li><a href="mailto:sales@syscom.com">sales@syscom.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 SYSCOM, Inc. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-        </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 SYSCOM, Inc. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    // Navigation scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 10);
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    // Mobile hamburger toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Close mobile nav on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-      });
-    });
-
-    // Scroll-triggered fade-in animation
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          const offset = 80;
-          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
-      });
-    });
-  </script>
+  // Also observe narrative sections for entrance animations
+  document.querySelectorAll('.narrative-text, .narrative-visual, .platform-card, .trust-stat').forEach(el => {
+    el.classList.add('fade-up');
+    observer.observe(el);
+  });
+</script>
 
 </body>
 </html>

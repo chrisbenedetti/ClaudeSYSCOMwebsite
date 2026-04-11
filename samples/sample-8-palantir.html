@@ -19,24 +19,30 @@
 }
 
 :root {
-  --navy: #1B2A4A;
-  --navy-deep: #0F1A2E;
-  --navy-light: #2A3D5F;
-  --gold: #D4A843;
-  --gold-light: #E8C76A;
-  --gold-muted: rgba(212, 168, 67, 0.15);
-  --white: #FFFFFF;
-  --gray-50: #F8F9FB;
-  --gray-100: #F0F2F5;
-  --gray-200: #E2E5EB;
-  --gray-300: #C8CDD6;
-  --gray-400: #9AA1B0;
-  --gray-500: #6B7280;
-  --gray-600: #4B5563;
-  --gray-700: #374151;
-  --text-primary: #1B2A4A;
-  --text-secondary: #4B5563;
-  --text-tertiary: #6B7280;
+  --dark-navy: #101820;
+  --dark-navy-light: #1a2332;
+  --dark-navy-lighter: #1f2b3d;
+  --charcoal: #2a3444;
+  --slate: #3d4a5c;
+  --accent-blue: #4a90d9;
+  --accent-blue-light: #6ba3e0;
+  --accent-blue-dim: rgba(74, 144, 217, 0.12);
+  --accent-blue-glow: rgba(74, 144, 217, 0.25);
+  --white: #ffffff;
+  --off-white: #f7f8fa;
+  --gray-100: #ebedf0;
+  --gray-200: #d4d7dd;
+  --gray-300: #b0b5be;
+  --gray-400: #8a919d;
+  --gray-500: #6b7280;
+  --gray-600: #4b5260;
+  --gray-700: #333a47;
+  --text-dark: #101820;
+  --text-body: #4b5260;
+  --text-light: rgba(255, 255, 255, 0.85);
+  --text-light-muted: rgba(255, 255, 255, 0.55);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-dark: #e0e2e6;
 }
 
 html {
@@ -47,7 +53,7 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: var(--text-primary);
+  color: var(--text-dark);
   background: var(--white);
   line-height: 1.6;
   overflow-x: hidden;
@@ -58,229 +64,71 @@ a {
   text-decoration: none;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
 /* ========================================
-   TYPOGRAPHY
-   ======================================== */
-.heading-xl {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-}
-
-.heading-lg {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-}
-
-.heading-md {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-}
-
-.heading-sm {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-}
-
-.body-lg {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-.body-md {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-.body-sm {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--text-tertiary);
-}
-
-.label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-/* ========================================
-   LAYOUT
-   ======================================== */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.container-narrow {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.section {
-  padding: 6rem 0;
-}
-
-.section-navy {
-  background: var(--navy);
-  color: var(--white);
-}
-
-.section-gray {
-  background: var(--gray-50);
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.grid-5 {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
-}
-
-.grid-6 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-@media (max-width: 1024px) {
-  .grid-3, .grid-6 { grid-template-columns: repeat(2, 1fr); }
-  .grid-5 { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 768px) {
-  .grid-2, .grid-3, .grid-5, .grid-6 { grid-template-columns: 1fr; }
-  .section { padding: 4rem 0; }
-  .container, .container-narrow { padding: 0 1.25rem; }
-}
-
-/* ========================================
-   NAVIGATION
+   NAV
    ======================================== */
 .nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--gray-200);
-  transition: box-shadow 0.3s ease;
-}
-
-.nav.scrolled {
-  box-shadow: 0 1px 12px rgba(27, 42, 74, 0.08);
-}
-
-.nav-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  z-index: 100;
+  padding: 0 48px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  background: rgba(16, 24, 32, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .nav-logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.nav-logo-mark {
-  width: 8px;
-  height: 32px;
-  background: var(--gold);
-  border-radius: 2px;
+.nav-logo span {
+  color: var(--accent-blue);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 36px;
   list-style: none;
 }
 
 .nav-links a {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
-  position: relative;
+  color: var(--text-light-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
 }
 
 .nav-links a:hover {
-  color: var(--navy);
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  transition: width 0.2s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
+  color: var(--white);
 }
 
 .nav-cta {
-  background: var(--navy);
+  font-size: 0.8125rem;
+  font-weight: 600;
   color: var(--white) !important;
-  padding: 0.5rem 1.25rem;
-  border-radius: 6px;
-  font-weight: 600 !important;
-  font-size: 0.875rem;
-  transition: background 0.2s ease, transform 0.15s ease;
+  background: var(--accent-blue);
+  padding: 8px 20px;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+  transition: background 0.2s;
 }
 
 .nav-cta:hover {
-  background: var(--navy-light) !important;
-  transform: translateY(-1px);
-}
-
-.nav-cta::after {
-  display: none !important;
+  background: var(--accent-blue-light);
 }
 
 .nav-mobile-toggle {
@@ -288,38 +136,16 @@ img {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 8px;
 }
 
 .nav-mobile-toggle span {
   display: block;
-  width: 24px;
+  width: 20px;
   height: 2px;
-  background: var(--navy);
+  background: var(--white);
   margin: 5px 0;
-  transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-  .nav-inner { padding: 0 1.25rem; }
-  .nav-mobile-toggle { display: block; }
-  .nav-links {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: var(--white);
-    flex-direction: column;
-    padding: 1.5rem 2rem 2rem;
-    gap: 1.25rem;
-    border-bottom: 1px solid var(--gray-200);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    transform: translateY(-120%);
-    transition: transform 0.3s ease;
-  }
-  .nav-links.open { transform: translateY(0); }
-  .nav-links a { font-size: 1rem; }
-  .nav-cta { text-align: center; display: block; padding: 0.75rem 1.25rem; }
+  transition: 0.2s;
 }
 
 /* ========================================
@@ -328,1293 +154,1285 @@ img {
 .hero {
   position: relative;
   min-height: 100vh;
+  background: var(--dark-navy);
   display: flex;
   align-items: center;
-  background: var(--gray-50);
-  overflow: hidden;
-  padding-top: 72px;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
   overflow: hidden;
 }
 
-/* CSS Data Visualization — Network Graph */
 .hero-viz {
   position: absolute;
   inset: 0;
-  opacity: 0.12;
+  overflow: hidden;
 }
 
 .hero-viz svg {
+  position: absolute;
   width: 100%;
   height: 100%;
 }
 
-.hero-node {
-  fill: var(--navy);
+/* Node styles */
+.node-dot {
+  fill: var(--accent-blue);
+  opacity: 0.6;
 }
 
-.hero-node-gold {
-  fill: var(--gold);
-}
-
-.hero-line {
-  stroke: var(--navy);
+.node-ring {
+  fill: none;
+  stroke: var(--accent-blue);
   stroke-width: 1;
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
-.hero-line-gold {
-  stroke: var(--gold);
-  stroke-width: 1.5;
-  opacity: 0.5;
+.edge-line {
+  stroke: rgba(74, 144, 217, 0.15);
+  stroke-width: 1;
 }
 
-.hero-pulse {
-  animation: pulse 3s ease-in-out infinite;
+.data-pulse {
+  fill: var(--accent-blue);
+  opacity: 0;
 }
 
-.hero-pulse-delay {
-  animation: pulse 3s ease-in-out 1s infinite;
+/* Ambient grid */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74, 144, 217, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 144, 217, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 
-.hero-pulse-delay2 {
-  animation: pulse 3s ease-in-out 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.3; r: 3; }
-  50% { opacity: 0.8; r: 5; }
-}
-
-@keyframes float-line {
-  0%, 100% { stroke-dashoffset: 0; }
-  50% { stroke-dashoffset: 20; }
-}
-
-.hero-animated-line {
-  stroke-dasharray: 8 12;
-  animation: float-line 4s linear infinite;
-}
-
-/* Gradient overlay */
 .hero-gradient {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(248, 249, 251, 0.95) 0%, transparent 70%),
-    radial-gradient(ellipse at 80% 20%, rgba(212, 168, 67, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(74, 144, 217, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(74, 144, 217, 0.05) 0%, transparent 60%);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 720px;
-  padding: 4rem 0;
+  max-width: 800px;
+  padding: 0 48px;
+  padding-top: 64px;
 }
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  padding: 0.4rem 1rem;
-  background: var(--gold-muted);
-  border: 1px solid rgba(212, 168, 67, 0.3);
-  border-radius: 100px;
-  font-size: 0.8rem;
+  gap: 10px;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--navy);
-  letter-spacing: 0.02em;
+  color: var(--accent-blue);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
 }
 
-.hero-eyebrow-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--gold);
-  border-radius: 50%;
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent-blue);
 }
 
-.hero h1 {
-  margin-bottom: 1.5rem;
-  color: var(--navy);
+.hero-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin-bottom: 28px;
 }
 
-.hero-subtitle {
-  font-size: 1.25rem;
+.hero-title em {
+  font-style: normal;
+  color: var(--accent-blue);
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--text-light-muted);
   line-height: 1.7;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin-bottom: 2.5rem;
+  max-width: 560px;
+  margin-bottom: 48px;
 }
 
 .hero-actions {
   display: flex;
-  gap: 1rem;
+  gap: 16px;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: var(--navy);
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--accent-blue);
   color: var(--white);
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  transition: all 0.2s ease;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   border: none;
+  border-radius: 2px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .btn-primary:hover {
-  background: var(--navy-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(27, 42, 74, 0.2);
+  background: var(--accent-blue-light);
 }
 
-.btn-secondary {
+.btn-ghost {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
+  padding: 14px 32px;
   background: transparent;
-  color: var(--navy);
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  border: 1.5px solid var(--gray-300);
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
   cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
 }
 
-.btn-secondary:hover {
-  border-color: var(--navy);
-  background: rgba(27, 42, 74, 0.03);
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--white);
 }
 
-.btn-gold {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--gold);
-  color: var(--navy);
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-gold:hover {
-  background: var(--gold-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.3);
-}
-
-.hero-stats {
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 48px;
   display: flex;
-  gap: 3rem;
-  margin-top: 4rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--gray-200);
+  align-items: center;
+  gap: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-light-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 2;
 }
 
-.hero-stat-value {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.02em;
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent-blue), transparent);
+  animation: scrollPulse 2s ease infinite;
 }
 
-.hero-stat-label {
-  font-size: 0.8125rem;
-  color: var(--text-tertiary);
-  margin-top: 0.25rem;
-}
-
-@media (max-width: 768px) {
-  .hero { min-height: auto; padding: 8rem 0 4rem; }
-  .hero-content { padding: 2rem 0; }
-  .hero-stats { gap: 2rem; flex-wrap: wrap; }
-  .hero-actions { flex-direction: column; align-items: flex-start; }
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }
 
 /* ========================================
-   PLATFORM OVERVIEW
+   PLATFORM SECTION — WHITE
    ======================================== */
-.platform-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 4rem;
+.platform {
+  background: var(--white);
+  padding: 120px 48px;
 }
 
-.platform-header .label {
-  margin-bottom: 1rem;
-  display: block;
+.section-header {
+  max-width: 640px;
+  margin-bottom: 72px;
 }
 
-.platform-header h2 {
-  margin-bottom: 1rem;
+.section-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  margin-bottom: 16px;
 }
 
-.platform-header p {
-  font-size: 1.0625rem;
-  color: var(--text-secondary);
+.section-title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-body);
   line-height: 1.7;
 }
 
-.platform-card {
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-dark);
+  border: 1px solid var(--border-dark);
   position: relative;
+}
+
+.platform-card {
   background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: all 0.25s ease;
-  cursor: default;
+  padding: 48px 40px;
+  position: relative;
+  transition: background 0.3s;
 }
 
 .platform-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 8px 32px rgba(27, 42, 74, 0.06), 0 0 0 1px var(--gold);
-  transform: translateY(-2px);
+  background: var(--off-white);
+}
+
+.platform-card-number {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gray-300);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  font-variant-numeric: tabular-nums;
+}
+
+.platform-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.platform-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  line-height: 1.65;
 }
 
 .platform-card-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
-  transition: all 0.25s ease;
-}
-
-.platform-card:hover .platform-card-icon {
-  background: var(--gold-muted);
-  border-color: rgba(212, 168, 67, 0.3);
 }
 
 .platform-card-icon svg {
-  width: 24px;
-  height: 24px;
-  color: var(--navy);
+  width: 28px;
+  height: 28px;
+  stroke: var(--accent-blue);
+  stroke-width: 1.5;
+  fill: none;
 }
 
-.platform-card h3 {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--navy);
-}
-
-.platform-card p {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-.platform-card-tag {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.25rem 0.75rem;
-  background: var(--gray-50);
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-tertiary);
-}
-
-/* Platform connection lines */
+/* Connecting lines overlay */
 .platform-connections {
-  position: relative;
-}
-
-.platform-connections::before {
-  content: '';
   position: absolute;
-  top: 50%;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gray-200), var(--gold), var(--gray-200), transparent);
-  opacity: 0.5;
-  z-index: 0;
+  inset: 0;
   pointer-events: none;
-}
-
-.platform-connections::after {
-  content: '';
-  position: absolute;
-  top: 10%;
-  bottom: 10%;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, var(--gray-200), var(--gold), var(--gray-200), transparent);
-  opacity: 0.5;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.platform-center-badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 72px;
-  height: 72px;
-  background: var(--navy);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  box-shadow: 0 4px 20px rgba(27, 42, 74, 0.2);
-}
-
-.platform-center-badge span {
-  font-size: 0.625rem;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 1024px) {
-  .platform-connections::before,
-  .platform-connections::after,
-  .platform-center-badge { display: none; }
+  z-index: 1;
 }
 
 /* ========================================
-   TRUST SIGNALS (Navy section)
+   STATS — DARK
    ======================================== */
-.trust-section {
-  background: var(--navy);
+.stats {
+  background: var(--dark-navy);
+  padding: 100px 48px;
   position: relative;
   overflow: hidden;
 }
 
-.trust-section::before {
+.stats::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(212, 168, 67, 0.06) 0%, transparent 70%);
-  pointer-events: none;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74, 144, 217, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 144, 217, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-.trust-grid {
+.stats-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
   text-align: center;
+  padding: 40px 24px;
+  position: relative;
 }
 
-.trust-item {
-  padding: 2rem 1rem;
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: var(--border-light);
 }
 
-.trust-value {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
+.stat-number {
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 800;
-  color: var(--gold);
-  letter-spacing: -0.03em;
+  color: var(--white);
+  letter-spacing: -0.04em;
   line-height: 1;
-  margin-bottom: 0.75rem;
+  margin-bottom: 8px;
 }
 
-.trust-label {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.5;
-  font-weight: 400;
+.stat-number span {
+  color: var(--accent-blue);
 }
 
-.trust-divider {
-  width: 40px;
-  height: 2px;
-  background: rgba(212, 168, 67, 0.3);
-  margin: 0.75rem auto;
-}
-
-@media (max-width: 768px) {
-  .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .trust-item { padding: 1.5rem 1rem; }
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-light-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* ========================================
-   CASE STUDIES
+   PRODUCTS — WHITE
    ======================================== */
-.case-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 3rem;
-  gap: 2rem;
+.products {
+  background: var(--white);
+  padding: 120px 48px;
 }
 
-.case-header-text { max-width: 600px; }
-.case-header .label { margin-bottom: 0.75rem; display: block; }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.product-card {
+  background: var(--white);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s;
+}
+
+.product-card:hover {
+  background: var(--off-white);
+}
+
+.product-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding: 4px 10px;
+  background: var(--accent-blue-dim);
+  border-radius: 2px;
+  width: fit-content;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.product-desc {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.product-features {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-features li {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gray-500);
+  padding: 4px 12px;
+  border: 1px solid var(--border-dark);
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+}
+
+/* ========================================
+   CASE STUDIES — LIGHT GRAY
+   ======================================== */
+.cases {
+  background: var(--off-white);
+  padding: 120px 48px;
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
 
 .case-card {
   background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: default;
+  border: 1px solid var(--border-dark);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s;
 }
 
 .case-card:hover {
-  box-shadow: 0 12px 40px rgba(27, 42, 74, 0.08);
-  transform: translateY(-3px);
+  border-color: var(--accent-blue);
 }
 
-.case-card-top {
-  padding: 2rem 2rem 0;
-}
-
-.case-card-vertical {
-  display: inline-block;
-  padding: 0.3rem 0.75rem;
-  background: var(--gray-50);
-  border-radius: 100px;
-  font-size: 0.75rem;
+.case-industry {
+  font-size: 0.7rem;
   font-weight: 600;
-  color: var(--text-tertiary);
-  letter-spacing: 0.03em;
+  color: var(--accent-blue);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
-.case-card h3 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
-}
-
-.case-card p {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.case-card-metrics {
-  padding: 1.5rem 2rem;
-  margin-top: 1.5rem;
-  background: var(--gray-50);
-  border-top: 1px solid var(--gray-100);
-  display: flex;
-  gap: 2rem;
-}
-
-.case-metric-value {
-  font-size: 1.75rem;
+.case-metric {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  letter-spacing: -0.04em;
   line-height: 1;
+  margin-bottom: 8px;
 }
 
 .case-metric-label {
-  font-size: 0.8125rem;
-  color: var(--text-tertiary);
-  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
 }
 
-@media (max-width: 768px) {
-  .case-header { flex-direction: column; align-items: flex-start; }
-  .case-card-metrics { flex-direction: column; gap: 1rem; }
+.case-desc {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 28px;
+}
+
+.case-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.2s;
+}
+
+.case-link:hover {
+  gap: 12px;
+}
+
+.case-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
 }
 
 /* ========================================
-   INDUSTRIES
+   INDUSTRIES — DARK
    ======================================== */
-.industries-header {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 3.5rem;
+.industries {
+  background: var(--dark-navy);
+  padding: 120px 48px;
+  position: relative;
 }
 
-.industries-header .label { margin-bottom: 0.75rem; display: block; }
-
-.industry-card {
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: 12px;
-  transition: all 0.25s ease;
+.industries .section-title {
+  color: var(--white);
 }
 
-.industry-card:hover {
-  border-color: var(--navy);
-  box-shadow: 0 4px 16px rgba(27, 42, 74, 0.06);
+.industries .section-desc {
+  color: var(--text-light-muted);
+}
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1px solid var(--border-light);
+}
+
+.industry-item {
+  padding: 48px 32px;
+  text-align: center;
+  border-right: 1px solid var(--border-light);
+  transition: background 0.3s;
+}
+
+.industry-item:last-child {
+  border-right: none;
+}
+
+.industry-item:hover {
+  background: var(--dark-navy-light);
 }
 
 .industry-icon {
-  width: 56px;
-  height: 56px;
-  background: var(--gray-50);
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.25rem;
 }
 
 .industry-icon svg {
-  width: 28px;
-  height: 28px;
-  color: var(--navy);
+  width: 32px;
+  height: 32px;
+  stroke: var(--accent-blue);
+  stroke-width: 1.5;
+  fill: none;
 }
 
-.industry-card h3 {
-  font-size: 1rem;
+.industry-name {
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 0.5rem;
+  color: var(--text-light);
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
 }
 
-.industry-card p {
-  font-size: 0.875rem;
-  color: var(--text-tertiary);
+.industry-sub {
+  font-size: 0.75rem;
+  color: var(--text-light-muted);
   line-height: 1.5;
 }
 
-@media (max-width: 1024px) {
-  .grid-5 { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 640px) {
-  .grid-5 { grid-template-columns: repeat(2, 1fr); }
-}
-
 /* ========================================
-   CTA SECTION
+   CTA — WHITE
    ======================================== */
-.cta-section {
-  background: var(--navy);
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(ellipse at 20% 80%, rgba(212, 168, 67, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(212, 168, 67, 0.04) 0%, transparent 50%);
-  pointer-events: none;
+.cta {
+  background: var(--white);
+  padding: 120px 48px;
+  text-align: center;
 }
 
 .cta-inner {
-  position: relative;
-  text-align: center;
   max-width: 640px;
   margin: 0 auto;
 }
 
-.cta-inner .label {
-  margin-bottom: 1rem;
-  display: block;
-  color: var(--gold);
+.cta .section-eyebrow {
+  text-align: center;
 }
 
-.cta-inner h2 {
-  color: var(--white);
-  margin-bottom: 1rem;
+.cta .section-title {
+  margin-bottom: 20px;
 }
 
-.cta-inner p {
-  font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.65);
-  margin-bottom: 2.5rem;
+.cta-desc {
+  font-size: 1.05rem;
+  color: var(--text-body);
   line-height: 1.7;
+  margin-bottom: 40px;
 }
 
 .cta-actions {
   display: flex;
-  gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.btn-white {
+.btn-dark {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: var(--white);
-  color: var(--navy);
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-white:hover {
-  background: var(--gray-100);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.btn-outline-white {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--dark-navy);
   color: var(--white);
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 2px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
-.btn-outline-white:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.05);
+.btn-dark:hover {
+  background: var(--dark-navy-lighter);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--text-dark);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-dark);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: var(--gray-400);
 }
 
 /* ========================================
-   FOOTER
+   FOOTER — DARK
    ======================================== */
 .footer {
-  background: var(--navy-deep);
-  color: rgba(255, 255, 255, 0.5);
-  padding: 4rem 0 2rem;
+  background: var(--dark-navy);
+  border-top: 1px solid var(--border-light);
+  padding: 64px 48px 40px;
 }
 
-.footer-grid {
+.footer-top {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
+  gap: 48px;
+  margin-bottom: 64px;
 }
 
-.footer-brand p {
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  margin-top: 1rem;
-  color: rgba(255, 255, 255, 0.45);
+.footer-brand {
+  max-width: 280px;
 }
 
-.footer-brand .nav-logo {
+.footer-logo {
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--white);
-}
-
-.footer h4 {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 16px;
 }
 
-.footer ul {
+.footer-logo span {
+  color: var(--accent-blue);
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: var(--text-light-muted);
+  line-height: 1.6;
+}
+
+.footer-col-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-light-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-col ul {
   list-style: none;
 }
 
-.footer ul li {
-  margin-bottom: 0.75rem;
+.footer-col li {
+  margin-bottom: 10px;
 }
 
-.footer ul a {
-  font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.45);
-  transition: color 0.2s ease;
+.footer-col a {
+  font-size: 0.85rem;
+  color: var(--text-light-muted);
+  transition: color 0.2s;
 }
 
-.footer ul a:hover {
-  color: var(--gold);
+.footer-col a:hover {
+  color: var(--white);
 }
 
 .footer-bottom {
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-light);
 }
 
-.footer-bottom p {
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.35);
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--text-light-muted);
 }
 
-.footer-bottom-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer-bottom-links a {
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.35);
-  transition: color 0.2s ease;
-}
-
-.footer-bottom-links a:hover {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-@media (max-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .footer-brand { grid-column: 1 / -1; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+.footer-address {
+  font-size: 0.75rem;
+  color: var(--text-light-muted);
 }
 
 /* ========================================
-   UTILITIES & ANIMATIONS
+   RESPONSIVE
    ======================================== */
+@media (max-width: 1024px) {
+  .nav { padding: 0 32px; }
+  .hero-content { padding: 0 32px; padding-top: 64px; }
+  .platform,
+  .products,
+  .cases,
+  .industries,
+  .cta { padding-left: 32px; padding-right: 32px; }
+  .footer { padding: 64px 32px 40px; }
+
+  .platform-grid { grid-template-columns: repeat(2, 1fr); }
+  .cases-grid { grid-template-columns: repeat(3, 1fr); }
+  .industries-grid { grid-template-columns: repeat(3, 1fr); }
+  .industry-item:nth-child(3) { border-right: none; }
+  .industry-item:nth-child(4),
+  .industry-item:nth-child(5) {
+    border-top: 1px solid var(--border-light);
+  }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2)::after { display: none; }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) {
+    border-top: 1px solid var(--border-light);
+  }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: block; }
+
+  .hero-content { padding: 0 24px; padding-top: 64px; }
+  .hero-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .hero-scroll { left: 24px; }
+
+  .platform,
+  .products,
+  .cases,
+  .industries,
+  .cta { padding: 80px 24px; }
+  .footer { padding: 48px 24px 32px; }
+
+  .platform-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .industries-grid { grid-template-columns: 1fr; }
+  .industry-item { border-right: none; border-bottom: 1px solid var(--border-light); }
+  .industry-item:last-child { border-bottom: none; }
+  .industry-item:nth-child(4),
+  .industry-item:nth-child(5) { border-top: none; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .cta-actions { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 480px) {
+  .stats-inner { grid-template-columns: 1fr; }
+  .stat-item::after { display: none !important; }
+  .stat-item { border-bottom: 1px solid var(--border-light); }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) { border-top: none; }
+}
+
+/* ========================================
+   DATA VIZ ANIMATIONS
+   ======================================== */
+@keyframes nodeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseData {
+  0% { opacity: 0; offset-distance: 0%; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { opacity: 0; offset-distance: 100%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  animation: fadeInUp 0.7s ease forwards;
 }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.gold-accent {
-  color: var(--gold);
-}
-
-.navy-text {
-  color: var(--navy);
-}
-
-/* Arrow icon for buttons */
-.arrow-right {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  position: relative;
-}
-
-.arrow-right::before {
-  content: '\2192';
-  font-size: 1.1em;
-}
+.fade-in-d1 { animation-delay: 0.1s; }
+.fade-in-d2 { animation-delay: 0.2s; }
+.fade-in-d3 { animation-delay: 0.3s; }
+.fade-in-d4 { animation-delay: 0.4s; }
 </style>
 </head>
 <body>
 
-<!-- ========================================
-     NAVIGATION
-     ======================================== -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-mark"></div>
-      SYSCOM
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#platform">Products</a></li>
-      <li><a href="#case-studies">Solutions</a></li>
-      <li><a href="#industries">Industries</a></li>
-      <li><a href="#cta" class="nav-cta">Contact Us</a></li>
-    </ul>
-    <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-logo">SYSCOM<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- ========================================
-     HERO
-     ======================================== -->
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <!-- CSS/SVG Data Visualization -->
-    <div class="hero-viz">
-      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <!-- Connection lines -->
-        <line x1="120" y1="150" x2="380" y2="280" class="hero-line" />
-        <line x1="380" y1="280" x2="650" y2="180" class="hero-line-gold hero-animated-line" />
-        <line x1="650" y1="180" x2="900" y2="320" class="hero-line" />
-        <line x1="900" y1="320" x2="1150" y2="200" class="hero-line-gold hero-animated-line" />
-        <line x1="1150" y1="200" x2="1350" y2="350" class="hero-line" />
-        <line x1="200" y1="450" x2="480" y2="380" class="hero-line" />
-        <line x1="480" y1="380" x2="720" y2="500" class="hero-line-gold hero-animated-line" />
-        <line x1="720" y1="500" x2="980" y2="420" class="hero-line" />
-        <line x1="980" y1="420" x2="1250" y2="550" class="hero-line" />
-        <line x1="300" y1="650" x2="550" y2="580" class="hero-line-gold hero-animated-line" />
-        <line x1="550" y1="580" x2="800" y2="680" class="hero-line" />
-        <line x1="800" y1="680" x2="1050" y2="600" class="hero-line" />
-        <line x1="1050" y1="600" x2="1300" y2="720" class="hero-line-gold hero-animated-line" />
-        <!-- Vertical connections -->
-        <line x1="380" y1="280" x2="480" y2="380" class="hero-line" />
-        <line x1="650" y1="180" x2="720" y2="500" class="hero-line-gold hero-animated-line" />
-        <line x1="900" y1="320" x2="980" y2="420" class="hero-line" />
-        <line x1="550" y1="580" x2="480" y2="380" class="hero-line" />
-        <line x1="800" y1="680" x2="720" y2="500" class="hero-line" />
-        <line x1="1050" y1="600" x2="980" y2="420" class="hero-line-gold hero-animated-line" />
-        <line x1="1150" y1="200" x2="1250" y2="550" class="hero-line" />
-        <!-- Nodes -->
-        <circle cx="120" cy="150" r="4" class="hero-node hero-pulse" />
-        <circle cx="380" cy="280" r="5" class="hero-node-gold hero-pulse-delay" />
-        <circle cx="650" cy="180" r="4" class="hero-node hero-pulse-delay2" />
-        <circle cx="900" cy="320" r="6" class="hero-node-gold hero-pulse" />
-        <circle cx="1150" cy="200" r="4" class="hero-node hero-pulse-delay" />
-        <circle cx="1350" cy="350" r="3" class="hero-node hero-pulse-delay2" />
-        <circle cx="200" cy="450" r="3" class="hero-node hero-pulse" />
-        <circle cx="480" cy="380" r="5" class="hero-node hero-pulse-delay2" />
-        <circle cx="720" cy="500" r="7" class="hero-node-gold hero-pulse" />
-        <circle cx="980" cy="420" r="5" class="hero-node hero-pulse-delay" />
-        <circle cx="1250" cy="550" r="4" class="hero-node hero-pulse-delay2" />
-        <circle cx="300" cy="650" r="3" class="hero-node hero-pulse-delay" />
-        <circle cx="550" cy="580" r="4" class="hero-node-gold hero-pulse" />
-        <circle cx="800" cy="680" r="5" class="hero-node hero-pulse-delay2" />
-        <circle cx="1050" cy="600" r="4" class="hero-node hero-pulse" />
-        <circle cx="1300" cy="720" r="3" class="hero-node-gold hero-pulse-delay" />
-        <!-- Additional scatter nodes -->
-        <circle cx="60" cy="350" r="2" class="hero-node hero-pulse-delay2" />
-        <circle cx="250" cy="100" r="2" class="hero-node hero-pulse" />
-        <circle cx="500" cy="700" r="2" class="hero-node hero-pulse-delay" />
-        <circle cx="1100" cy="100" r="2" class="hero-node hero-pulse" />
-        <circle cx="1400" cy="600" r="2" class="hero-node hero-pulse-delay2" />
-        <circle cx="750" cy="50" r="2" class="hero-node-gold hero-pulse" />
-        <circle cx="1000" cy="750" r="2" class="hero-node hero-pulse-delay" />
-      </svg>
-    </div>
-    <div class="hero-gradient"></div>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-gradient"></div>
+
+  <!-- SVG Data Visualization -->
+  <div class="hero-viz">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Edges connecting nodes -->
+      <g class="edges">
+        <line class="edge-line" x1="780" y1="220" x2="950" y2="340"/>
+        <line class="edge-line" x1="950" y1="340" x2="1120" y2="260"/>
+        <line class="edge-line" x1="950" y1="340" x2="880" y2="500"/>
+        <line class="edge-line" x1="1120" y1="260" x2="1250" y2="380"/>
+        <line class="edge-line" x1="880" y1="500" x2="1050" y2="580"/>
+        <line class="edge-line" x1="1050" y1="580" x2="1250" y2="380"/>
+        <line class="edge-line" x1="780" y1="220" x2="880" y2="500"/>
+        <line class="edge-line" x1="1120" y1="260" x2="1050" y2="580"/>
+        <line class="edge-line" x1="780" y1="220" x2="680" y2="400"/>
+        <line class="edge-line" x1="680" y1="400" x2="880" y2="500"/>
+        <line class="edge-line" x1="1250" y1="380" x2="1340" y2="520"/>
+        <line class="edge-line" x1="1050" y1="580" x2="1340" y2="520"/>
+        <line class="edge-line" x1="680" y1="400" x2="750" y2="620"/>
+        <line class="edge-line" x1="750" y1="620" x2="880" y2="500"/>
+        <line class="edge-line" x1="750" y1="620" x2="1050" y2="580"/>
+      </g>
+
+      <!-- Nodes -->
+      <g filter="url(#glow)">
+        <g style="animation: nodeFloat 6s ease-in-out infinite; transform-origin: 780px 220px;">
+          <circle class="node-ring" cx="780" cy="220" r="18"/>
+          <circle class="node-dot" cx="780" cy="220" r="4"/>
+        </g>
+        <g style="animation: nodeFloat 7s ease-in-out 0.5s infinite; transform-origin: 950px 340px;">
+          <circle class="node-ring" cx="950" cy="340" r="24"/>
+          <circle class="node-ring" cx="950" cy="340" r="14"/>
+          <circle class="node-dot" cx="950" cy="340" r="5"/>
+        </g>
+        <g style="animation: nodeFloat 5.5s ease-in-out 1s infinite; transform-origin: 1120px 260px;">
+          <circle class="node-ring" cx="1120" cy="260" r="16"/>
+          <circle class="node-dot" cx="1120" cy="260" r="3.5"/>
+        </g>
+        <g style="animation: nodeFloat 8s ease-in-out 0.3s infinite; transform-origin: 880px 500px;">
+          <circle class="node-ring" cx="880" cy="500" r="20"/>
+          <circle class="node-dot" cx="880" cy="500" r="4.5"/>
+        </g>
+        <g style="animation: nodeFloat 6.5s ease-in-out 1.5s infinite; transform-origin: 1250px 380px;">
+          <circle class="node-ring" cx="1250" cy="380" r="15"/>
+          <circle class="node-dot" cx="1250" cy="380" r="3"/>
+        </g>
+        <g style="animation: nodeFloat 7.5s ease-in-out 0.8s infinite; transform-origin: 1050px 580px;">
+          <circle class="node-ring" cx="1050" cy="580" r="22"/>
+          <circle class="node-ring" cx="1050" cy="580" r="12"/>
+          <circle class="node-dot" cx="1050" cy="580" r="5"/>
+        </g>
+        <g style="animation: nodeFloat 6s ease-in-out 2s infinite; transform-origin: 680px 400px;">
+          <circle class="node-ring" cx="680" cy="400" r="14"/>
+          <circle class="node-dot" cx="680" cy="400" r="3"/>
+        </g>
+        <g style="animation: nodeFloat 5s ease-in-out 1.2s infinite; transform-origin: 1340px 520px;">
+          <circle class="node-ring" cx="1340" cy="520" r="17"/>
+          <circle class="node-dot" cx="1340" cy="520" r="3.5"/>
+        </g>
+        <g style="animation: nodeFloat 7s ease-in-out 0.6s infinite; transform-origin: 750px 620px;">
+          <circle class="node-ring" cx="750" cy="620" r="13"/>
+          <circle class="node-dot" cx="750" cy="620" r="3"/>
+        </g>
+      </g>
+
+      <!-- Data pulses along edges -->
+      <circle class="data-pulse" r="2.5" fill="#4a90d9">
+        <animateMotion dur="4s" repeatCount="indefinite" path="M780,220 L950,340"/>
+        <animate attributeName="opacity" values="0;0.9;0.9;0" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="data-pulse" r="2" fill="#4a90d9">
+        <animateMotion dur="5s" repeatCount="indefinite" path="M950,340 L1120,260 L1250,380"/>
+        <animate attributeName="opacity" values="0;0.7;0.7;0" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="data-pulse" r="2.5" fill="#4a90d9">
+        <animateMotion dur="6s" repeatCount="indefinite" path="M880,500 L1050,580 L1340,520"/>
+        <animate attributeName="opacity" values="0;0.8;0.8;0" dur="6s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="data-pulse" r="2" fill="#4a90d9">
+        <animateMotion dur="4.5s" repeatCount="indefinite" path="M680,400 L880,500 L1050,580"/>
+        <animate attributeName="opacity" values="0;0.7;0.7;0" dur="4.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle class="data-pulse" r="2" fill="#4a90d9">
+        <animateMotion dur="5.5s" repeatCount="indefinite" path="M750,620 L1050,580 L1250,380"/>
+        <animate attributeName="opacity" values="0;0.6;0.6;0" dur="5.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
   </div>
 
-  <div class="container">
-    <div class="hero-content fade-in">
-      <div class="hero-eyebrow">
-        <div class="hero-eyebrow-dot"></div>
-        Enterprise Content Intelligence
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-in">Enterprise Content Intelligence</div>
+    <h1 class="hero-title fade-in fade-in-d1">40 Years of<br>Enterprise <em>Intelligence</em></h1>
+    <p class="hero-sub fade-in fade-in-d2">SYSCOM builds the systems that governments and financial institutions rely on to capture, manage, automate, and migrate their most critical content. Since 1982.</p>
+    <div class="hero-actions fade-in fade-in-d3">
+      <a href="#contact" class="btn-primary">Request a Briefing</a>
+      <a href="#platform" class="btn-ghost">View Platform</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ============ PLATFORM ============ -->
+<section class="platform" id="platform">
+  <div class="section-header">
+    <div class="section-eyebrow">Centers of Excellence</div>
+    <h2 class="section-title">Six disciplines. One integrated platform.</h2>
+    <p class="section-desc">Every capability is purpose-built by engineers who understand the compliance, scale, and reliability demands of government and financial services operations.</p>
+  </div>
+
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="platform-card-number">01</div>
+      <div class="platform-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       </div>
-      <h1 class="heading-xl">40 Years of Enterprise&nbsp;Intelligence</h1>
-      <p class="hero-subtitle">SYSCOM builds the systems that run government agencies and financial institutions. We capture, migrate, automate, and manage enterprise content at scale &mdash; now with AI at the core.</p>
-      <div class="hero-actions">
-        <a href="#platform" class="btn-primary">Explore the Platform <span class="arrow-right"></span></a>
-        <a href="#cta" class="btn-secondary">Request a Briefing</a>
+      <h3 class="platform-card-title">Enterprise Content Management</h3>
+      <p class="platform-card-desc">Repository architecture, compliance frameworks, and records management for organizations processing millions of documents annually.</p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-card-number">02</div>
+      <div class="platform-card-icon">
+        <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
       </div>
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-value">40+</div>
-          <div class="hero-stat-label">Years in Operation</div>
-        </div>
-        <div>
-          <div class="hero-stat-value">300+</div>
-          <div class="hero-stat-label">Enterprise Clients</div>
-        </div>
-        <div>
-          <div class="hero-stat-value">5</div>
-          <div class="hero-stat-label">Industry Verticals</div>
-        </div>
-        <div>
-          <div class="hero-stat-value">70%+</div>
-          <div class="hero-stat-label">5-Year Retention</div>
-        </div>
+      <h3 class="platform-card-title">Business Process Automation</h3>
+      <p class="platform-card-desc">Workflow orchestration, business rules engines, and case management that eliminate manual processing bottlenecks across complex operations.</p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-card-number">03</div>
+      <div class="platform-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
       </div>
+      <h3 class="platform-card-title">Enterprise Capture</h3>
+      <p class="platform-card-desc">Intelligent document capture, OCR, classification, and data extraction. Convert unstructured inputs into structured, actionable data at scale.</p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-card-number">04</div>
+      <div class="platform-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      </div>
+      <h3 class="platform-card-title">Content Migration</h3>
+      <p class="platform-card-desc">Legacy system migration with full metadata, security, and folder structure preservation. Move between any ECM system with zero data loss.</p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-card-number">05</div>
+      <div class="platform-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </div>
+      <h3 class="platform-card-title">Platform Integration</h3>
+      <p class="platform-card-desc">Deep expertise across IBM, Microsoft, and cloud ecosystems. We connect disparate systems into unified content architectures.</p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-card-number">06</div>
+      <div class="platform-card-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+      <h3 class="platform-card-title">AI &amp; Intelligent Automation</h3>
+      <p class="platform-card-desc">Computer vision, natural language processing, intelligent classification, and robotic process automation applied to enterprise content challenges.</p>
     </div>
   </div>
 </section>
 
-<!-- ========================================
-     PLATFORM OVERVIEW
-     ======================================== -->
-<section class="section" id="platform">
-  <div class="container">
-    <div class="platform-header fade-in">
-      <span class="label">Integrated Platform</span>
-      <h2 class="heading-lg">One Platform. Every Content Challenge.</h2>
-      <p>Six integrated capabilities that work together to capture, manage, migrate, and automate enterprise content across your entire organization.</p>
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">40<span>+</span></div>
+      <div class="stat-label">Years in Operation</div>
     </div>
-
-    <div class="grid-6 platform-connections fade-in">
-      <!-- Platform Center Badge -->
-      <div class="platform-center-badge">
-        <span>SYSCOM</span>
-      </div>
-
-      <!-- Card 1: IBIG -->
-      <div class="platform-card">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        </div>
-        <h3>IBIG</h3>
-        <p>AI-powered document intelligence gateway. SOA-based content services platform that deploys new ECM capabilities through simple configuration.</p>
-        <span class="platform-card-tag">Content Services Gateway</span>
-      </div>
-
-      <!-- Card 2: ASM -->
-      <div class="platform-card">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22V8"/><path d="M21 3l-9 9"/><path d="M3 3l9 9"/></svg>
-        </div>
-        <h3>AnySource Migrator</h3>
-        <p>Proprietary content migration platform. Moves content between any ECM system with full metadata, security, and folder structure preservation.</p>
-        <span class="platform-card-tag">Content Migration</span>
-      </div>
-
-      <!-- Card 3: AI Mainframe -->
-      <div class="platform-card">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-        </div>
-        <h3>AI Mainframe Intelligence</h3>
-        <p>Mainframe modernization platform. Unlock legacy mainframe data and processes with AI-driven analysis, extraction, and transformation.</p>
-        <span class="platform-card-tag">Mainframe Modernization</span>
-      </div>
-
-      <!-- Card 4: Kofax/Tungsten -->
-      <div class="platform-card">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 9 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
-        </div>
-        <h3>Kofax/Tungsten Solutions</h3>
-        <p>Intelligent capture automation. OCR, classification, and data extraction at enterprise scale with AI-enhanced accuracy.</p>
-        <span class="platform-card-tag">Capture Automation</span>
-      </div>
-
-      <!-- Card 5: ECM -->
-      <div class="platform-card">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <h3>Enterprise Content Management</h3>
-        <p>Full-lifecycle content management across IBM CM8, FileNet, Content Navigator, and ServiceNow. Repository, compliance, and records management.</p>
-        <span class="platform-card-tag">IBM &middot; FileNet &middot; ServiceNow</span>
-      </div>
-
-      <!-- Card 6: BPA -->
-      <div class="platform-card">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-        </div>
-        <h3>Business Process Automation</h3>
-        <p>Workflow automation, business rules, and case management. Eliminate manual handoffs and accelerate decision-making across departments.</p>
-        <span class="platform-card-tag">Workflow &middot; Rules &middot; Case Mgmt</span>
-      </div>
+    <div class="stat-item">
+      <div class="stat-number">300<span>+</span></div>
+      <div class="stat-label">Enterprise Clients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">70<span>%</span></div>
+      <div class="stat-label">5-Year Retention</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Centers of Excellence</div>
     </div>
   </div>
 </section>
 
-<!-- ========================================
-     TRUST SIGNALS
-     ======================================== -->
-<section class="section trust-section" id="trust">
-  <div class="container">
-    <div class="trust-grid fade-in">
-      <div class="trust-item">
-        <div class="trust-value">300+</div>
-        <div class="trust-divider"></div>
-        <div class="trust-label">Enterprise clients across government and financial services</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-value">40+</div>
-        <div class="trust-divider"></div>
-        <div class="trust-label">Years of continuous operation in enterprise content management</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-value">Gov &amp; Fin</div>
-        <div class="trust-divider"></div>
-        <div class="trust-label">Deep expertise in government agencies and financial institutions</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-value">5</div>
-        <div class="trust-divider"></div>
-        <div class="trust-label">Industry verticals served with mission-critical solutions</div>
-      </div>
+<!-- ============ PRODUCTS ============ -->
+<section class="products" id="products">
+  <div class="section-header">
+    <div class="section-eyebrow">Products</div>
+    <h2 class="section-title">Purpose-built software for content operations</h2>
+    <p class="section-desc">Proprietary platforms we designed, built, and own. Not resold software. Not consulting frameworks. Production systems deployed at scale.</p>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-badge">Flagship</div>
+      <h3 class="product-name">AnySource Migrator</h3>
+      <p class="product-desc">Moves content between any ECM system with full metadata, security descriptors, and folder structure preservation. IBM CM8, FileNet, Documentum, SharePoint, and more. No competitor matches this capability.</p>
+      <ul class="product-features">
+        <li>Full Metadata Preservation</li>
+        <li>Zero Downtime</li>
+        <li>Any-to-Any ECM</li>
+        <li>Security Mapping</li>
+        <li>Audit Trail</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge">Modernization</div>
+      <h3 class="product-name">AIS Bridge</h3>
+      <p class="product-desc">Complete, fully supported replacement for IBM ImagePlus. Maintains your ImagePlus investment while modernizing infrastructure, eliminating platform risk without disrupting operations.</p>
+      <ul class="product-features">
+        <li>IBM ImagePlus Compatible</li>
+        <li>Modern Infrastructure</li>
+        <li>Full Support</li>
+        <li>Risk Elimination</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge">Integration</div>
+      <h3 class="product-name">IBIG</h3>
+      <p class="product-desc">Intelligent Business Information Gateway. A content services platform providing SOA approach to rapidly create and deploy new ECM services through configuration, not code.</p>
+      <ul class="product-features">
+        <li>SOA Architecture</li>
+        <li>Config-Driven</li>
+        <li>Rapid Deployment</li>
+        <li>Service Gateway</li>
+      </ul>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge">Managed</div>
+      <h3 class="product-name">Content Services</h3>
+      <p class="product-desc">Comprehensive suite covering capture, repository management, business intelligence, and managed services. End-to-end content operations for organizations that need reliability above all else.</p>
+      <ul class="product-features">
+        <li>Capture</li>
+        <li>Repository Mgmt</li>
+        <li>Business Intelligence</li>
+        <li>Managed Services</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ========================================
-     CASE STUDIES
-     ======================================== -->
-<section class="section section-gray" id="case-studies">
-  <div class="container">
-    <div class="case-header fade-in">
-      <div class="case-header-text">
-        <span class="label">Proven Results</span>
-        <h2 class="heading-lg">Outcomes That Define Enterprise&nbsp;Scale</h2>
-      </div>
-      <a href="#cta" class="btn-secondary">View All Case Studies <span class="arrow-right"></span></a>
+<!-- ============ CASE STUDIES ============ -->
+<section class="cases" id="results">
+  <div class="section-header">
+    <div class="section-eyebrow">Results</div>
+    <h2 class="section-title">Measured outcomes, not promises</h2>
+    <p class="section-desc">Representative outcomes from deployments across government, financial services, and healthcare operations.</p>
+  </div>
+
+  <div class="cases-grid">
+    <div class="case-card">
+      <div class="case-industry">State Government Agency</div>
+      <div class="case-metric">65%</div>
+      <div class="case-metric-label">Reduction in Processing Time</div>
+      <p class="case-desc">Automated document capture and classification for a state DPS operation processing 2M+ documents annually. Manual review dropped from days to hours.</p>
+      <a href="#" class="case-link">
+        Read case study
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
 
-    <div class="grid-3 fade-in">
-      <!-- Case 1 -->
-      <div class="case-card">
-        <div class="case-card-top">
-          <span class="case-card-vertical">State Government Agency</span>
-          <h3>Automated Document Processing for State DPS Operations</h3>
-          <p>Replaced a manual, paper-driven workflow with intelligent capture and automated classification. Processing times dropped from days to minutes, with AI-powered data extraction handling 15+ document types.</p>
-        </div>
-        <div class="case-card-metrics">
-          <div>
-            <div class="case-metric-value">65%</div>
-            <div class="case-metric-label">Reduction in Manual Processing</div>
-          </div>
-          <div>
-            <div class="case-metric-value">4x</div>
-            <div class="case-metric-label">Throughput Increase</div>
-          </div>
-        </div>
-      </div>
+    <div class="case-card">
+      <div class="case-industry">Financial Services</div>
+      <div class="case-metric">1M+</div>
+      <div class="case-metric-label">Documents Migrated</div>
+      <p class="case-desc">Legacy ECM to modern platform migration for a regional credit union. Complete metadata preservation, zero data loss, zero downtime during transition.</p>
+      <a href="#" class="case-link">
+        Read case study
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
 
-      <!-- Case 2 -->
-      <div class="case-card">
-        <div class="case-card-top">
-          <span class="case-card-vertical">Financial Services</span>
-          <h3>Enterprise Content Migration for Regional Credit Union</h3>
-          <p>Migrated 1M+ documents from a legacy Documentum repository to IBM FileNet using AnySource Migrator. Full metadata preservation, zero data loss, and zero downtime during the transition.</p>
-        </div>
-        <div class="case-card-metrics">
-          <div>
-            <div class="case-metric-value">1M+</div>
-            <div class="case-metric-label">Documents Migrated</div>
-          </div>
-          <div>
-            <div class="case-metric-value">0</div>
-            <div class="case-metric-label">Downtime Hours</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Case 3 -->
-      <div class="case-card">
-        <div class="case-card-top">
-          <span class="case-card-vertical">Healthcare / Insurance</span>
-          <h3>Zero-Downtime Platform Modernization for Claims Processing</h3>
-          <p>Modernized a legacy IBM ImagePlus-based claims processing system using AIS Bridge. The insurer maintained full operations throughout the transition while gaining modern infrastructure and AI-ready architecture.</p>
-        </div>
-        <div class="case-card-metrics">
-          <div>
-            <div class="case-metric-value">100%</div>
-            <div class="case-metric-label">Uptime During Migration</div>
-          </div>
-          <div>
-            <div class="case-metric-value">40%</div>
-            <div class="case-metric-label">Infrastructure Cost Savings</div>
-          </div>
-        </div>
-      </div>
+    <div class="case-card">
+      <div class="case-industry">Health Insurance</div>
+      <div class="case-metric">Zero</div>
+      <div class="case-metric-label">Downtime Modernization</div>
+      <p class="case-desc">IBM ImagePlus replacement for a health insurance claims operation. AIS Bridge maintained full operational continuity while retiring legacy infrastructure.</p>
+      <a href="#" class="case-link">
+        Read case study
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ========================================
-     INDUSTRIES
-     ======================================== -->
-<section class="section" id="industries">
-  <div class="container">
-    <div class="industries-header fade-in">
-      <span class="label">Industries We Serve</span>
-      <h2 class="heading-lg">Built for Regulated, Mission-Critical Environments</h2>
-      <p class="body-md" style="margin-top: 1rem;">We work where the stakes are highest &mdash; industries that require proven technology, deep compliance expertise, and zero margin for error.</p>
+<!-- ============ INDUSTRIES ============ -->
+<section class="industries" id="industries">
+  <div class="section-header">
+    <div class="section-eyebrow">Industries</div>
+    <h2 class="section-title">Built for regulated, high-volume operations</h2>
+    <p class="section-desc">We serve organizations where compliance is mandatory, uptime is critical, and the cost of failure is measured in millions.</p>
+  </div>
+
+  <div class="industries-grid">
+    <div class="industry-item">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M8 10v11M12 10v11M16 10v11M20 10v11"/></svg>
+      </div>
+      <div class="industry-name">Government</div>
+      <div class="industry-sub">State &amp; Federal Agencies</div>
     </div>
-
-    <div class="grid-5 fade-in">
-      <!-- Government -->
-      <div class="industry-card">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M9 14h.01"/><path d="M15 14h.01"/></svg>
-        </div>
-        <h3>Government</h3>
-        <p>State and federal agencies</p>
+    <div class="industry-item">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       </div>
-
-      <!-- Financial Services -->
-      <div class="industry-card">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <h3>Financial Services</h3>
-        <p>Banks and credit unions</p>
+      <div class="industry-name">Financial Services</div>
+      <div class="industry-sub">Banks &amp; Credit Unions</div>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       </div>
-
-      <!-- Healthcare -->
-      <div class="industry-card">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        </div>
-        <h3>Healthcare</h3>
-        <p>Insurance and claims</p>
+      <div class="industry-name">Healthcare</div>
+      <div class="industry-sub">Insurance &amp; Claims</div>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
       </div>
-
-      <!-- Higher Education -->
-      <div class="industry-card">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 8 3 12 0v-5"/></svg>
-        </div>
-        <h3>Higher Education</h3>
-        <p>Universities and systems</p>
+      <div class="industry-name">Higher Education</div>
+      <div class="industry-sub">Records &amp; Compliance</div>
+    </div>
+    <div class="industry-item">
+      <div class="industry-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg>
       </div>
-
-      <!-- Manufacturing -->
-      <div class="industry-card">
-        <div class="industry-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 002 2h16a2 2 0 002-2V8l-7 5V8l-7 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2z"/></svg>
-        </div>
-        <h3>Manufacturing</h3>
-        <p>Industrial and telecom</p>
-      </div>
+      <div class="industry-name">Manufacturing</div>
+      <div class="industry-sub">Document Operations</div>
     </div>
   </div>
 </section>
 
-<!-- ========================================
-     CTA SECTION
-     ======================================== -->
-<section class="section cta-section" id="cta">
-  <div class="container">
-    <div class="cta-inner fade-in">
-      <span class="label">Get Started</span>
-      <h2 class="heading-lg">Ready to Modernize Your Enterprise Content Operations?</h2>
-      <p>Talk to our team about how SYSCOM's 40 years of enterprise content expertise and AI-powered platform can solve your most pressing content challenges.</p>
-      <div class="cta-actions">
-        <a href="mailto:sales@syscom.com" class="btn-gold">Contact Sales</a>
-        <a href="tel:+14105393737" class="btn-outline-white">Call (410) 539-3737</a>
-      </div>
+<!-- ============ CTA ============ -->
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <div class="section-eyebrow">Get Started</div>
+    <h2 class="section-title">Ready to modernize your content operations?</h2>
+    <p class="cta-desc">Talk to our team about your specific requirements. We will assess your current state, identify the highest-impact opportunities, and build a deployment plan.</p>
+    <div class="cta-actions">
+      <a href="mailto:sales@syscom.com" class="btn-dark">Request a Briefing</a>
+      <a href="tel:+14105393737" class="btn-outline">Call (410) 539-3737</a>
     </div>
   </div>
 </section>
 
-<!-- ========================================
-     FOOTER
-     ======================================== -->
+<!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="nav-logo">
-          <div class="nav-logo-mark"></div>
-          SYSCOM
-        </div>
-        <p>Enterprise content management, business process automation, and AI-driven document intelligence. Headquartered in Baltimore, Maryland since 1982.</p>
-        <p style="margin-top: 0.75rem;">400 East Pratt Street, Suite 600<br>Baltimore, MD 21202</p>
-      </div>
-      <div>
-        <h4>Products</h4>
-        <ul>
-          <li><a href="#platform">IBIG</a></li>
-          <li><a href="#platform">AnySource Migrator</a></li>
-          <li><a href="#platform">AI Mainframe Intelligence</a></li>
-          <li><a href="#platform">Kofax/Tungsten</a></li>
-          <li><a href="#platform">Content Services</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Solutions</h4>
-        <ul>
-          <li><a href="#case-studies">Government</a></li>
-          <li><a href="#case-studies">Financial Services</a></li>
-          <li><a href="#case-studies">Healthcare</a></li>
-          <li><a href="#case-studies">Higher Education</a></li>
-          <li><a href="#case-studies">Manufacturing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="mailto:sales@syscom.com">Contact</a></li>
-          <li><a href="tel:+14105393737">(410) 539-3737</a></li>
-        </ul>
-      </div>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">SYSCOM<span>.</span></div>
+      <p class="footer-tagline">Enterprise content management, business process automation, and intelligent document solutions. Baltimore, Maryland. Since 1982.</p>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 SYSCOM, Inc. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Platform</div>
+      <ul>
+        <li><a href="#">Content Management</a></li>
+        <li><a href="#">Process Automation</a></li>
+        <li><a href="#">Enterprise Capture</a></li>
+        <li><a href="#">Content Migration</a></li>
+        <li><a href="#">Platform Integration</a></li>
+        <li><a href="#">AI &amp; Automation</a></li>
+      </ul>
     </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Products</div>
+      <ul>
+        <li><a href="#">AnySource Migrator</a></li>
+        <li><a href="#">AIS Bridge</a></li>
+        <li><a href="#">IBIG</a></li>
+        <li><a href="#">Content Services</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="mailto:sales@syscom.com">sales@syscom.com</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 SYSCOM, Inc. All rights reserved.</div>
+    <div class="footer-address">400 East Pratt Street, Suite 600, Baltimore, MD 21202</div>
   </div>
 </footer>
-
-<!-- ========================================
-     JAVASCRIPT
-     ======================================== -->
-<script>
-// Navigation scroll effect
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 10);
-});
-
-// Mobile navigation toggle
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
-navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-
-// Close mobile nav when a link is clicked
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-  });
-});
-
-// Intersection Observer for fade-in animations
-const fadeElements = document.querySelectorAll('.fade-in');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -40px 0px'
-});
-
-fadeElements.forEach(el => observer.observe(el));
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      const offset = 80;
-      const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top: position, behavior: 'smooth' });
-    }
-  });
-});
-</script>
 
 </body>
 </html>
