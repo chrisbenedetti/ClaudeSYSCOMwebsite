@@ -154,7 +154,7 @@ This repo deploys to two hosts in parallel:
 - **GitHub Pages** — combined showroom of all three variants at `chrisbenedetti.github.io/ClaudeSYSCOMwebsite/`. Triggered by pushes to `main` via `.github/workflows/deploy.yml`. Useful for stakeholder review.
 - **Cloudflare Pages** — production host for the Government-Friendly variant at `<project>.pages.dev`. Custom domain (`syscom.com`) is deferred until DNS migration completes.
 
-Full setup, env vars, dashboard configuration, and the eventual custom-domain cutover are documented in [DEPLOYMENT.md](./DEPLOYMENT.md). Read that **before** triggering the first Cloudflare build — there's a required `VITE_BASE_PATH=/` env var without which the site ships broken.
+Full setup, dashboard configuration, and the eventual custom-domain cutover are documented in [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## Bundle Sizes
 

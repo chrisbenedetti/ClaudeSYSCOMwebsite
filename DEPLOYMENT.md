@@ -4,15 +4,17 @@ This repo deploys the **Government-Friendly** variant (`packages/govfriendly/`) 
 
 ---
 
-## ⚠️ READ FIRST — required env var: `VITE_BASE_PATH=/`
+## Base path — how it's resolved
 
-**Before triggering the first Cloudflare build, set this environment variable in the Cloudflare dashboard. If you forget it, the build will succeed but ship a broken site — every CSS, JS, and image URL will 404 because asset paths will be prefixed with `/ClaudeSYSCOMwebsite/govfriendly/` (the GitHub Pages subpath) instead of `/`.**
+`packages/govfriendly/vite.config.ts` resolves the Vite base path in this order:
 
-This is the #1 footgun for this setup. The site will load `index.html` but appear as an unstyled blank page. View-source will show `<script src="/ClaudeSYSCOMwebsite/govfriendly/assets/...">` — that is the symptom.
+1. `VITE_BASE_PATH` env var — explicit override (rarely needed).
+2. `CF_PAGES` env var — Cloudflare Pages sets this to `1` automatically on every build, so the config picks `/` with no user action required.
+3. Fallback — `/ClaudeSYSCOMwebsite/govfriendly/` for GitHub Pages, which sets neither of the above.
 
-Fix: set the env var (instructions below) and redeploy.
+This means Cloudflare Pages "just works" out of the box. You do **not** need to set `VITE_BASE_PATH=/` in the dashboard.
 
-Why this exists: `packages/govfriendly/vite.config.ts` reads `VITE_BASE_PATH` and falls back to the GitHub Pages subpath when the var is unset. GitHub Actions doesn't set the var, so GH Pages keeps working. Cloudflare Pages serves the site at the root of `<project>.pages.dev`, so it must override the base to `/`.
+**If the deployed site renders blank**, view-source and check the asset paths. If they look like `/ClaudeSYSCOMwebsite/govfriendly/assets/...` instead of `/assets/...`, the `CF_PAGES` env var wasn't visible during the build — something unusual happened. Workaround: add `VITE_BASE_PATH=/` as a Production env var and redeploy.
 
 ---
 
@@ -41,8 +43,8 @@ Add under **Settings → Environment variables**. Set for both Production and Pr
 
 | Variable | Value | Required? |
 |----------|-------|-----------|
-| `VITE_BASE_PATH` | `/` | **Yes — without this, the site ships broken (see warning above).** |
 | `NODE_VERSION` | `20` | Recommended — matches what GitHub Actions uses (`.github/workflows/deploy.yml`). The repo has no `.nvmrc` or `engines` pin, so Cloudflare will otherwise default to its current Node version, which may drift. |
+| `VITE_BASE_PATH` | `/` | Optional fallback. Only needed if `CF_PAGES` auto-detection somehow fails (see "Base path" section above). |
 
 ### 4. Save and trigger first build
 - Click **Save and Deploy**.
