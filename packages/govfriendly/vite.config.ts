@@ -2,11 +2,16 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-// Base path is host-dependent:
-//   - GitHub Pages: served at /ClaudeSYSCOMwebsite/govfriendly/ (default below)
-//   - Cloudflare Pages: served at site root, so build with VITE_BASE_PATH=/
+// Base path is host-dependent. Resolution order:
+//   1. VITE_BASE_PATH env var — explicit override (rarely needed)
+//   2. CF_PAGES=1 — set automatically by Cloudflare Pages builds → "/"
+//   3. Fallback — GitHub Pages project-page subpath
+const base =
+  process.env.VITE_BASE_PATH ??
+  (process.env.CF_PAGES ? '/' : '/ClaudeSYSCOMwebsite/govfriendly/');
+
 export default defineConfig({
-  base: process.env.VITE_BASE_PATH ?? '/ClaudeSYSCOMwebsite/govfriendly/',
+  base,
   plugins: [react()],
   server: {
     port: 5174,

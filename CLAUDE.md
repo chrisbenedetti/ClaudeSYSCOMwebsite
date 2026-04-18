@@ -71,14 +71,15 @@ This repo deploys to **two hosts in parallel**:
 
 **Do not disable GitHub Pages.** Both deploys trigger from `main`. Full setup is in [DEPLOYMENT.md](./DEPLOYMENT.md).
 
-### `VITE_BASE_PATH` — the conditional base path
+### Conditional base path
 
-`packages/govfriendly/vite.config.ts` reads `process.env.VITE_BASE_PATH` and falls back to `/ClaudeSYSCOMwebsite/govfriendly/` when unset. This lets the same code build correctly for both hosts:
+`packages/govfriendly/vite.config.ts` picks the Vite base path in this order:
 
-- **GitHub Pages** (no env var set) → asset URLs prefixed with the subpath. Site lives under a project-page subdirectory.
-- **Cloudflare Pages** (`VITE_BASE_PATH=/`) → asset URLs at root. Site lives at the root of `*.pages.dev`.
+1. `VITE_BASE_PATH` env var — explicit override.
+2. `CF_PAGES=1` — set automatically by Cloudflare Pages builds → `/`.
+3. Fallback — `/ClaudeSYSCOMwebsite/govfriendly/` for GitHub Pages (sets neither of the above).
 
-If you change the GH Pages subpath or add a new host, update the fallback or the env var — never hardcode a new base in the config.
+Both hosts build correctly from the same code with zero dashboard configuration. If you add a third host, detect it by whatever env var it reliably sets during builds — never hardcode a new base in the config.
 
 ### Cloudflare Pages Functions
 
