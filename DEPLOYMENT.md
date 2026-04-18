@@ -28,7 +28,7 @@ Do this in the Cloudflare dashboard at <https://dash.cloudflare.com> → **Worke
 
 | Field | Value |
 |-------|-------|
-| Project name | `syscom-govfriendly` (matches `wrangler.toml`) |
+| Project name | `syscom-web` (matches `wrangler.toml`) |
 | Production branch | `main` |
 | Framework preset | **None** (this is a monorepo build, not a single-app preset) |
 | Build command | `npm run build:govfriendly` |
@@ -47,7 +47,7 @@ Add under **Settings → Environment variables**. Set for both Production and Pr
 ### 4. Save and trigger first build
 - Click **Save and Deploy**.
 - First build runs `npm ci && npm run build:govfriendly` from the repo root.
-- On success, the site is live at `https://syscom-govfriendly.pages.dev` (or `https://<project-name>.pages.dev` if Cloudflare picked a different name).
+- On success, the site is live at `https://syscom-web.pages.dev` (or `https://<project-name>.pages.dev` if Cloudflare picked a different name).
 
 ### 5. Verify
 Visit the `.pages.dev` URL and check:
@@ -102,7 +102,7 @@ Functions run on the Workers runtime — Web Fetch API only, **not Node**. No `f
 
 ```bash
 # Production:
-npx wrangler pages secret put RESEND_API_KEY --project-name syscom-govfriendly
+npx wrangler pages secret put RESEND_API_KEY --project-name syscom-web
 
 # Or in the dashboard:
 # Settings → Environment variables → Add variable → encrypt
@@ -119,7 +119,7 @@ Read in the function as `context.env.RESEND_API_KEY`.
 1. In Cloudflare dashboard → Pages project → **Custom domains** → **Set up a custom domain** → enter `syscom.com` (and `www.syscom.com`).
 2. Cloudflare will auto-add the necessary CNAME / A records if the domain is on Cloudflare DNS. If not, it will provide records to add at the current registrar.
 3. SSL: Cloudflare provisions a cert automatically (Universal SSL). Verify HTTPS works before flipping any prod traffic.
-4. Decide which variant `syscom.com` should point at — `syscom-govfriendly.pages.dev` if the gov-friendly variant wins the bake-off, otherwise repeat this setup for whichever variant is chosen.
+4. Decide which variant `syscom.com` should point at — `syscom-web.pages.dev` if the gov-friendly variant wins the bake-off, otherwise repeat this setup for whichever variant is chosen.
 5. Keep the `.pages.dev` URL working — it's useful for staging/testing.
 
 Until then: the site lives at `<project>.pages.dev` only.
@@ -132,7 +132,7 @@ The function at `functions/api/contact.js` currently validates input and returns
 
 1. Pick an email provider — **Resend** is recommended (simple API, generous free tier, excellent deliverability).
 2. Sign up, verify the `syscom.com` sender domain (DKIM/SPF records).
-3. `wrangler pages secret put RESEND_API_KEY --project-name syscom-govfriendly`
+3. `wrangler pages secret put RESEND_API_KEY --project-name syscom-web`
 4. Uncomment the marked block in `functions/api/contact.js` and adjust `from` / `to` / `subject` to match SYSCOM's preferences.
 5. Update the contact form component in `packages/govfriendly/src/` to POST to `/api/contact`.
 
