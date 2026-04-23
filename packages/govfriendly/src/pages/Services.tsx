@@ -39,7 +39,7 @@ const serviceDetails: Record<string, { capabilities: string[]; detail: string }>
   },
   capture: {
     detail:
-      'Our capture solutions turn paper and unstructured content into actionable data. With a 30+ year Tungsten Automation (Kofax) partnership, we deploy remote and central capture, advanced recognition, and AI-powered classification.',
+      'Our capture solutions turn paper and unstructured content into actionable data. Backed by a long-standing Tungsten Automation (Kofax) partnership, we deploy remote and central capture, advanced recognition, and AI-powered classification.',
     capabilities: [
       'Remote and central capture deployment',
       'Scanner and VRS configuration',

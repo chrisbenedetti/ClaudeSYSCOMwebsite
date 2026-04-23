@@ -34,7 +34,7 @@ const serviceDetails: Record<string, string[]> = {
     'Case management for complex, multi-step processes',
   ],
   capture: [
-    '30+ year Tungsten Automation (Kofax) partnership',
+    'Long-standing Tungsten Automation (Kofax) partnership',
     'Remote and central capture, scanner and VRS configuration',
     'Advanced recognition and AI-powered classification',
     'Custom validation and release scripts, IBM Datacap deployment',
@@ -42,7 +42,7 @@ const serviceDetails: Record<string, string[]> = {
   migration: [
     'Powered by our proprietary AnySource Migrator technology',
     'Full metadata, security, and folder structure preservation',
-    '25+ pre-built repository connectors',
+    'Extensive library of pre-built repository connectors',
     'AI-powered auto-mapping reduces planning from weeks to hours',
   ],
   ai: [
@@ -63,7 +63,7 @@ const serviceDetails: Record<string, string[]> = {
     'Project Managers, Architects, Business Analysts, Programmers',
     'Technical Writers and Testers with deep ECM knowledge',
     'Individual resources, teams, or entire departments',
-    'Short-term engagements to long-term placements exceeding 10 years',
+    'Short-term engagements to long-term placements spanning many years',
     'Rapid deployment backed by decades of technical expertise',
   ],
 };

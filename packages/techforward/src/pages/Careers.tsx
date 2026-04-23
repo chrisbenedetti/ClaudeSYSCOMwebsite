@@ -119,8 +119,8 @@ export default function Careers() {
                 </h2>
                 <div className="space-y-4 text-muted leading-relaxed">
                   <p>
-                    Over 70% of our team has been with SYSCOM for five years or more. In an
-                    industry known for high turnover, that number speaks for itself.
+                    The vast majority of our team has been with SYSCOM for many years. In an
+                    industry known for high turnover, that retention speaks for itself.
                   </p>
                   <p>
                     We&apos;re a small, focused company where every engineer works directly on
@@ -130,8 +130,8 @@ export default function Careers() {
                   </p>
                   <p>
                     Based in Baltimore&apos;s Inner Harbor, SYSCOM offers the stability of a
-                    {' '}{company.yearsInBusiness}+ year track record with the technical ambition
-                    of a company investing heavily in AI, cloud, and modern automation.
+                    decades-long track record with the technical ambition of a company investing
+                    heavily in AI, cloud, and modern automation.
                   </p>
                 </div>
               </div>

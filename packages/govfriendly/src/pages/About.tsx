@@ -43,7 +43,7 @@ export default function About() {
               <p className="mt-6 text-slate leading-relaxed">
                 We know that the newest technology is not always the best solution, but it's
                 sometimes the only solution. We know the difference. That's the judgment that
-                comes from {company.yearsInBusiness} years of hands-on enterprise deployments.
+                comes from decades of hands-on enterprise deployments.
               </p>
               <p className="mt-4 text-slate leading-relaxed">
                 SYSCOM is not a body shop. We develop deep expertise in every platform
@@ -59,12 +59,12 @@ export default function About() {
               </h3>
               <ul className="space-y-4">
                 {[
-                  `${company.yearsInBusiness}+ years of continuous operation in ECM`,
+                  'Decades of continuous operation in ECM, since 1982',
                   'Proprietary migration technology (AnySource Migrator)',
                   'Deep IBM ecosystem expertise (CM8, FileNet, BAW)',
                   'We use proven platforms and build our own where needed',
                   'AI-forward strategy led by a dedicated CTO',
-                  '30+ year Tungsten Automation (Kofax) partnership',
+                  'Long-standing Tungsten Automation (Kofax) partnership',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="text-teal mt-0.5 shrink-0" aria-hidden="true">
@@ -271,8 +271,8 @@ export default function About() {
             Ready to Work with Us?
           </h2>
           <p className="mt-4 text-lg text-muted max-w-2xl mx-auto">
-            Let us show you what {company.yearsInBusiness} years of enterprise content
-            management expertise can do for your organization.
+            Let us show you what decades of enterprise content management expertise can
+            do for your organization.
           </p>
           <Link to="/contact" className="mt-8 btn-primary inline-flex">
             Get in Touch

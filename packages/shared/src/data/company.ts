@@ -40,7 +40,7 @@ export const leadership = [
   {
     name: "Ted Bayer",
     title: "President & CEO",
-    bio: "Founder and President of SYSCOM since 1982, Ted has led the company from a startup to a leading enterprise content management solutions provider. With over four decades of experience in enterprise IT, Ted's vision for delivering the right technology — not just the newest — has guided SYSCOM's strategy and growth.",
+    bio: "Founder and President of SYSCOM since 1982, Ted has led the company from a startup to a leading enterprise content management solutions provider. With decades of experience in enterprise IT, Ted's vision for delivering the right technology — not just the newest — has guided SYSCOM's strategy and growth.",
     education: [
       "Carnegie Mellon University, BS Psychology",
       "Johns Hopkins University, Operations Research",
@@ -54,7 +54,7 @@ export const leadership = [
   {
     name: "Mark Anzmann",
     title: "Executive Vice President",
-    bio: "Mark oversees SYSCOM's Professional Services division and strategic client relationships across government and financial services verticals. With over 30 years of experience and six IBM certifications, Mark brings deep technical expertise to every engagement. He has served as Chair of the Baltimore/Washington DB2 Users Group.",
+    bio: "Mark oversees SYSCOM's Professional Services division and strategic client relationships across government and financial services verticals. With decades of experience and six IBM certifications, Mark brings deep technical expertise to every engagement. He has served as Chair of the Baltimore/Washington DB2 Users Group.",
     education: [
       "James Madison University, BS Computer Science",
     ],
@@ -66,7 +66,7 @@ export const leadership = [
   {
     name: "Chris Benedetti",
     title: "Chief Technology Officer",
-    bio: "Chris has spent over 25 years at SYSCOM, progressing from capture engineer to CTO. He leads product development and technology strategy across the SYSCOM portfolio — including AnySource Migrator, IBIG 2.0, and AIS Bridge — and has delivered solutions for clients including Wells Fargo, Navy Federal, the United Nations, and numerous government agencies.",
+    bio: "Chris has spent the bulk of his career at SYSCOM, progressing from capture engineer to CTO. He leads product development and technology strategy across the SYSCOM portfolio — including AnySource Migrator, IBIG 2.0, and AIS Bridge — and has delivered solutions for clients including Wells Fargo, Navy Federal, the United Nations, and numerous government agencies.",
     education: [
       "University of Cincinnati, BBA — Information Systems & Management",
     ],
@@ -86,7 +86,7 @@ export const partnerships = [
   },
   {
     name: "Tungsten Automation (Kofax)",
-    description: "30+ year partnership covering enterprise capture, intelligent document processing, and automation.",
+    description: "Long-standing partnership covering enterprise capture, intelligent document processing, and automation.",
   },
 ];
 
@@ -112,7 +112,7 @@ export const services = [
     name: "Enterprise Capture",
     shortName: "Capture",
     description:
-      "30+ year Tungsten Automation (Kofax) partnership. Remote and central capture, scanner and VRS configuration, high-availability and disaster recovery, advanced recognition and classification, custom validation and release scripts, IBM Datacap deployment.",
+      "Long-standing Tungsten Automation (Kofax) partnership. Remote and central capture, scanner and VRS configuration, high-availability and disaster recovery, advanced recognition and classification, custom validation and release scripts, IBM Datacap deployment.",
     icon: "scan",
   },
   {
@@ -120,7 +120,7 @@ export const services = [
     name: "Content Migration",
     shortName: "Migration",
     description:
-      "Move content between any ECM platform with full metadata, security, and folder structure preservation. Powered by our proprietary AnySource Migrator — 25+ pre-built repository connectors. Strategies include gradual migration, overnight switchover, and federated coexistence.",
+      "Move content between any ECM platform with full metadata, security, and folder structure preservation. Powered by our proprietary AnySource Migrator with an extensive library of pre-built repository connectors. Strategies include gradual migration, overnight switchover, and federated coexistence.",
     icon: "move",
   },
   {
@@ -152,7 +152,7 @@ export const services = [
     name: "Staffing & Workforce Augmentation",
     shortName: "Staffing",
     description:
-      "Project Managers, Architects, Business Analysts, Programmers, Technical Writers, Testers, DBAs, and Cybersecurity Engineers. Individual resources, teams, or entire departments. Short-term engagements to long-term placements exceeding 10 years. Rapid deployment backed by deep ECM technical knowledge.",
+      "Project Managers, Architects, Business Analysts, Programmers, Technical Writers, Testers, DBAs, and Cybersecurity Engineers. Individual resources, teams, or entire departments. Short-term engagements to long-term placements spanning many years. Rapid deployment backed by deep ECM technical knowledge.",
     icon: "users",
   },
 ];
@@ -165,10 +165,10 @@ export const products = [
     tagline: "Any source. Any destination. Zero compromises.",
     badge: "Flagship",
     description:
-      "Enterprise content migration platform with 25+ pre-built repository connectors. AI-powered auto-mapping, real-time monitoring, and the most flexible migration engine on the market.",
+      "Enterprise content migration platform with an extensive library of pre-built repository connectors. AI-powered auto-mapping, real-time monitoring, and the most flexible migration engine on the market.",
     features: [
       {
-        title: "25+ Connectors",
+        title: "Broad Connector Library",
         description:
           "FileNet P8, Content Manager, ImagePlus, SharePoint, CMIS, EMC Documentum, OLEDB, File Systems, and a custom connector framework.",
       },
@@ -299,7 +299,7 @@ export const products = [
           "Scheduled recrawls detect new and changed documents, keeping the intelligence layer always current.",
       },
       {
-        title: "25+ Repository Connectors",
+        title: "Broad Repository Coverage",
         description:
           "Works with all ASM connectors — FileNet, SharePoint, Content Manager, and more. One platform, any repository.",
       },
@@ -654,7 +654,7 @@ export const verticals = [
     name: "Health & Human Services",
     subtitle: "Government & Compliance",
     description:
-      "Family investment, social services, and child support programs. Over 15 years of experience with human services agencies processing complex case documentation.",
+      "Family investment, social services, and child support programs. Long history of work with human services agencies processing complex case documentation.",
     icon: "heart-pulse",
   },
   {
@@ -681,7 +681,7 @@ export const verticals = [
 ];
 
 export const stats = [
-  { value: "40+", label: "Years in Business" },
+  { value: "Since 1982", label: "In Business" },
   { value: "8", label: "Service Disciplines" },
   { value: "9", label: "Software Products" },
   { value: "5", label: "Industry Verticals" },
@@ -737,7 +737,7 @@ export const directions = {
 };
 
 export const careerInfo = {
-  retentionStat: "70%+ employee tenure exceeding 5 years",
+  retentionStat: "Strong employee tenure across the team",
   portalUrl: "https://syscom.catsone.com/careers/95588-General/",
   skillsInDemand: [
     "Java",

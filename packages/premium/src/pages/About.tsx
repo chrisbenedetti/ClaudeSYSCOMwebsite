@@ -41,10 +41,9 @@ export default function About() {
             <p>
               SYSCOM was founded in 1982 in Baltimore, Maryland, with a clear
               conviction: that enterprise content management is too critical to
-              leave to generic solutions. For over {company.yearsInBusiness}{' '}
-              years, we have built, deployed, and maintained the systems that
-              organizations depend on to manage their most important documents
-              and data.
+              leave to generic solutions. For decades since, we have built,
+              deployed, and maintained the systems that organizations depend on
+              to manage their most important documents and data.
             </p>
             <p>
               We use the best platforms when they exist, configure and extend them
@@ -263,7 +262,7 @@ export default function About() {
               },
               {
                 title: 'Longevity',
-                text: 'Over 70% of our team has been with SYSCOM for five years or more. We do not churn through talent. We invest in expertise.',
+                text: 'The vast majority of our team has been with SYSCOM for many years. We do not churn through talent. We invest in expertise.',
               },
               {
                 title: 'Precision',
@@ -297,8 +296,8 @@ export default function About() {
             Ready to Work Together?
           </h2>
           <p className="text-charcoal-500 text-base mb-12 max-w-md mx-auto font-light">
-            {company.yearsInBusiness} years of solving enterprise content
-            challenges. Let us bring that experience to your organization.
+            Decades of solving enterprise content challenges. Let us bring that experience
+            to your organization.
           </p>
           <Link
             to="/contact"
