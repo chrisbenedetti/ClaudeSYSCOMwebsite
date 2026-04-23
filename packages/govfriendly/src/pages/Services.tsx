@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { services } from '@shared/data/company';
-import ROICalculator from '../components/ROICalculator';
 
 const SERVICE_EMOJIS: Record<string, string> = {
   ecm: '\u{1F4C1}',
@@ -180,26 +179,6 @@ export default function Services() {
           </section>
         );
       })}
-
-      {/* ROI Calculator */}
-      <section
-        className="py-20 bg-white"
-        aria-labelledby="roi-heading"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            id="roi-heading"
-            className="font-heading text-3xl font-bold text-navy text-center mb-4"
-          >
-            Calculate Your ROI
-          </h2>
-          <p className="text-lg text-muted text-center max-w-2xl mx-auto mb-10">
-            See how automation can reduce costs and improve efficiency in your document
-            processing workflows.
-          </p>
-          <ROICalculator />
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="py-16 bg-navy" aria-label="Call to action">
