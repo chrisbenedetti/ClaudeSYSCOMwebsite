@@ -55,9 +55,25 @@ export default function Home() {
               challenges with technology that works.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link to="/products" className="btn-primary">
-                Our Solutions
-              </Link>
+              <div
+                role="group"
+                aria-label="Browse our offerings"
+                className="inline-flex rounded-lg overflow-hidden bg-[#001f3f] shadow-sm"
+              >
+                <Link
+                  to="/services"
+                  className="px-6 py-3 text-white font-semibold hover:bg-[#001a2e] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-teal-light"
+                >
+                  Services
+                </Link>
+                <span aria-hidden="true" className="self-stretch w-px bg-white/25" />
+                <Link
+                  to="/products"
+                  className="px-6 py-3 text-white font-semibold hover:bg-[#001a2e] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-teal-light"
+                >
+                  Products
+                </Link>
+              </div>
               <Link to="/contact" className="btn-teal">
                 Schedule Consultation
               </Link>
