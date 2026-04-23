@@ -21,16 +21,15 @@ export default function Careers() {
         <div className="max-w-3xl mx-auto">
           <div className="space-y-8 text-charcoal-600 text-base md:text-lg leading-relaxed font-light">
             <p>
-              SYSCOM is not a revolving door. Over 70% of our team has been here
-              for five years or more -- not because they are comfortable, but
-              because the work is challenging, the people are exceptional, and the
-              company gives them room to grow.
+              SYSCOM is not a revolving door. The vast majority of our team has been here
+              for many years -- not because they are comfortable, but because the work is
+              challenging, the people are exceptional, and the company gives them room to
+              grow.
             </p>
             <p>
-              We are a Baltimore-based firm with over {company.yearsInBusiness}{' '}
-              years of history. Our size means you will have real ownership over
-              your work. Our longevity means you will have the stability to build
-              a career, not just fill a role.
+              We are a Baltimore-based firm with decades of history, founded in 1982. Our
+              size means you will have real ownership over your work. Our longevity means
+              you will have the stability to build a career, not just fill a role.
             </p>
             <p>
               We work on hard problems -- migrating millions of documents,

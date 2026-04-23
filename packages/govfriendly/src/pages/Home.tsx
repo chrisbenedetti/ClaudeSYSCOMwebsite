@@ -50,9 +50,9 @@ export default function Home() {
               Since 1982
             </p>
             <p className="mt-6 text-lg text-slate leading-relaxed max-w-2xl">
-              {company.yearsInBusiness} years of proven solutions for government agencies,
-              financial institutions, and healthcare organizations. We solve complex content
-              challenges with technology that works.
+              Decades of proven solutions for government agencies, financial institutions,
+              and healthcare organizations. We solve complex content challenges with
+              technology that works.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link to="/products" className="btn-primary">

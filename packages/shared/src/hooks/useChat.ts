@@ -4,16 +4,16 @@ import type { ChatMessage } from '../types';
 const SYSCOM_KNOWLEDGE = `You are the SYSCOM AI Assistant embedded on syscom.com. You represent SYSCOM, Inc., an enterprise content management company based in Baltimore, MD (Inner Harbor Center, 400 East Pratt Street, Suite 600, 21202). Phone: 1-800-7-SYSCOM (1-800-779-7266) / (410) 539-3737. Email: sales@syscom.com. Support: supportcenter@syscom.com.
 
 COMPANY OVERVIEW:
-- Founded 1982, 40+ years of enterprise IT solutions
+- Founded 1982 — decades of enterprise IT solutions
 - Specializes in Enterprise Content Management (ECM), Business Process Automation, Enterprise Capture, Content Migration, AI & Intelligent Automation, Custom Application Services, and Staffing & Workforce Augmentation
 - Three divisions: Professional Services, Sales & Marketing, Corporate Services
-- Long-term client relationships spanning decades, 70%+ employee tenure over 5 years
+- Long-term client relationships spanning decades, with strong employee tenure across the team
 - Serves government (federal & state), financial services, insurance, health & human services, healthcare, transportation, manufacturing & telecom
-- Key partnerships: IBM (decades), Tungsten Automation/Kofax (30+ years)
+- Key partnerships: IBM and Tungsten Automation/Kofax — both long-standing
 - PMP-certified project managers, PMBOK methodology
 
 PRODUCTS (10):
-1. AnySource Migrator (ASM) - Flagship. 25+ connectors (FileNet P8, Content Manager, ImagePlus, SharePoint, CMIS, Documentum, OLEDB, File Systems). ASM 2.0: AI auto-mapping, predictive anomaly detection, self-service portal.
+1. AnySource Migrator (ASM) - Flagship. Broad connector library (FileNet P8, Content Manager, ImagePlus, SharePoint, CMIS, Documentum, OLEDB, File Systems). ASM 2.0: AI auto-mapping, predictive anomaly detection, self-service portal.
 2. AIS Bridge - Drop-in ImagePlus replacement. Full CICS/IMS/MQ Workflow compatibility. Zero-downtime migration.
 3. IBIG 2.0 - AI-powered content discovery. LLM document understanding, semantic search, knowledge graphs. Works with all ASM connectors.
 4. SYSCOM Content Services (SCS) - SOA platform for config-driven ECM service deployment. REST/SOAP interfaces. Sarbanes-Oxley support.
@@ -23,7 +23,7 @@ PRODUCTS (10):
 9. IP2CM - ImagePlus to Content Manager migration. ~1 million docs/hour.
 10. MVS Connect - High-speed mainframe-to-capture integration for IBM ImagePlus/390.
 
-SERVICES: ECM (IBM FileNet, Content Manager, ImagePlus, OnDemand), Enterprise Capture (30+ yr Kofax partnership), BPA (IBM BAW, case management, business rules), Content Migration (gradual, overnight, federated strategies), AI & Intelligent Automation, Custom Application Services, Staffing & Workforce Augmentation.
+SERVICES: ECM (IBM FileNet, Content Manager, ImagePlus, OnDemand), Enterprise Capture (long-standing Kofax partnership), BPA (IBM BAW, case management, business rules), Content Migration (gradual, overnight, federated strategies), AI & Intelligent Automation, Custom Application Services, Staffing & Workforce Augmentation.
 
 AI CAPABILITIES: Zero-shot classification, SecureCapture Gateway (FedRAMP-aligned, NIST 800-53, CJIS, IRS Pub 1075), Compliance-as-Code, on-prem models (Llama, Mistral) for air-gapped environments.
 
@@ -35,7 +35,7 @@ const FALLBACK_RESPONSES: Record<string, { keywords: string[]; response: string 
   asm: {
     keywords: ['asm', 'anysource', 'migrator', 'migration', 'migrate'],
     response:
-      '**AnySource Migrator (ASM)** is our flagship migration platform with 25+ pre-built connectors for IBM FileNet P8, Content Manager, SharePoint, CMIS, EMC Documentum, and more. ASM 2.0 adds AI-powered auto-mapping that reduces migration planning from weeks to hours, plus predictive anomaly detection and real-time monitoring.',
+      '**AnySource Migrator (ASM)** is our flagship migration platform with an extensive library of pre-built connectors for IBM FileNet P8, Content Manager, SharePoint, CMIS, EMC Documentum, and more. ASM 2.0 adds AI-powered auto-mapping that reduces migration planning from weeks to hours, plus predictive anomaly detection and real-time monitoring.',
   },
   bridge: {
     keywords: ['bridge', 'ais bridge', 'imageplus', 'image plus'],
@@ -45,12 +45,12 @@ const FALLBACK_RESPONSES: Record<string, { keywords: string[]; response: string 
   ibig: {
     keywords: ['ibig', 'intelligence gateway', 'content discovery', 'semantic search'],
     response:
-      '**IBIG 2.0** uses LLMs to actually understand documents, not just extract text. It performs AI-powered classification, entity extraction, and relationship mapping, then builds a semantic search layer. Query naturally: "Find all contracts expiring this quarter." Works with all 25+ ASM connectors.',
+      '**IBIG 2.0** uses LLMs to actually understand documents, not just extract text. It performs AI-powered classification, entity extraction, and relationship mapping, then builds a semantic search layer. Query naturally: "Find all contracts expiring this quarter." Works with the full ASM connector library.',
   },
   capture: {
     keywords: ['capture', 'kofax', 'tungsten', 'scanner', 'ocr', 'datacap'],
     response:
-      "Our **Enterprise Capture** practice has a 30+ year Tungsten Automation (Kofax) partnership. We specialize in remote/central capture, advanced recognition, and AI-powered zero-shot classification that works without templates — new document types onboarded in hours, not weeks.",
+      "Our **Enterprise Capture** practice has a long-standing Tungsten Automation (Kofax) partnership. We specialize in remote/central capture, advanced recognition, and AI-powered zero-shot classification that works without templates — new document types onboarded in hours, not weeks.",
   },
   security: {
     keywords: ['security', 'fedramp', 'nist', 'cjis', 'compliance', 'zero trust', 'secure'],
@@ -90,7 +90,7 @@ const FALLBACK_RESPONSES: Record<string, { keywords: string[]; response: string 
   company: {
     keywords: ['about', 'company', 'history', 'who', 'syscom', 'baltimore'],
     response:
-      "SYSCOM has been delivering enterprise technology solutions since 1982 — over 40 years. Based in Baltimore's Inner Harbor, we serve government, financial services, insurance, healthcare, transportation, and manufacturing clients. Our long-term client relationships — many spanning decades — and 70%+ employee tenure over 5 years speak to the depth of our partnerships.",
+      "SYSCOM has been delivering enterprise technology solutions since 1982. Based in Baltimore's Inner Harbor, we serve government, financial services, insurance, healthcare, transportation, and manufacturing clients. Our long-term client relationships — many spanning decades — and strong employee tenure speak to the depth of our partnerships.",
   },
   contact: {
     keywords: ['contact', 'reach', 'call', 'email', 'phone', 'address'],
@@ -117,7 +117,7 @@ function getFallbackResponse(query: string): string {
   if (lower.includes('hello') || lower.includes('hi ') || lower === 'hi' || lower === 'hey')
     return "Hello! I'm SYSCOM's AI assistant. I can help with our products (ASM, AIS Bridge, IBIG 2.0, Content Services, Content Viewer, and more), services (ECM, capture, migration, BPA, AI, staffing), or security & compliance. What would you like to know?";
   if (lower.includes('what') && (lower.includes('do') || lower.includes('offer')))
-    return "SYSCOM provides enterprise content management, intelligent capture, business process automation, and AI-powered solutions. Our product suite includes AnySource Migrator, AIS Bridge, IBIG 2.0, Content Services, Content Viewer, and more. Plus enterprise capture consulting (30+ year Kofax partnership) and staffing & workforce augmentation. What area interests you?";
+    return "SYSCOM provides enterprise content management, intelligent capture, business process automation, and AI-powered solutions. Our product suite includes AnySource Migrator, AIS Bridge, IBIG 2.0, Content Services, Content Viewer, and more. Plus enterprise capture consulting (long-standing Kofax partnership) and staffing & workforce augmentation. What area interests you?";
   return "I can help with **products** (ASM, AIS Bridge, IBIG, Content Services, Viewer, and more), **services** (ECM, capture, migration, BPA, AI, staffing), **security & compliance**, or **company info**. What would you like to explore?";
 }
 

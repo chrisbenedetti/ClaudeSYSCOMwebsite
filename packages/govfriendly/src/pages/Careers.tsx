@@ -32,8 +32,8 @@ export default function Careers() {
               <p className="mt-4 text-slate leading-relaxed">
                 SYSCOM is not a revolving door. Our client relationships span decades,
                 which means the people you work with are experienced, invested, and here for
-                the long haul. We've been doing this for {company.yearsInBusiness} years
-                because we hire well and treat people right.
+                the long haul. We've been doing this since 1982 because we hire well and
+                treat people right.
               </p>
               <p className="mt-4 text-slate leading-relaxed">
                 Based in Baltimore's Inner Harbor, we work on enterprise content management
@@ -44,14 +44,12 @@ export default function Careers() {
 
               <div className="mt-8 grid grid-cols-2 gap-4">
                 <div className="bg-warm-cream rounded-warm p-4 text-center border border-warm-border">
-                  <p className="font-heading text-2xl font-bold text-navy">
-                    {company.yearsInBusiness}+
-                  </p>
-                  <p className="text-xs text-muted mt-1">Years in Business</p>
+                  <p className="font-heading text-2xl font-bold text-navy">Since 1982</p>
+                  <p className="text-xs text-muted mt-1">In Business</p>
                 </div>
                 <div className="bg-warm-cream rounded-warm p-4 text-center border border-warm-border">
-                  <p className="font-heading text-2xl font-bold text-navy">70%+</p>
-                  <p className="text-xs text-muted mt-1">5+ Year Tenure</p>
+                  <p className="font-heading text-2xl font-bold text-navy">Strong</p>
+                  <p className="text-xs text-muted mt-1">Employee Tenure</p>
                 </div>
               </div>
             </div>
@@ -111,7 +109,7 @@ export default function Careers() {
               {
                 emoji: '\u{1F3E2}',
                 title: 'Stability',
-                desc: '40+ years in business. We are not a startup that might not be here next year.',
+                desc: 'In business since 1982. We are not a startup that might not be here next year.',
               },
               {
                 emoji: '\u{1F4C4}',

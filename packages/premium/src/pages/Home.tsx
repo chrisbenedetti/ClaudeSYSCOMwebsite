@@ -337,8 +337,7 @@ export default function Home() {
             Begin a Conversation
           </h2>
           <p className="text-charcoal-500 text-base mb-12 max-w-md mx-auto font-light">
-            {company.yearsInBusiness} years of solving enterprise content
-            challenges. Let us solve yours.
+            Decades of solving enterprise content challenges. Let us solve yours.
           </p>
           <Link
             to="/contact"
