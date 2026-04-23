@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { products } from '@shared/data/company';
 import WorkflowAnimation from '../components/WorkflowAnimation';
-import ROICalculator from '../components/ROICalculator';
 
 const PRODUCT_ACCENTS: Record<string, { accent: string; badgeClass: string; label: string }> = {
   asm: { accent: 'teal', badgeClass: 'bg-teal/10 text-teal', label: 'Flagship' },
@@ -141,22 +140,6 @@ export default function Products() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ROI Calculator */}
-      <section className="py-20 bg-warm-cream" aria-labelledby="roi-products-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            id="roi-products-heading"
-            className="font-heading text-3xl font-bold text-navy text-center mb-4"
-          >
-            Calculate Your ROI
-          </h2>
-          <p className="text-lg text-muted text-center max-w-2xl mx-auto mb-10">
-            See how our products can reduce costs and improve efficiency.
-          </p>
-          <ROICalculator />
         </div>
       </section>
 

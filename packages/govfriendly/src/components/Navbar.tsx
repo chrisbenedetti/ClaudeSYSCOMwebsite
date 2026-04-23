@@ -65,12 +65,6 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
-            <Link
-              to="/products#roi"
-              className="ml-2 text-sm font-medium text-teal hover:text-teal-light transition-colors"
-            >
-              ROI Calculator
-            </Link>
             <Link to="/contact" className="ml-3 btn-primary text-sm !py-2 !px-4">
               Get Started
             </Link>
@@ -123,12 +117,6 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              to="/products#roi"
-              className="block px-3 py-2 text-sm font-medium text-teal"
-            >
-              ROI Calculator
-            </Link>
             <Link to="/contact" className="block mt-2 btn-primary text-sm text-center">
               Get Started
             </Link>
